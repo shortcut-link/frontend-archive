@@ -1,7 +1,11 @@
 //@flow
+import { lazy } from 'react';
+
 import { RoutesConfig } from 'lib/routing';
-// pages
-import { CreateLinkMainPage } from './pages/main';
+
+const CreateLinkMainPage = lazy(() =>
+  import('./pages/main').then(a => ({ default: a.CreateLinkMainPage }))
+);
 
 export const CreateLinkRoutes = (): RoutesConfig => [
   {
