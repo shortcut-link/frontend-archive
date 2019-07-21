@@ -1,0 +1,1 @@
+export { CreateLinkRoutes } from './routes';

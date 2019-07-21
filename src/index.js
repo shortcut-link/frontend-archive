@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Router } from 'react-router-dom';
 
-const render = () =>
-  ReactDOM.render(
-    <App />, // $FlowIgnore
-    document.getElementById('root')
-  );
+import { App } from './App';
+import { history } from 'lib/routing';
 
-render();
+ReactDOM.render(
+  <Router history={history}>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
