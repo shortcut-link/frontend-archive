@@ -16,8 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "cross-env CI=true react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,7 +31,8 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "yarn jest"
+      "pre-commit": "yarn run lint && yarn test",
+      "pre-push": "yarn run lint && yarn test"
     }
   },
   "browserslist": {
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
+    "cross-env": "^5.2.0",
     "cz-customizable": "^6.2.0",
     "husky": "^3.0.1",
     "prettier": "^1.18.2"
