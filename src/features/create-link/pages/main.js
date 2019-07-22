@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { CommonContentTemplate } from 'features/common';
+
 export const CreateLinkMainPage = () => {
-  return <div></div>;
+  return (
+    <CommonContentTemplate>{/* CreateLinkMainPage */}</CommonContentTemplate>
+  );
 };
