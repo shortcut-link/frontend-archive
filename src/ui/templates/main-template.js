@@ -28,10 +28,10 @@ const MainContainer = styled.div`
     'footer';
 `;
 
-const Header = styled.div`
+const Header = styled.header`
   grid-area: header;
 `;
 
-const Footer = styled.div`
+const Footer = styled.footer`
   grid-area: footer;
 `;
