@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "effector": "^20.0.0",
+    "effector-react": "^20.1.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "flow-bin": "^0.103.0",
@@ -11,7 +13,8 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
