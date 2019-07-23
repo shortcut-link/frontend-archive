@@ -5,14 +5,25 @@ import styled from 'styled-components';
 
 import { MainTemplate } from 'ui/templates';
 import { Container } from 'ui/templates';
+import { Header } from '../organisms';
 
-export const CommonContentTemplate = ({ children }: { children: Node }) => (
-  <MainTemplate>
+type Props = {
+  children: Node,
+  header: ?Node,
+  footer: ?Node
+};
+
+export const CommonContentTemplate = ({ header, footer, children }: Props) => (
+  <MainTemplate header={header} footer={footer}>
     <CommonContent>
       <Container>{children}</Container>
     </CommonContent>
   </MainTemplate>
 );
+
+CommonContentTemplate.defaultProps = {
+  header: <Header />
+};
 
 const CommonContent = styled.div`
   display: flex;
