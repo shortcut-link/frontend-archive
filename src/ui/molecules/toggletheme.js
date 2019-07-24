@@ -26,7 +26,6 @@ const Box = styled.label`
   height: calc(${radius} + 8px);
 `;
 
-// TODO: Цвет брать из цветовой темы.
 const Slider = styled.span`
   position: absolute;
   top: 0;
@@ -34,9 +33,10 @@ const Slider = styled.span`
   bottom: 0
   left: 0;
   
-  background-color: #42A5F5;
-  cursor: pointer;
+  background-color: ${({ theme }) => theme.palette.primary.initial.background};
   border-radius: ${radius};
+  cursor: pointer;
+  transition: 0.4s;
 
   &:before {
     content: "☀️";
@@ -55,7 +55,7 @@ const Slider = styled.span`
     line-height: 0px;
     background-color: white;
     border-radius: 50%;
-    transition: .4s;
+    transition: 0.4s;
   }
 `;
 
@@ -63,10 +63,6 @@ const Checkbox = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
-
-  &:checked + ${Slider} {
-    background-color: #f8bbd0;
-  }
 
   &:checked + ${Slider}::before {
     content: '🌔';

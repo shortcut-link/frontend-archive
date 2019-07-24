@@ -4,6 +4,7 @@ import type { Node } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { createStore, createEvent } from 'effector';
 import { useStore } from 'effector-react';
+import type { Event } from 'react-router-dom';
 
 const toggleTheme = createEvent();
 const $isDark = createStore(localStorage.getItem('theme') === 'dark');
@@ -28,9 +29,10 @@ export const ToggleThemeProvider = ({ dark, light, children }: Props) => {
   );
 };
 
+// TODO: вынести в отдельный файл чтобы использовать в toggleTheme
 type RenderProps = {
   isDark: boolean,
-  toggle: any
+  toggle: Event<void>
 };
 
 export const WithThemeToggler = ({
