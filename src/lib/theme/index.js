@@ -27,3 +27,18 @@ export const ToggleThemeProvider = ({ dark, light, children }: Props) => {
     <ThemeProvider theme={isDark ? dark : light}>{children}</ThemeProvider>
   );
 };
+
+type RenderProps = {
+  isDark: boolean,
+  toggle: any
+};
+
+export const WithThemeToggler = ({
+  render
+}: {
+  render: (props: RenderProps) => void
+}) => {
+  const isDark = useStore($isDark);
+
+  return render({ isDark, toggle: toggleTheme });
+};
