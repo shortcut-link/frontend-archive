@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render CSS container 1`] = `
+.c0 {
+  display: inherit;
+  max-width: 50rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+<div
+  className="c0"
+/>
+`;

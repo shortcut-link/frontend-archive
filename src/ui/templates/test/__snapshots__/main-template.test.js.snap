@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should to render "Main Template" only with children 1`] = `
+.c0 {
+  display: grid;
+  min-height: 100vh;
+  max-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' '.' 'footer';
+}
+
+<div
+  className="c0"
+>
+  <div>
+    Hello
+  </div>
+</div>
+`;
+
+exports[`should to render "Main Template" with header, footer, children 1`] = `
+.c0 {
+  display: grid;
+  min-height: 100vh;
+  max-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' '.' 'footer';
+}
+
+.c1 {
+  grid-area: header;
+}
+
+.c2 {
+  grid-area: footer;
+}
+
+<div
+  className="c0"
+>
+  <header
+    className="c1"
+  >
+    <header>
+      Header
+    </header>
+  </header>
+  <div>
+    Hello
+  </div>
+  <footer
+    className="c2"
+  >
+    <footer>
+      Footer
+    </footer>
+  </footer>
+</div>
+`;
