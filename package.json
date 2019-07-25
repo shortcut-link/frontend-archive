@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test",
+    "test": "cross-env CI=true react-scripts test --setupFilesAfterEnv ./config/tests/setupTests.js",
     "eject": "react-scripts eject",
     "lint": "eslint src"
   },
@@ -29,11 +29,14 @@
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./config/git/commitizen.js"
     }
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g ./config/git/commitlint.js",
       "pre-commit": "yarn run lint && yarn test",
       "pre-push": "yarn run lint && yarn test"
     }
