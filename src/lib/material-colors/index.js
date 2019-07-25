@@ -669,7 +669,10 @@ export const material = {
   }
 };
 
-export const createEmbed = (name, shade = 500) => ({
+export const createEmbed = (
+  name: string,
+  shade: number = 500
+): { background: string, color: string } => ({
   background: material.palette[name][shade],
   color: material.paletteText[name][shade]
 });
