@@ -65,7 +65,7 @@ const Checkbox = styled.input`
   height: 0;
 
   &:checked + ${Slider}::before {
-    content: '🌔';
+    content: '🌙';
     transform: translateX(${radius});
   }
 `;
