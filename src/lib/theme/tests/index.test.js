@@ -3,33 +3,8 @@ import renderer from 'react-test-renderer';
 import styled from 'styled-components';
 import 'jest-styled-components';
 
-import {
-  $isDark,
-  toggleTheme,
-  ToggleThemeProvider,
-  WithThemeToggler
-} from '../index';
-
-describe('store management for a dark theme', () => {
-  let value;
-  $isDark.watch(boolean => (value = boolean));
-  const storage = () => localStorage.getItem('theme');
-
-  it('create store', () => {
-    expect(value).toEqual(false);
-    expect(storage()).toEqual('light');
-  });
-
-  it('change the theme', () => {
-    toggleTheme();
-    expect(value).toEqual(true);
-    expect(storage()).toEqual('dark');
-
-    toggleTheme();
-    expect(value).toEqual(false);
-    expect(storage()).toEqual('light');
-  });
-});
+import { ToggleThemeProvider, WithThemeToggler } from '../index';
+import { toggleTheme } from '../index.model';
 
 it('theme Provider', () => {
   const lightTheme = { one: { primary: '#fff' } };

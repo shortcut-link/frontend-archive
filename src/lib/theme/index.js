@@ -1,23 +1,10 @@
 //@flow
-import React from 'react';
-import type { Node } from 'react';
+import React, { type Node } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { createStore, createEvent } from 'effector';
 import { useStore } from 'effector-react';
 import type { Event as RouterEvent } from 'react-router-dom';
-import type { Store, Event as EffectorEvent } from 'effector';
 
-export const toggleTheme: EffectorEvent<any> = createEvent();
-
-export const $isDark: Store<boolean> = createStore(
-  localStorage.getItem('theme') === 'dark'
-);
-
-$isDark.on(toggleTheme, isDark => !isDark);
-
-$isDark.watch(isDark => {
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
+import { $isDark, toggleTheme } from './index.model';
 
 type Props = {
   dark: Object,
