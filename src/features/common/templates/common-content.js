@@ -8,21 +8,21 @@ import { Header } from '../organisms';
 
 type Props = {
   children: Node,
-  header: ?Node,
+  header: Node,
   footer: ?Node
 };
 
-export const CommonContentTemplate = ({ header, footer, children }: Props) => (
+export const CommonContentTemplate = ({
+  header = <Header />,
+  footer,
+  children
+}: Props) => (
   <MainTemplate header={header} footer={footer}>
     <CommonContent>
       <Container>{children}</Container>
     </CommonContent>
   </MainTemplate>
 );
-
-CommonContentTemplate.defaultProps = {
-  header: <Header />
-};
 
 const CommonContent = styled.div`
   display: flex;
