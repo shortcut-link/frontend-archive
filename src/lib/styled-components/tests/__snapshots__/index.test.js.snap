@@ -1,16 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should wrap in an element and pass to children, props default tag 1`] = `
+exports[`must wrap in an item with custom tag and transfer of props 1`] = `
 <header
-  props={
-    Object {
-      "foo": "bar",
-      "one": [Function],
-    }
-  }
+  className="one"
 >
-  <p>
+  <div>
     Hello
-  </p>
+  </div>
 </header>
+`;
+
+exports[`must wrap in an item with default tag 1`] = `
+<div>
+  <div>
+    Hello
+  </div>
+</div>
 `;

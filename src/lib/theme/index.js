@@ -4,10 +4,14 @@ import type { Node } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { createStore, createEvent } from 'effector';
 import { useStore } from 'effector-react';
-import type { Event } from 'react-router-dom';
+import type { Event as RouterEvent } from 'react-router-dom';
+import type { Store, Event as EffectorEvent } from 'effector';
 
-const toggleTheme = createEvent();
-const $isDark = createStore(localStorage.getItem('theme') === 'dark');
+export const toggleTheme: EffectorEvent<any> = createEvent();
+
+export const $isDark: Store<boolean> = createStore(
+  localStorage.getItem('theme') === 'dark'
+);
 
 $isDark.on(toggleTheme, isDark => !isDark);
 
@@ -32,7 +36,7 @@ export const ToggleThemeProvider = ({ dark, light, children }: Props) => {
 // TODO: вынести в отдельный файл чтобы использовать в toggleTheme
 type RenderProps = {
   isDark: boolean,
-  toggle: Event<void>
+  toggle: RouterEvent<void>
 };
 
 export const WithThemeToggler = ({

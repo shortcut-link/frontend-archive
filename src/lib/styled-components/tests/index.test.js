@@ -1,17 +1,22 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
+
 import { WithTag } from '../index';
 
-describe('should wrap in an element and pass to children, props', () => {
-  it('default tag', () => {
-    expect(WithTag.defaultProps.tagName).toEqual('div');
+describe('must wrap in an item', () => {
+  const children = <div>Hello</div>;
+
+  it('with default tag', () => {
+    const tree = renderer.create(WithTag({ children })).toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 
-  it('default tag', () => {
-    const children = <p>Hello</p>;
-    const props = { one: () => {}, foo: 'bar' };
+  it('with custom tag and transfer of props', () => {
+    const tree = renderer
+      .create(WithTag({ tagName: 'header', children, className: 'one' }))
+      .toJSON();
 
-    const func = WithTag({ tagName: 'header', children, props });
-
-    expect(func).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });
