@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`must render Header 1`] = `
+<div
+  className="sc-htoDjs jvwlKG"
+>
+  <div
+    className="container sc-bxivhb kYvkOk"
+  >
+    <a
+      className="sc-iwsKbI jQhHGA"
+      href="/"
+      onClick={[Function]}
+    >
+      Shortcut Link
+    </a>
+    <div
+      className="sc-gzVnrw tDqEr"
+    >
+      <label
+        className="sc-ifAKCX jnDVBG"
+      >
+        <input
+          className="sc-bZQynM buenut"
+          defaultChecked={false}
+          onClick={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="slider sc-EHOje iAAzbI"
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;
