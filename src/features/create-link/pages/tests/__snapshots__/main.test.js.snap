@@ -1,21 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`must render Header 1`] = `
+exports[`must render CreateLinkMainPage 1`] = `
+.c0 {
+  display: grid;
+  min-height: 100vh;
+  max-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' '.' 'footer';
+}
+
 .c1 {
+  grid-area: header;
+}
+
+.c3 {
   display: inherit;
   max-width: 50rem;
   width: 100%;
   padding: 1rem;
 }
 
-.c3 {
+.c5 {
   position: relative;
   display: block;
   width: calc((1.4rem * 2) + 8px);
   height: calc(1.4rem + 8px);
 }
 
-.c6 {
+.c8 {
   position: absolute;
   top: 0;
   right: 0;
@@ -28,7 +40,7 @@ exports[`must render Header 1`] = `
   transition: 0.4s;
 }
 
-.c6:before {
+.c8:before {
   content: "☀️";
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,27 +67,27 @@ exports[`must render Header 1`] = `
   transition: 0.4s;
 }
 
-.c4 {
+.c6 {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.c4:checked + .c5::before {
+.c6:checked + .c7::before {
   content: '🌙';
   -webkit-transform: translateX(1.4rem);
   -ms-transform: translateX(1.4rem);
   transform: translateX(1.4rem);
 }
 
-.c2 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c0 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -91,7 +103,7 @@ exports[`must render Header 1`] = `
   height: 5rem;
 }
 
-.c0 > div.container {
+.c2 > div.container {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -102,36 +114,62 @@ exports[`must render Header 1`] = `
   align-items: center;
 }
 
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 <div
   className="c0"
 >
-  <div
-    className="container c1"
+  <header
+    className="c1"
   >
-    <a
-      className=""
-      href="/"
-      onClick={[Function]}
-    >
-      Shortcut Link
-    </a>
     <div
       className="c2"
     >
-      <label
-        className="c3"
+      <div
+        className="container c3"
       >
-        <input
-          className="c4"
-          defaultChecked={false}
+        <a
+          className=""
+          href="/"
           onClick={[Function]}
-          type="checkbox"
-        />
-        <span
-          className="slider c5 c6"
-        />
-      </label>
+        >
+          Shortcut Link
+        </a>
+        <div
+          className="c4"
+        >
+          <label
+            className="c5"
+          >
+            <input
+              className="c6"
+              defaultChecked={false}
+              onClick={[Function]}
+              type="checkbox"
+            />
+            <span
+              className="slider c7 c8"
+            />
+          </label>
+        </div>
+      </div>
     </div>
+  </header>
+  <div
+    className="c9"
+  >
+    <div
+      className="c3"
+    />
   </div>
 </div>
 `;

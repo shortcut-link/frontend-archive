@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import styled from 'styled-components';
-import 'jest-styled-components';
 
 import { ToggleThemeProvider, WithThemeToggler } from '../index';
 import { toggleTheme } from '../index.model';

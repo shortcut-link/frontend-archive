@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render the page "not found page" 1`] = `
+exports[`must render NotFoundPage 1`] = `
 <div>
   Not found page.
 </div>
