@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "browser-cookies": "^1.2.0",
     "effector": "^20.0.0",
     "effector-react": "^20.1.1",
     "enzyme": "^3.10.0",
