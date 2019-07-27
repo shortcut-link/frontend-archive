@@ -9,12 +9,14 @@ $session
   .on(sessionFetch.fail, () => null)
   .reset(sessionRemove);
 
-sessionFetch.use(() => ({
-  /* due to lack of api */
-  result: {
-    email: 'example@example.com'
-  }
-}));
+sessionFetch.use(() =>
+  // due to lack of api
+  Promise.resolve({
+    result: {
+      email: 'example@example.com'
+    }
+  })
+);
 
 forward({ from: sessionFetch.fail, to: tokenRemove });
 forward({ from: sessionRemove, to: tokenRemove });
