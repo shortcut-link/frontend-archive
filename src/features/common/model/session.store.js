@@ -1,7 +1,7 @@
 //@flow
 import { createStore } from 'effector';
 
-type Session = {
+export type Session = {
   email: string
 };
 

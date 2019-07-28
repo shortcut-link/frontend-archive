@@ -27,4 +27,6 @@ export const CommonContentTemplate = ({
 const CommonContent = styled.div`
   display: flex;
   justify-content: center;
+
+  ${({ theme }) => theme.embed.canvas}
 `;
