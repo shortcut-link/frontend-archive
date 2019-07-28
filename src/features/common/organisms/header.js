@@ -1,25 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import { Container } from 'ui/templates';
 import { WithThemeToggler } from 'lib/theme';
 import { ToggleSelectTheme } from 'ui/molecules';
+import { Authenticated } from './authenticated';
+import { Link } from 'ui/atom';
 
 export const Header = () => (
-  <Box>
+  <ContainerBox>
     <Container className={'container'}>
-      <NavLink to="/">Shortcut Link</NavLink>
+      <Logo />
       <RightPanel>
+        <Account />
         <ToggleThemeButton />
       </RightPanel>
     </Container>
-  </Box>
+  </ContainerBox>
 );
 
-const RightPanel = styled.div`
-  display: flex;
-`;
+const Logo = () => {
+  return (
+    <Link to={'/'} style={{ textTransform: 'uppercase' }}>
+      Shortcut-link
+    </Link>
+  );
+};
+
+const Account = () => (
+  <Authenticated
+    renderExists={() => TextAccount(true)}
+    renderEmpty={() => TextAccount(false)}
+  />
+);
+
+const TextAccount = auth => {
+  const link = auth ? '/profile' : 'join/signup';
+  const text = auth ? 'Ваш аккаунт' : 'Войти в аккаунт';
+
+  return (
+    <Link to={link} style={{ marginRight: '20px' }}>
+      {text}
+    </Link>
+  );
+};
 
 const ToggleThemeButton = () => (
   <WithThemeToggler
@@ -29,7 +53,13 @@ const ToggleThemeButton = () => (
   />
 );
 
-const Box = styled.div`
+const RightPanel = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ContainerBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,8 +69,6 @@ const Box = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  ${({ theme }) => theme.embed.canvas}
 `;
-
-const NavItem = styled.a``;
-
-const NavLink = NavItem.withComponent(Link);

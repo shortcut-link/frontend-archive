@@ -20,14 +20,14 @@ exports[`must render CreateLinkMainPage 1`] = `
   padding: 1rem;
 }
 
-.c5 {
+.c6 {
   position: relative;
   display: block;
   width: calc((1.4rem * 2) + 8px);
   height: calc(1.4rem + 8px);
 }
 
-.c8 {
+.c9 {
   position: absolute;
   top: 0;
   right: 0;
@@ -40,7 +40,7 @@ exports[`must render CreateLinkMainPage 1`] = `
   transition: 0.4s;
 }
 
-.c8:before {
+.c9:before {
   content: "☀️";
   display: -webkit-box;
   display: -webkit-flex;
@@ -67,13 +67,13 @@ exports[`must render CreateLinkMainPage 1`] = `
   transition: 0.4s;
 }
 
-.c6 {
+.c7 {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.c6:checked + .c7::before {
+.c7:checked + .c8::before {
   content: '🌙';
   -webkit-transform: translateX(1.4rem);
   -ms-transform: translateX(1.4rem);
@@ -81,10 +81,30 @@ exports[`must render CreateLinkMainPage 1`] = `
 }
 
 .c4 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+  color: inherit;
+}
+
+.c4:hover {
+  color: #2196F3;
+}
+
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c2 {
@@ -101,6 +121,8 @@ exports[`must render CreateLinkMainPage 1`] = `
   -ms-flex-align: center;
   align-items: center;
   height: 5rem;
+  background-color: #ECEFF1;
+  color: Black;
 }
 
 .c2 > div.container {
@@ -114,7 +136,7 @@ exports[`must render CreateLinkMainPage 1`] = `
   align-items: center;
 }
 
-.c9 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -123,6 +145,8 @@ exports[`must render CreateLinkMainPage 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  background-color: #ECEFF1;
+  color: Black;
 }
 
 <div
@@ -138,26 +162,43 @@ exports[`must render CreateLinkMainPage 1`] = `
         className="container c3"
       >
         <a
-          className=""
+          className="c4"
           href="/"
           onClick={[Function]}
+          style={
+            Object {
+              "textTransform": "uppercase",
+            }
+          }
         >
-          Shortcut Link
+          Shortcut-link
         </a>
         <div
-          className="c4"
+          className="c5"
         >
+          <a
+            className="c4"
+            href="/join/signup"
+            onClick={[Function]}
+            style={
+              Object {
+                "marginRight": "20px",
+              }
+            }
+          >
+            Войти в аккаунт
+          </a>
           <label
-            className="c5"
+            className="c6"
           >
             <input
-              className="c6"
+              className="c7"
               defaultChecked={false}
               onClick={[Function]}
               type="checkbox"
             />
             <span
-              className="slider c7 c8"
+              className="slider c8 c9"
             />
           </label>
         </div>
@@ -165,7 +206,7 @@ exports[`must render CreateLinkMainPage 1`] = `
     </div>
   </header>
   <div
-    className="c9"
+    className="c10"
   >
     <div
       className="c3"

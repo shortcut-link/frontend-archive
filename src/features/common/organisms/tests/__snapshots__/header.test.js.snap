@@ -8,14 +8,14 @@ exports[`must render Header 1`] = `
   padding: 1rem;
 }
 
-.c3 {
+.c4 {
   position: relative;
   display: block;
   width: calc((1.4rem * 2) + 8px);
   height: calc(1.4rem + 8px);
 }
 
-.c6 {
+.c7 {
   position: absolute;
   top: 0;
   right: 0;
@@ -28,7 +28,7 @@ exports[`must render Header 1`] = `
   transition: 0.4s;
 }
 
-.c6:before {
+.c7:before {
   content: "☀️";
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,13 +55,13 @@ exports[`must render Header 1`] = `
   transition: 0.4s;
 }
 
-.c4 {
+.c5 {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.c4:checked + .c5::before {
+.c5:checked + .c6::before {
   content: '🌙';
   -webkit-transform: translateX(1.4rem);
   -ms-transform: translateX(1.4rem);
@@ -69,10 +69,30 @@ exports[`must render Header 1`] = `
 }
 
 .c2 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: 0.15s;
+  transition: 0.15s;
+  color: inherit;
+}
+
+.c2:hover {
+  color: #2196F3;
+}
+
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c0 {
@@ -89,6 +109,8 @@ exports[`must render Header 1`] = `
   -ms-flex-align: center;
   align-items: center;
   height: 5rem;
+  background-color: #ECEFF1;
+  color: Black;
 }
 
 .c0 > div.container {
@@ -109,26 +131,43 @@ exports[`must render Header 1`] = `
     className="container c1"
   >
     <a
-      className=""
+      className="c2"
       href="/"
       onClick={[Function]}
+      style={
+        Object {
+          "textTransform": "uppercase",
+        }
+      }
     >
-      Shortcut Link
+      Shortcut-link
     </a>
     <div
-      className="c2"
+      className="c3"
     >
+      <a
+        className="c2"
+        href="/join/signup"
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "20px",
+          }
+        }
+      >
+        Войти в аккаунт
+      </a>
       <label
-        className="c3"
+        className="c4"
       >
         <input
-          className="c4"
+          className="c5"
           defaultChecked={false}
           onClick={[Function]}
           type="checkbox"
         />
         <span
-          className="slider c5 c6"
+          className="slider c6 c7"
         />
       </label>
     </div>
