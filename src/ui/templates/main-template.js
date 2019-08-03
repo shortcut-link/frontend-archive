@@ -8,7 +8,7 @@ type Props = {
   footer: ?Node
 };
 
-export const MainTemplate = ({ children, header, footer }: Props) => (
+export const Main = ({ children, header, footer }: Props) => (
   <MainContainer>
     {header && <Header>{header}</Header>}
     {children}

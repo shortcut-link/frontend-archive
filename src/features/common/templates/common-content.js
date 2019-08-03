@@ -2,7 +2,7 @@
 import React, { type Node } from 'react';
 import styled from 'styled-components';
 
-import { MainTemplate } from 'ui/templates';
+import { Main } from 'ui/templates';
 import { Container } from 'ui/templates';
 import { Header } from '../organisms';
 
@@ -17,11 +17,11 @@ export const CommonContentTemplate = ({
   footer,
   children
 }: Props) => (
-  <MainTemplate header={header} footer={footer}>
+  <Main header={header} footer={footer}>
     <CommonContent>
       <Container>{children}</Container>
     </CommonContent>
-  </MainTemplate>
+  </Main>
 );
 
 const CommonContent = styled.div`

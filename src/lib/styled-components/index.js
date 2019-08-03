@@ -1,5 +1,6 @@
 //@flow
 import React, { type Node } from 'react';
+import { css } from 'styled-components';
 
 type Props = {
   tagName: string,
@@ -11,3 +12,12 @@ export const WithTag = ({
   children,
   ...props
 }: Props) => <Tag {...props}>{children}</Tag>;
+
+const prop = (value?: string) => {
+  return value ? value : 'initial';
+};
+
+export const mixins = (props: { [key: string]: string }) => css`
+  justify-content: ${prop(props.justify)};
+  align-items: ${prop(props.align)};
+`;
