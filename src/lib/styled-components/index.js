@@ -1,6 +1,6 @@
 //@flow
 import React, { type Node } from 'react';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type Props = {
   tagName: string,
@@ -20,4 +20,31 @@ const prop = (value?: string) => {
 export const mixins = (props: { [key: string]: string }) => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
+`;
+
+export const Row = styled(WithTag)`
+  display: flex;
+  flex-direction: row;
+
+  ${mixins}
+  ${p =>
+    p.gap &&
+    css`
+      & > :not(:first-child) {
+        margin-top: ${p.gap};
+      }
+    `}
+`;
+
+export const Col = styled(WithTag)`
+  display: flex;
+  flex-direction: column;
+  ${mixins}
+  ${p =>
+    p.gap &&
+    css`
+      & > :not(:first-child) {
+        margin-top: ${p.gap};
+      }
+    `}
 `;

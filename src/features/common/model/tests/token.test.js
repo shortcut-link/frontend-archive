@@ -1,6 +1,6 @@
 import Cookies from 'browser-cookies';
 
-import { $token, tokenChanged, tokenRemove } from '../token';
+import { $token, tokenChange, tokenRemove } from '../token';
 
 describe('user token', () => {
   let value;
@@ -13,7 +13,7 @@ describe('user token', () => {
   it('change and reset', () => {
     const newToken = 'dmitriymnv';
 
-    tokenChanged(newToken);
+    tokenChange(newToken);
     expect(value).toEqual(newToken);
     expect(Cookies.get('sc-token')).toEqual(newToken);
 

@@ -10,12 +10,13 @@ const palette = {
 };
 
 const embed = {
-  link: css`
-    color: ${createEmbed('Blue Grey', '50').color};
-  `,
   canvas: css`
-    background-color: ${createEmbed('Blue Grey', '50').background};
-    color: ${createEmbed('Blue Grey', '50').color};
+    background-color: ${createEmbed('Blue Grey', 50).background};
+    color: ${createEmbed('Blue Grey', 50).color};
+  `,
+  card: css`
+    background-color: ${createEmbed('White', 500).background};
+    color: ${createEmbed('White', 500).color};
   `
 };
 

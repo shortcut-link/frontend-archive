@@ -1,7 +1,7 @@
 import '../session.model';
 import { $session } from '../session.store';
 import { sessionFetch, sessionRemove } from '../session.events';
-import { $token, tokenChanged } from '../token';
+import { $token, tokenChange } from '../token';
 
 describe('user session', () => {
   let value;
@@ -29,7 +29,7 @@ describe('user session', () => {
     $token.watch(boolean => (token = boolean));
 
     const newToken = 'hello';
-    tokenChanged(newToken);
+    tokenChange(newToken);
     expect(token).toEqual(newToken);
 
     sessionRemove();
