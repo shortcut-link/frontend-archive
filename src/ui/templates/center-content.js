@@ -9,6 +9,7 @@ const MainContainer = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
   overflow-y: auto;
   width: 100%;
 

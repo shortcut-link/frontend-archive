@@ -28,11 +28,12 @@ export const Row = styled(WithTag)`
   flex-direction: row;
 
   ${mixins}
+
   ${p =>
     p.gap &&
     css`
       & > :not(:first-child) {
-        margin-top: ${p.gap};
+        margin-left: ${p.gap};
       }
     `}
 `;
@@ -40,7 +41,9 @@ export const Row = styled(WithTag)`
 export const Col = styled(WithTag)`
   display: flex;
   flex-direction: column;
+
   ${mixins}
+
   ${p =>
     p.gap &&
     css`

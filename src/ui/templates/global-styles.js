@@ -20,12 +20,14 @@ export const GlobalStyle = createGlobalStyle`
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		font-size: 15px;
+		height: 100vh;
 	};
 
 	#root {
 		display: flex;
 		align-items: stretch;
 		flex-flow: column nowrap;
+		height: 100vh;
 	};
 
 	* {
