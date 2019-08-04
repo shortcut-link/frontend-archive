@@ -18,7 +18,8 @@ export const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0;
 		font-family: 'Open Sans', sans-serif;
-		font-weight: 700;
+		font-weight: 400;
+		font-size: 15px;
 	};
 
 	#root {
@@ -26,4 +27,8 @@ export const GlobalStyle = createGlobalStyle`
 		align-items: stretch;
 		flex-flow: column nowrap;
 	};
+
+	* {
+		box-sizing: border-box;
+	}
 `;

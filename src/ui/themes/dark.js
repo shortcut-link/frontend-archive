@@ -1,11 +1,14 @@
 import { css } from 'styled-components';
 
-import { createEmbed } from 'lib/material-colors';
+import { createEmbed, material } from 'lib/material-colors';
 
 const palette = {
   primary: {
     initial: createEmbed('Pink', 300),
     hover: createEmbed('Pink', 400)
+  },
+  decoration: {
+    borders: material.palette.White.Dividers
   }
 };
 
