@@ -21,6 +21,7 @@ export const mixins = (props: { [key: string]: string }) => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
   width: ${prop(props.width)};
+  padding: ${prop(props.padding)};
 `;
 
 export const Row = styled(WithTag)`
