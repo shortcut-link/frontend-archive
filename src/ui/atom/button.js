@@ -1,4 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
+
+import { Icon } from './icon';
 
 export const ButtonPrimary = styled.button`
   font-size: 0.9rem;
@@ -23,3 +26,9 @@ export const ButtonPrimary = styled.button`
     cursor: default;
   }
 `;
+
+export const ButtonLoader = ({ text, disabled, loader, ...props }) => (
+  <ButtonPrimary style={{ height: '3rem' }} disabled={disabled} {...props}>
+    {loader ? <Icon name="loader" width="1rem" height="1rem" /> : text}
+  </ButtonPrimary>
+);
