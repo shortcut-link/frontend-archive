@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import { Icon } from './icon';
 
@@ -27,8 +27,19 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
-export const ButtonLoader = ({ text, disabled, loader, ...props }) => (
-  <ButtonPrimary style={{ height: '3rem' }} disabled={disabled} {...props}>
-    {loader ? <Icon name="loader" width="1rem" height="1rem" /> : text}
-  </ButtonPrimary>
+export const ButtonLoader = withTheme(
+  ({ theme, text, disabled, loader, ...props }) => (
+    <ButtonPrimary style={{ height: '3rem' }} disabled={disabled} {...props}>
+      {loader ? (
+        <Icon
+          name="loader"
+          width="1rem"
+          height="1rem"
+          fill={theme.palette.primary.initial.color}
+        />
+      ) : (
+        text
+      )}
+    </ButtonPrimary>
+  )
 );
