@@ -1,1 +1,3 @@
-export { joinRoutes, pathRoutes } from './routes';
+import './model';
+
+export { joinRoutes, joinRoutingPath } from './routes';

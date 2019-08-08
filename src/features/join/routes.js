@@ -7,13 +7,13 @@ const LoginPage = lazy(() =>
   import('./pages/login').then(a => ({ default: a.LoginPage }))
 );
 
-export const pathRoutes = {
+export const joinRoutingPath = {
   join: '/join'
 };
 
 export const joinRoutes = (): RoutesConfig => [
   {
-    path: pathRoutes['join'],
+    path: joinRoutingPath['join'],
     exact: true,
     component: LoginPage
   }
