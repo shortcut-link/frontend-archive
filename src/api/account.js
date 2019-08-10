@@ -1,4 +1,4 @@
-import { request } from './lib/request';
+import { request } from 'features/common';
 
 /**
  * Getting data about the current user session
@@ -6,4 +6,4 @@ import { request } from './lib/request';
  */
 const getCurrentAccount = () => request('GET', '/account/session/');
 
-export const commonAPI = { getCurrentAccount };
+export const accountAPI = { getCurrentAccount };

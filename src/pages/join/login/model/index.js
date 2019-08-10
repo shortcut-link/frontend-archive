@@ -1,16 +1,18 @@
-import { $email, $password, $isSubmitEnabled, $form } from './login.store';
+//@flow
+import { history } from 'lib/routing';
+import { sessionChange } from 'features/common/model/session.events';
+import { tokenChange } from 'features/common/model/token';
+import { sessionAPI } from 'api/session';
+import { $email, $password, $isSubmitEnabled, $form } from './store';
 import {
   emailChange,
   passwordChange,
   formSubmitted,
   loginProcessing
-} from './login.events';
-import { sessionApi } from '../api';
-import { history } from 'lib/routing';
-import { tokenChange } from 'features/common/model/token';
-import { sessionChange } from 'features/common/model/session.events';
+} from './events';
 
-const trimEvent = event => event.target.value.trim();
+const trimEvent = (event: SyntheticEvent<HTMLInputElement>) =>
+  event.currentTarget.value.trim();
 
 $email.on(emailChange.map(trimEvent), (_, email) => email);
 $password.on(passwordChange.map(trimEvent), (_, password) => password);
@@ -22,7 +24,7 @@ formSubmitted.watch(() => {
   loginProcessing(form);
 });
 
-loginProcessing.use(dataForm => sessionApi.createSession(dataForm));
+loginProcessing.use(dataForm => sessionAPI.createSession(dataForm));
 
 loginProcessing.done.watch(({ result: { token, user } }) => {
   tokenChange(token);

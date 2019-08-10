@@ -1,16 +1,7 @@
 import React from 'react';
-import styled, { withTheme, css } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
 import { Icon } from './icon';
-import { cssLink } from './link';
-import { mixins } from 'lib/styled-components';
-
-const cssButton = css`
-  cursor: pointer;
-  outline: none;
-  border: none;
-  user-select: none;
-`;
 
 export const ButtonPrimary = styled.button`
   font-size: 0.9rem;
@@ -52,12 +43,3 @@ export const ButtonLoader = withTheme(
     </ButtonPrimary>
   )
 );
-
-export const ButtonWithLink = styled.button`
-  ${cssLink};
-  ${cssButton};
-
-  ${mixins}
-
-  background: none;
-`;

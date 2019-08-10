@@ -1,26 +1,26 @@
 //@flow
-import { createStore, createStoreObject, combine } from 'effector';
-
-import { loginFetching } from './login.events';
-import { emailValidator, passwordValidator } from './validations';
+import { createStore, createStoreObject, combine, type Store } from 'effector';
+import { emailValidator, passwordValidator } from 'lib/validators';
+import { loginFetching } from './events';
 
 export const $email = createStore<string>('');
 export const $emailError = $email.map<string | null>(email =>
   emailValidator(email)
 );
+const $isEmailCurrent = $emailError.map<boolean>(email => email === null);
 
 export const $password = createStore<string>('');
 export const $passwordError = $password.map<string | null>(password =>
   passwordValidator(password)
+);
+const $isPasswordCurrent = $passwordError.map<boolean>(
+  password => password === null
 );
 
 export const $form = createStoreObject({
   email: $email,
   password: $password
 });
-
-const $isEmailCurrent = $emailError.map(email => email === null);
-const $isPasswordCurrent = $passwordError.map(password => password === null);
 
 const $isFormValid = combine(
   $isEmailCurrent,
@@ -30,7 +30,7 @@ const $isFormValid = combine(
 
 export const $isFormDisabled = loginFetching.isLoading;
 
-export const $isSubmitEnabled = combine<boolean, boolean, boolean>(
+export const $isSubmitEnabled: Store<boolean> = combine(
   $isFormValid,
   $isFormDisabled,
   (isFormValid, isLoginFetching) => isFormValid && !isLoginFetching

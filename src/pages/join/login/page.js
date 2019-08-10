@@ -1,29 +1,18 @@
+import './model/index';
 import React from 'react';
 import { useStore } from 'effector-react';
 
-import {
-  CenterContent,
-  Container,
-  Card,
-  Input,
-  ButtonLoader,
-  ButtonWithLink
-} from 'ui';
+import { CenterContent, Container, Card, Input, ButtonLoader, Link } from 'ui';
 import { Col, Row } from 'lib/styled-components';
+import { emailChange, passwordChange, formSubmitted } from './model/events';
 import {
-  $email,
-  $password,
   $isSubmitEnabled,
   $isFormDisabled,
-  $emailError,
-  $passwordError
-} from '../model/login.store';
-import {
-  emailChange,
-  passwordChange,
-  formSubmitted
-} from '../model/login.events';
-import { history } from 'lib/routing';
+  $email,
+  $password,
+  $passwordError,
+  $emailError
+} from './model/store';
 
 export const LoginPage = () => {
   return (
@@ -42,7 +31,7 @@ export const LoginPage = () => {
 
 const NavigationBar = () => (
   <Row justify="center" padding="1rem 0.5rem">
-    <ButtonWithLink onClick={history.goBack}>Return back</ButtonWithLink>
+    <Link to="/">Return back</Link>
   </Row>
 );
 

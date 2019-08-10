@@ -7,7 +7,7 @@ import {
   sessionChange
 } from './session.events';
 import { tokenRemove } from './token';
-import { commonAPI } from '../api';
+import { accountAPI } from 'api/account';
 
 $session
   .on(sessionFetchProcessing.done, (_, { result: { user } }) => user)
@@ -15,7 +15,7 @@ $session
   .on(sessionChange, (_, user) => user)
   .reset(sessionRemove);
 
-sessionFetchProcessing.use(() => commonAPI.getCurrentAccount());
+sessionFetchProcessing.use(() => accountAPI.getCurrentAccount());
 
 forward({ from: sessionFetchProcessing.fail, to: tokenRemove });
 forward({ from: sessionRemove, to: tokenRemove });

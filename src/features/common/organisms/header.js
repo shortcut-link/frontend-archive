@@ -6,7 +6,6 @@ import { WithThemeToggler } from 'lib/theme';
 import { ToggleSelectTheme } from 'ui/molecules';
 import { Authenticated } from './authenticated';
 import { Link } from 'ui/atom';
-import { joinRoutingPath } from 'features/join';
 
 export const Header = () => (
   <ContainerBox>
@@ -36,7 +35,7 @@ const Account = () => (
 );
 
 const TextAccount = auth => {
-  const link = auth ? '/profile' : joinRoutingPath['join'];
+  const link = auth ? '/profile' : '/join';
   const text = auth ? 'Ваш аккаунт' : 'Войти в аккаунт';
 
   return (

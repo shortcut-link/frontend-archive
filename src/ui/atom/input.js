@@ -47,5 +47,4 @@ const InputError = styled(InputLabel)`
   margin-top: 0.5rem;
   color: red;
   font-size: 0.8rem;
-  height: 0.8rem;
 `;

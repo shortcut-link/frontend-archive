@@ -1,1 +1,0 @@
-export { CreateLinkRoutes } from './routes';
