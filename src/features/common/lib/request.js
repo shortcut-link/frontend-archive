@@ -1,14 +1,8 @@
-//@flow
 import { $token } from '../model/token';
-import type { Method, Options, CustomResponse } from './type';
 
 const baseURI = '/api';
 
-export const request = (
-  method: Method,
-  url: string,
-  options: Options = {}
-): Promise<any> => {
+export const request = (method, url, options = {}) => {
   const token = $token.getState();
 
   const headers = new Headers({
@@ -47,13 +41,13 @@ export const request = (
   });
 };
 
-const createContentType = (options: Options) => {
+const createContentType = options => {
   const header = contentTypeFromOptions(options);
 
   return header ? { 'Content-Type': header } : {};
 };
 
-const contentTypeFromOptions = (options: Options) => {
+const contentTypeFromOptions = options => {
   if (options && options.headers && options.headers['Content-Type']) {
     return options.headers['Content-Type'];
   }
@@ -65,13 +59,10 @@ const contentTypeFromOptions = (options: Options) => {
   return typeof options.body === 'object' ? 'application/json' : '';
 };
 
-const createAuthorization = (token: ?string) =>
+const createAuthorization = token =>
   token ? { Authorization: `bearer ${token}` } : {};
 
-const createBody = (
-  options: Options,
-  headers: Headers
-): FormData | string | void => {
+const createBody = (options, headers) => {
   const contentType = headers.get('content-type');
 
   if (options.body && contentType && contentType.includes('json')) {
@@ -85,13 +76,13 @@ const createBody = (
   return undefined;
 };
 
-function responseToPromise<R, E>(response: CustomResponse<R, E>) {
+function responseToPromise(response) {
   return response && typeof response.ok === 'boolean'
-    ? okToPromise<R, E>(response)
+    ? okToPromise(response)
     : response;
 }
 
-function okToPromise<R, E>(response: CustomResponse<R, E>): Promise<R> {
+function okToPromise(response) {
   return response.ok
     ? Promise.resolve(response.result)
     : Promise.reject(response.error);

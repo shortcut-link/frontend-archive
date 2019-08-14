@@ -1,4 +1,3 @@
-//@flow
 import { history } from 'lib/routing';
 import { sessionChange } from 'features/common/model/session.events';
 import { tokenChange } from 'features/common/model/token';
@@ -11,8 +10,7 @@ import {
   loginProcessing
 } from './events';
 
-const trimEvent = (event: SyntheticEvent<HTMLInputElement>) =>
-  event.currentTarget.value.trim();
+const trimEvent = event => event.currentTarget.value.trim();
 
 $email.on(emailChange.map(trimEvent), (_, email) => email);
 $password.on(passwordChange.map(trimEvent), (_, password) => password);

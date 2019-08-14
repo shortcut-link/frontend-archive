@@ -1,13 +1,12 @@
-//@flow
 import Cookies from 'browser-cookies';
 import { createStore, createEvent } from 'effector';
 
 const TOKEN_ID = 'sc-token';
 
-export const tokenChange = createEvent<string>();
-export const tokenRemove = createEvent<void>();
+export const tokenChange = createEvent();
+export const tokenRemove = createEvent();
 
-export const $token = createStore<?string>(Cookies.get(TOKEN_ID) || null);
+export const $token = createStore(Cookies.get(TOKEN_ID) || null);
 
 $token.on(tokenChange, (_, token) => token).reset(tokenRemove);
 

@@ -1,23 +1,15 @@
-//@flow
-import React, { type Node } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-type Props = {
-  tagName: string,
-  children: Node
-};
+export const WithTag = ({ tagName: Tag = 'div', children, ...props }) => (
+  <Tag {...props}>{children}</Tag>
+);
 
-export const WithTag = ({
-  tagName: Tag = 'div',
-  children,
-  ...props
-}: Props) => <Tag {...props}>{children}</Tag>;
-
-const prop = (value?: string) => {
+const prop = value => {
   return value ? value : 'initial';
 };
 
-export const mixins = (props: { [key: string]: string }) => css`
+export const mixins = props => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
   width: ${prop(props.width)};

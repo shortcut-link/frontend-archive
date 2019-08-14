@@ -1,14 +1,7 @@
-//@flow
 import React from 'react';
 import styled from 'styled-components';
 
-export const ToggleSelectTheme = ({
-  toggle,
-  isDark
-}: {
-  toggle: () => void,
-  isDark: boolean
-}) => {
+export const ToggleSelectTheme = ({ toggle, isDark }) => {
   return (
     <Box>
       <Checkbox type="checkbox" onClick={toggle} defaultChecked={isDark} />

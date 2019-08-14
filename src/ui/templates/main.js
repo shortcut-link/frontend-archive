@@ -1,14 +1,7 @@
-//@flow
-import React, { type Node } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  children: Node,
-  header: ?Node,
-  footer: ?Node
-};
-
-export const Main = ({ children, header, footer }: Props) => (
+export const Main = ({ children, header, footer }) => (
   <MainContainer>
     {header && <Header>{header}</Header>}
     {children}
