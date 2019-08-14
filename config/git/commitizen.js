@@ -38,20 +38,23 @@ module.exports = {
   ],
 
   scopes: [].concat(
-    'app',
-    globMap('src/*/', path => path.replace(/src\//, '')).filter(
-      exclude(['features', 'ui', 'lib'])
-    ),
     'features',
-    globMap('src/features/*/', path => path.replace('src/', '')),
+    globMap('src/features/*/', path => path.replace(/^src\//, '')),
     globMap('src/features/*/features/*', path =>
-      path.replace('src/', '').replace(/\/features\//, '/')
+      path.replace(/^src\//, '').replace(/\/features\//, '/')
     ),
+    'pages',
+    globMap('src/pages/*/', path => path.replace(/^src\//, '')),
     'ui',
     globMap('src/ui/*/', path => path.replace(/^src\//, '')),
     'lib',
     globMap('src/lib/*/', path => path.replace(/^src\//, '')),
-    'docz'
+    'api',
+    globMap('src/api/*', path => path.replace(/^(src\/)(.+)(\..+)$/, '$2')),
+    'app',
+    globMap('src/*/', path => path.replace(/src\//, '')).filter(
+      exclude(['features', 'pages', 'ui', 'lib', 'api'])
+    )
   ),
 
   messages: {

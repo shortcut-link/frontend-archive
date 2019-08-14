@@ -1,22 +1,20 @@
 //@flow
 import { createEffect, createEvent } from 'effector';
 
-import { createFetching } from 'lib/fetching';
-import type { Session } from 'features/common';
+import { createFetching, type Fetching } from 'lib/fetching';
+import type { createSessionData } from 'api/session';
+import type { responseCreateSession } from 'api/session';
 
 export const emailChange = createEvent<SyntheticEvent<HTMLInputElement>>();
 export const passwordChange = createEvent<SyntheticEvent<HTMLInputElement>>();
 export const formSubmitted = createEvent<void>();
 
-export type loginData = {
-  email: string,
-  password: string
-};
+export const loginProcessing = createEffect<
+  createSessionData,
+  responseCreateSession,
+  *
+>();
 
-type responseOk = { token: string, user: Session };
-
-export const loginProcessing = createEffect<loginData, responseOk, *>();
-
-export const loginFetching = createFetching<loginData, responseOk, *, *>(
+export const loginFetching: Fetching<responseCreateSession, *> = createFetching(
   loginProcessing
 );

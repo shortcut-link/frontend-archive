@@ -4,7 +4,11 @@ import type { Method, Options, CustomResponse } from './type';
 
 const baseURI = '/api';
 
-export const request = (method: Method, url: string, options: Options = {}) => {
+export const request = (
+  method: Method,
+  url: string,
+  options: Options = {}
+): Promise<any> => {
   const token = $token.getState();
 
   const headers = new Headers({

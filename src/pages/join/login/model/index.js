@@ -28,6 +28,6 @@ loginProcessing.use(dataForm => sessionAPI.createSession(dataForm));
 
 loginProcessing.done.watch(({ result: { token, user } }) => {
   tokenChange(token);
-  sessionChange(user);
+  sessionChange(user.email);
   history.push('/');
 });

@@ -2,9 +2,22 @@ import './model/index';
 import React from 'react';
 import { useStore } from 'effector-react';
 
-import { CenterContent, Container, Card, Input, ButtonLoader, Link } from 'ui';
+import {
+  CenterContent,
+  Container,
+  Card,
+  Input,
+  ButtonLoader,
+  Link,
+  ErrorBox
+} from 'ui';
 import { Col, Row } from 'lib/styled-components';
-import { emailChange, passwordChange, formSubmitted } from './model/events';
+import {
+  emailChange,
+  passwordChange,
+  formSubmitted,
+  loginFetching
+} from './model/events';
 import {
   $isSubmitEnabled,
   $isFormDisabled,
@@ -43,11 +56,13 @@ const handleSubmit = event => {
 const LoginForm = () => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormDisabled = useStore($isFormDisabled);
+  const formError = useStore(loginFetching.error);
 
   return (
     <form onSubmit={handleSubmit}>
       <Col gap="0.4rem">
         <h2>Shortcut-Link</h2>
+        {formError && <ErrorBox>{mapServerToClientError(formError)}</ErrorBox>}
         <Email />
         <Password />
         <ButtonLoader
@@ -99,4 +114,14 @@ const Password = () => {
       disabled={isFormDisabled}
     />
   );
+};
+
+const mapServerToClientError = error => {
+  switch (error) {
+    case 'user_not_found':
+      return 'Email not found or password is wrong';
+    case 'cant_create_session': // pass thru
+    default:
+      return 'Got an unexpected error. Try again later';
+  }
 };

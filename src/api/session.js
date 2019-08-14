@@ -1,7 +1,19 @@
-import { request } from 'features/common';
+//@flow
+import { request, type Session } from 'features/common';
 
-// TODO: Comment api
-const createSession = body => request('POST', '/account/session', { body });
+export type createSessionData = {
+  email: string,
+  password: string
+};
+
+export type responseCreateSession = { token: string, user: Session };
+
+const createSession = (
+  body: createSessionData
+): Promise<responseCreateSession> =>
+  request('POST', '/account/session/', {
+    body
+  });
 
 export const sessionAPI = {
   createSession
