@@ -36,7 +36,7 @@ const Account = () => (
 
 const TextAccount = auth => {
   const link = auth ? '/profile' : '/join';
-  const text = auth ? 'Ваш аккаунт' : 'Войти в аккаунт';
+  const text = auth ? 'Your account' : 'Login to account';
 
   return (
     <Link to={link} style={{ marginRight: '20px' }}>

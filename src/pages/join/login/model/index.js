@@ -1,6 +1,5 @@
 import { history } from 'lib/routing';
-import { sessionChange } from 'features/common/model/session.events';
-import { tokenChange } from 'features/common/model/token';
+import { tokenChange, sessionChange } from 'features/common';
 import { sessionAPI } from 'api/session';
 import { $email, $password, $isSubmitEnabled, $form } from './store';
 import {

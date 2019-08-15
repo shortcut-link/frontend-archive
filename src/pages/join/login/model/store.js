@@ -28,5 +28,5 @@ export const $isFormDisabled = loginFetching.isLoading;
 export const $isSubmitEnabled = combine(
   $isFormValid,
   $isFormDisabled,
-  (isFormValid, isLoginFetching) => isFormValid && !isLoginFetching
+  (isFormValid, isFormDisabled) => isFormValid && !isFormDisabled
 );

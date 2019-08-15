@@ -1,9 +1,12 @@
 import { request } from 'features/common';
+import { accountError } from './account.errors';
 
 /**
- * Getting data about the current user session
- * @return {Promise<{ user: { email: string, displayName?: string, id: number } }>}
+ * Create New Account
+ * @param { { email: string, password: string } } body - User data
+ * @returns {Promise<{ token: string, user: { email: string } }>}
  */
-const getCurrentAccount = () => request('GET', '/account/session/');
+const createAccount = body =>
+  request('POST', '/account', { body }).catch(accountError);
 
-export const accountAPI = { getCurrentAccount };
+export const accountAPI = { createAccount };

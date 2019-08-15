@@ -10,24 +10,27 @@ import {
   ButtonLoader,
   ErrorBox
 } from 'ui';
+import {
+  $email,
+  $password,
+  $emailError,
+  $passwordError,
+  $passwordConfirmation,
+  $passwordConfirmationError,
+  $isSubmitEnabled,
+  $isFormDisabled
+} from './model/store';
 import { Col } from 'lib/styled-components';
 import {
   emailChange,
   passwordChange,
-  formSubmitted,
-  loginFetching
+  passwordConfirmationChange,
+  registrationFetching,
+  formSubmitted
 } from './model/events';
-import {
-  $isSubmitEnabled,
-  $isFormDisabled,
-  $email,
-  $password,
-  $passwordError,
-  $emailError
-} from './model/store';
-import { NavigationLoginPage } from 'ui/molecules/bottom-navigation';
+import { NavigationRegistrationPage } from 'ui/molecules/bottom-navigation';
 
-export const LoginPage = () => {
+export const RegistrationPage = () => {
   return (
     <CenterContent>
       <Container justify="center" align="center">
@@ -35,7 +38,7 @@ export const LoginPage = () => {
           <Card>
             <LoginForm />
           </Card>
-          <NavigationLoginPage />
+          <NavigationRegistrationPage />
         </Col>
       </Container>
     </CenterContent>
@@ -50,15 +53,16 @@ const handleSubmit = event => {
 const LoginForm = () => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormDisabled = useStore($isFormDisabled);
-  const formError = useStore(loginFetching.error);
+  const formError = useStore(registrationFetching.error);
 
   return (
     <form onSubmit={handleSubmit}>
       <Col gap="0.4rem">
-        <h2>Shortcut-Link</h2>
+        <h2>Registration in Shortcut-Link</h2>
         {formError && <ErrorBox>{formError}</ErrorBox>}
         <Email />
         <Password />
+        <PasswordConfirmation />
         <ButtonLoader
           type="submit"
           disabled={!isSubmitEnabled}
@@ -105,6 +109,25 @@ const Password = () => {
       error={password && passwordError}
       value={password}
       onChange={passwordChange}
+      disabled={isFormDisabled}
+    />
+  );
+};
+const PasswordConfirmation = () => {
+  const passwordConfirmation = useStore($passwordConfirmation);
+  const passwordConfirmationError = useStore($passwordConfirmationError);
+  const isFormDisabled = useStore($isFormDisabled);
+
+  return (
+    <Input
+      type="password"
+      name="password"
+      autoComplete="password"
+      label="Password confirmation"
+      errorLabel={true}
+      error={passwordConfirmation && passwordConfirmationError}
+      value={passwordConfirmation}
+      onChange={passwordConfirmationChange}
       disabled={isFormDisabled}
     />
   );
