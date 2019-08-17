@@ -1,13 +1,8 @@
-import { $token } from '../model/token';
-
 const baseURI = '/api';
 
 export const request = (method, url, options = {}) => {
-  const token = $token.getState();
-
   const headers = new Headers({
     ...createContentType(options),
-    ...createAuthorization(token),
     ...options.headers
   });
 
@@ -58,9 +53,6 @@ const contentTypeFromOptions = options => {
 
   return typeof options.body === 'object' ? 'application/json' : '';
 };
-
-const createAuthorization = token =>
-  token ? { Authorization: `bearer ${token}` } : {};
 
 const createBody = (options, headers) => {
   const contentType = headers.get('content-type');

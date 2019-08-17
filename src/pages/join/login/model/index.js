@@ -1,18 +1,21 @@
 import { history } from 'lib/routing';
 import { tokenChange, sessionChange } from 'features/common';
 import { sessionAPI } from 'api/session';
-import { $email, $password, $isSubmitEnabled, $form } from './store';
+import { $email, $password, $isSubmitEnabled, $form, $captcha } from './store';
 import {
   emailChange,
   passwordChange,
   formSubmitted,
-  loginProcessing
+  loginProcessing,
+  captchaPassed
 } from './events';
 
 const trimEvent = event => event.currentTarget.value.trim();
 
 $email.on(emailChange.map(trimEvent), (_, email) => email);
 $password.on(passwordChange.map(trimEvent), (_, password) => password);
+
+$captcha.on(captchaPassed, () => true);
 
 formSubmitted.watch(() => {
   if (!$isSubmitEnabled.getState()) return;

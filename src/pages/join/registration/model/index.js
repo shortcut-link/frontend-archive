@@ -1,10 +1,17 @@
-import { $email, $password, $passwordConfirmation, $form } from './store';
+import {
+  $email,
+  $password,
+  $passwordConfirmation,
+  $form,
+  $captcha
+} from './store';
 import {
   emailChange,
   passwordChange,
   passwordConfirmationChange,
   formSubmitted,
-  registrationProcessing
+  registrationProcessing,
+  captchaPassed
 } from './events';
 import { $isSubmitEnabled } from './store';
 import { accountAPI } from 'api/account';
@@ -21,6 +28,8 @@ $passwordConfirmation.on(
   passwordConfirmationChange.map(trimEvent),
   (_, passwordConfirmation) => passwordConfirmation
 );
+
+$captcha.on(captchaPassed, () => true);
 
 formSubmitted.watch(() => {
   if (!$isSubmitEnabled.getState()) return;

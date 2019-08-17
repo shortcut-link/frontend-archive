@@ -15,7 +15,8 @@ import {
   emailChange,
   passwordChange,
   formSubmitted,
-  loginFetching
+  loginFetching,
+  captchaPassed
 } from './model/events';
 import {
   $isSubmitEnabled,
@@ -26,6 +27,7 @@ import {
   $emailError
 } from './model/store';
 import { NavigationLoginPage } from 'ui/molecules/bottom-navigation';
+import { Captcha } from 'lib/captcha';
 
 export const LoginPage = () => {
   return (
@@ -54,11 +56,12 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Col gap="0.4rem">
+      <Col gap="1rem">
         <h2>Shortcut-Link</h2>
         {formError && <ErrorBox>{formError}</ErrorBox>}
         <Email />
         <Password />
+        <Captcha onChange={captchaPassed} />
         <ButtonLoader
           type="submit"
           disabled={!isSubmitEnabled}

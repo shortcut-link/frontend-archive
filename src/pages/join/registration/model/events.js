@@ -6,6 +6,7 @@ export const emailChange = createEvent();
 export const passwordChange = createEvent();
 export const passwordConfirmationChange = createEvent();
 export const formSubmitted = createEvent();
+export const captchaPassed = createEvent();
 
 export const registrationProcessing = createEffect();
 

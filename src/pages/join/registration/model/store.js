@@ -30,6 +30,9 @@ const $isPasswordConfirmationdCurrent = $passwordConfirmationError.map(
   password => password === null
 );
 
+/* Captcha */
+export const $captcha = createStore(false);
+
 /* Form */
 export const $form = createStoreObject({
   email: $email,
@@ -40,8 +43,9 @@ const $isFormValid = combine(
   $isEmailCurrent,
   $isPasswordCurrent,
   $isPasswordConfirmationdCurrent,
-  (email, password, passwordConfirmation) =>
-    email && password && passwordConfirmation
+  $captcha,
+  (email, password, passwordConfirmation, captcha) =>
+    email && password && passwordConfirmation && captcha
 );
 
 export const $isFormDisabled = registrationFetching.isLoading;

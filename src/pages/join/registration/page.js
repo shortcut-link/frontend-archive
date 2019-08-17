@@ -26,9 +26,11 @@ import {
   passwordChange,
   passwordConfirmationChange,
   registrationFetching,
-  formSubmitted
+  formSubmitted,
+  captchaPassed
 } from './model/events';
 import { NavigationRegistrationPage } from 'ui/molecules/bottom-navigation';
+import { Captcha } from 'lib/captcha';
 
 export const RegistrationPage = () => {
   return (
@@ -57,12 +59,13 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Col gap="0.4rem">
+      <Col gap="1rem">
         <h2>Registration in Shortcut-Link</h2>
         {formError && <ErrorBox>{formError}</ErrorBox>}
         <Email />
         <Password />
         <PasswordConfirmation />
+        <Captcha onChange={captchaPassed} />
         <ButtonLoader
           type="submit"
           disabled={!isSubmitEnabled}
