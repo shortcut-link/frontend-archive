@@ -84,7 +84,6 @@ const Email = () => {
       name="email"
       autoComplete="email"
       label="Email"
-      errorLabel={true}
       error={email && emailError}
       value={email}
       onChange={emailChange}
@@ -104,7 +103,6 @@ const Password = () => {
       name="password"
       autoComplete="password"
       label="Password"
-      errorLabel={true}
       error={password && passwordError}
       value={password}
       onChange={passwordChange}

@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 
 import { Col } from 'lib/styled-components';
 
-export const Input = ({ label, errorLabel, error, disabled, ...props }) => (
+export const Input = ({ label, error, disabled, ...props }) => (
   <Col>
     {label && <InputLabel>{label}</InputLabel>}
     <InputNative error={Boolean(error)} disabled={disabled} {...props} />
-    {errorLabel && <InputError>{error}</InputError>}
+    {error && <InputError>{error}</InputError>}
   </Col>
 );
 
