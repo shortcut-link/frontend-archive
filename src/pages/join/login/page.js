@@ -1,5 +1,5 @@
-import './model/index';
-import React from 'react';
+import './model';
+import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 
 import {
@@ -30,6 +30,10 @@ import { NavigationLoginPage } from 'ui/molecules/bottom-navigation';
 import { Captcha } from 'lib/captcha';
 
 export const LoginPage = () => {
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
+
   return (
     <CenterContent>
       <Container justify="center" align="center">

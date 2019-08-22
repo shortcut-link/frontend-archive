@@ -8,5 +8,5 @@ const key = '6LdPb7MUAAAAAEEVmEYPQq9kE6TzPPgfcBwua57l';
  * @param {{ onChange: function }} onChange Callback that is called when passing a captcha
  */
 export const Captcha = ({ onChange }) => (
-  <ReCAPTCHA sitekey={key} onChange={onChange} />
+  <ReCAPTCHA sitekey={key} onChange={onChange} style={{ minHeight: '78px' }} />
 );
