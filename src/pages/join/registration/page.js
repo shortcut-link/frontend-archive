@@ -29,7 +29,7 @@ import {
   formSubmitted,
   captchaPassed
 } from './model/events';
-import { NavigationRegistrationPage } from 'ui/molecules/bottom-navigation';
+import { NavigationRegistrationPage } from 'ui/molecules';
 import { Captcha } from 'lib/captcha';
 
 export const RegistrationPage = () => {

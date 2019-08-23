@@ -26,7 +26,7 @@ import {
   $passwordError,
   $emailError
 } from './model/store';
-import { NavigationLoginPage } from 'ui/molecules/bottom-navigation';
+import { NavigationLoginPage } from 'ui/molecules';
 import { Captcha } from 'lib/captcha';
 
 export const LoginPage = () => {

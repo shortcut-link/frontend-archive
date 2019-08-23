@@ -16,7 +16,7 @@ export const mixins = props => css`
   padding: ${prop(props.padding)};
 `;
 
-export const Row = styled(WithTag)`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -31,7 +31,7 @@ export const Row = styled(WithTag)`
     `}
 `;
 
-export const Col = styled(WithTag)`
+export const Col = styled.div`
   display: flex;
   flex-direction: column;
 
