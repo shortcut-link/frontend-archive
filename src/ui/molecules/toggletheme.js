@@ -1,64 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Box, Slider, Checkbox } from '../atom/toggle';
+
 export const ToggleSelectTheme = ({ toggle, isDark }) => {
+  const radius = '1.4rem';
+
   return (
-    <Box>
-      <Checkbox type="checkbox" onClick={toggle} defaultChecked={isDark} />
-      <Slider className="slider" />
+    <Box radius={radius}>
+      <CheckBoxTheme
+        type="checkbox"
+        radius={radius}
+        onClick={toggle}
+        defaultChecked={isDark}
+      />
+      <SliderTheme className="slider" radius={radius} />
     </Box>
   );
 };
 
-const radius = '1.4rem';
-
-const Box = styled.label`
-  position: relative;
-  display: block;
-  width: calc((${radius} * 2) + 8px);
-  height: calc(${radius} + 8px);
-`;
-
-const Slider = styled.span`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0
-  left: 0;
-  
+const SliderTheme = styled(Slider)`
   background-color: ${({ theme }) => theme.palette.primary.initial.background};
-  border-radius: ${radius};
-  cursor: pointer;
-  transition: 0.4s;
 
   &:before {
-    content: "☀️";
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 4px;
-    left: 4px;
-
-    width: ${radius};
-    height: ${radius};
-
-    font-size: 0.7rem;
-    line-height: 0px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
+    content: '☀️';
   }
 `;
 
-const Checkbox = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-
+const CheckBoxTheme = styled(Checkbox)`
   &:checked + ${Slider}::before {
     content: '🌙';
-    transform: translateX(${radius});
   }
 `;

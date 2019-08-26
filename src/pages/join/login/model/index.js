@@ -24,10 +24,10 @@ formSubmitted.watch(() => {
   loginProcessing(form);
 });
 
-loginProcessing.use(dataForm => sessionAPI.createSession(dataForm));
+loginProcessing.use(sessionAPI.createSession);
 
 loginProcessing.done.watch(({ result: { token, user } }) => {
   tokenChange(token);
-  sessionChange(user.email);
+  sessionChange(user);
   history.push('/');
 });

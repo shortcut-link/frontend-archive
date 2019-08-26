@@ -3,3 +3,4 @@ export {
   NavigationLoginPage,
   NavigationRegistrationPage
 } from './bottom-navigation';
+export { ToggleWithText } from './toggleWithText';

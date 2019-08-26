@@ -4,3 +4,4 @@ export { Input } from './input';
 export { ButtonPrimary, ButtonLoader } from './button';
 export { Icon } from './icon';
 export { ErrorBox } from './box';
+export { Toggle } from './toggle';

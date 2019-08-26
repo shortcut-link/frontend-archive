@@ -1,9 +1,9 @@
 import './model';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStore } from 'effector-react';
 
-import { CommonContentTemplate } from 'features/common';
+import { CommonContentTemplate, $session } from 'features/common';
 import { Col, Row } from 'lib/styled-components';
 import {
   $link,
@@ -11,31 +11,43 @@ import {
   $isSubmitEnabled,
   $isFormLoading
 } from './model/store';
-import { linkChange, formSubmitted } from './model/events';
-import { ButtonPrimary, Icon, ButtonLoader, Input } from 'ui';
+import { linkChange, formSubmitted, createLinkFetching } from './model/events';
+import { ButtonPrimary, Icon, ButtonLoader, Input, ErrorBox } from 'ui';
+import { ModalSettings } from 'features/create-link';
 
 export const CreateLinkMainPage = () => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   useEffect(() => {
     document.title = 'Home';
   }, []);
 
   return (
-    <CommonContentTemplate>
-      <Col gap="2rem" width="100%" justify="center" align="center">
-        <CreateForm />
-      </Col>
-    </CommonContentTemplate>
+    <>
+      <CommonContentTemplate>
+        <Col gap="2rem" width="100%" justify="center" align="center">
+          <CreateForm setIsOpenModal={setIsOpenModal} />
+        </Col>
+      </CommonContentTemplate>
+
+      <ModalSettings
+        isOpen={isOpenModal}
+        toClose={() => setIsOpenModal(false)}
+      />
+    </>
   );
 };
 
-const CreateForm = () => {
+const CreateForm = ({ setIsOpenModal }) => {
   const link = useStore($link);
   const linkError = useStore($linkError);
   const isFormLoading = useStore($isFormLoading);
+  const formError = useStore(createLinkFetching.error);
 
   return (
     <form onSubmit={handleSubmit}>
       <Col gap="1rem" width="30rem">
+        {formError && <ErrorBox>{formError}</ErrorBox>}
         <Input
           type="text"
           name="link"
@@ -48,15 +60,16 @@ const CreateForm = () => {
           }}
         />
 
-        <Buttons />
+        <Buttons setIsOpenModal={setIsOpenModal} />
       </Col>
     </form>
   );
 };
 
-const Buttons = () => {
+const Buttons = ({ setIsOpenModal }) => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormLoading = useStore($isFormLoading);
+  const isLoginAccount = useStore($session);
 
   return (
     <Row justify="space-between">
@@ -67,14 +80,18 @@ const Buttons = () => {
         disabled={!isSubmitEnabled}
         style={{ width: '85%' }}
       />
-      <ButtonPrimary disabled={isFormLoading} style={{ padding: '0 1rem' }}>
-        <Icon
-          name="settings"
-          width={18}
-          height={18}
-          stroke="orange"
-          fill="none"
-        />
+      <ButtonPrimary
+        type="button"
+        style={{ padding: '0 1rem' }}
+        title={
+          isLoginAccount
+            ? 'Settings for the created link'
+            : 'To use the settings - log in'
+        }
+        onClick={() => setIsOpenModal(true)}
+        disabled={isFormLoading || !isLoginAccount}
+      >
+        <Icon name="settings" width={18} height={18} fill="none" />
       </ButtonPrimary>
     </Row>
   );
