@@ -1,6 +1,6 @@
-export { ToggleSelectTheme } from './toggletheme';
+export { ToggleSelectTheme } from './toggle-theme';
 export {
   NavigationLoginPage,
   NavigationRegistrationPage
 } from './bottom-navigation';
-export { ToggleWithText } from './toggleWithText';
+export { ToggleWithText } from './toggle-text';

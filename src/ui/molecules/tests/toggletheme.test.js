@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { ThemeProvider } from 'styled-components';
 
-import { ToggleSelectTheme } from '../toggletheme';
+import { ToggleSelectTheme } from '../toggle-theme';
 
 /* Используется ThemeProvider,
  * так как в компоненте берётся цвет из темы

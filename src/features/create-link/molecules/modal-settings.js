@@ -3,6 +3,7 @@ import { useStore } from 'effector-react';
 
 import { ModalWindow, ToggleWithText } from 'ui';
 import { $session, optionsChange } from 'features/common';
+import { accountAPI } from 'api/account';
 
 export const ModalSettings = ({ isOpen, toClose }) => {
   const session = useStore($session);
@@ -27,5 +28,9 @@ export const ModalSettings = ({ isOpen, toClose }) => {
 };
 
 const clickSettings = (id, value) => {
-  optionsChange({ [id]: !value });
+  const field = { [id]: !value };
+
+  optionsChange(field);
+
+  accountAPI.optionsLink(field).catch(() => optionsChange({ [id]: value }));
 };

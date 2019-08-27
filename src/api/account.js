@@ -9,4 +9,12 @@ import { accountError } from './account.errors';
 const createAccount = body =>
   request('POST', '/account', { body }).catch(accountError);
 
-export const accountAPI = { createAccount };
+/**
+ * Create New Account
+ * @param { { email: string, password: string } } body - User data
+ * @returns {Promise<{ token: string, user: { email: string } }>}
+ */
+const optionsLink = body =>
+  request('POST', '/account/link', { body }).catch(accountError);
+
+export const accountAPI = { createAccount, optionsLink };
