@@ -1,9 +1,10 @@
-import { $link, $isSubmitEnabled } from './store';
+import { $link, $isSubmitEnabled, $createdLinks } from './store';
 import {
   linkChange,
   formSubmitted,
   createLinkProcessing,
-  linkRemove
+  linkRemove,
+  createdLinksChange
 } from './events';
 import { linkAPI } from 'api/link';
 
@@ -11,6 +12,8 @@ const trimEvent = event => event.currentTarget.value.trim();
 
 $link.on(linkChange.map(trimEvent), (_, link) => link);
 $link.reset(linkRemove);
+
+$createdLinks.on(createdLinksChange, (links, link) => [link, ...links]);
 
 formSubmitted.watch(() => {
   if (!$isSubmitEnabled.getState()) return;
@@ -21,6 +24,7 @@ formSubmitted.watch(() => {
 
 createLinkProcessing.use(linkAPI.createLink);
 
-createLinkProcessing.done.watch(() => {
+createLinkProcessing.done.watch(({ result: { url } }) => {
+  createdLinksChange({ url });
   linkRemove();
 });

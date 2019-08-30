@@ -9,14 +9,16 @@ import {
   $link,
   $linkError,
   $isSubmitEnabled,
-  $isFormLoading
+  $isFormLoading,
+  $createdLinks
 } from './model/store';
 import { linkChange, formSubmitted, createLinkFetching } from './model/events';
 import { ButtonPrimary, Icon, ButtonLoader, Input, ErrorBox } from 'ui';
-import { ModalSettings } from 'features/create-link';
+import { ModalSettings, CreatedLinks } from 'features/create-link';
 
 export const CreateLinkMainPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const createdLinks = useStore($createdLinks);
 
   useEffect(() => {
     document.title = 'Home';
@@ -27,6 +29,7 @@ export const CreateLinkMainPage = () => {
       <CommonContentTemplate>
         <Col gap="2rem" width="100%" justify="center" align="center">
           <CreateForm setIsOpenModal={setIsOpenModal} />
+          <CreatedLinks links={createdLinks} />
         </Col>
       </CommonContentTemplate>
 
