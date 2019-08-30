@@ -37,7 +37,7 @@ export const LoginPage = () => {
   return (
     <CenterContent>
       <Container justify="center" align="center">
-        <Col width="25rem">
+        <Col minWidth="25rem">
           <Card>
             <LoginForm />
           </Card>
@@ -61,7 +61,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Col gap="1rem">
-        <h2>Shortcut-Link</h2>
+        <h1 style={{ fontSize: '1.3rem' }}>Shortcut-Link</h1>
         {formError && <ErrorBox>{formError}</ErrorBox>}
         <Email />
         <Password />

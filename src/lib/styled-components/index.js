@@ -13,6 +13,8 @@ export const mixins = props => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
   width: ${prop(props.width)};
+  min-width: ${prop(props.minWidth)};
+  max-width: ${prop(props.maxWidth)};
   padding: ${prop(props.padding)};
 `;
 

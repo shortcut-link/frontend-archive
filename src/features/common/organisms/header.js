@@ -21,9 +21,16 @@ export const Header = () => (
 
 const Logo = () => {
   return (
-    <Link to={'/'} style={{ textTransform: 'uppercase' }}>
-      Shortcut-link
-    </Link>
+    <h1>
+      <Link
+        to={'/'}
+        style={{
+          textTransform: 'uppercase'
+        }}
+      >
+        Shortcut-link
+      </Link>
+    </h1>
   );
 };
 
