@@ -6,7 +6,7 @@ import { Row } from 'lib/styled-components';
 
 export const ItemCreatedLinks = ({ url }) => {
   const [isCopy, setIsCopy] = useState(false);
-  const linkRef = useRef();
+  const linkRef = useRef(null);
 
   const onClick = () => {
     linkRef.current.select();

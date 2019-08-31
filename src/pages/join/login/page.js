@@ -37,7 +37,7 @@ export const LoginPage = () => {
   return (
     <CenterContent>
       <Container justify="center" align="center">
-        <Col minWidth="25rem">
+        <Col width="370px">
           <Card>
             <LoginForm />
           </Card>
