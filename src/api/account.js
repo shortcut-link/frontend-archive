@@ -10,9 +10,8 @@ const createAccount = body =>
   request('POST', '/account', { body }).catch(accountError);
 
 /**
- * Create New Account
- * @param { { email: string, password: string } } body - User data
- * @returns {Promise<{ token: string, user: { email: string } }>}
+ * Settings for created links
+ * @param {*} body
  */
 const optionsLink = body =>
   request('POST', '/account/link', { body }).catch(accountError);

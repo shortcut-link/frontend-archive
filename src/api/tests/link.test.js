@@ -22,7 +22,9 @@ describe('testing api links', () => {
     });
 
     expect(fetch.mock.calls.length).toEqual(1);
+    expect(fetch.mock.calls[0][0].method).toEqual('POST');
     expect(fetch.mock.calls[0][0].url).toEqual('/api/link');
+    expect(fetch.mock.calls[0][0].body).toEqual(JSON.stringify({ url: link }));
   });
 
   it('should return an unknown error', () => {
