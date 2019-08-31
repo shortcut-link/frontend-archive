@@ -20,8 +20,8 @@ describe('must render Header', () => {
   });
 
   it('with custom header, footer', () => {
-    const header = <div>Header</div>;
-    const footer = <div>Footer</div>;
+    const header = <header>Header</header>;
+    const footer = <footer>Footer</footer>;
     const component = (
       <ThemeProviderRouter>
         <CommonContentTemplate header={header} footer={footer}>

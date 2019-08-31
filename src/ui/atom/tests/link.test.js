@@ -7,7 +7,7 @@ import { ThemeProviderRouter } from 'lib/dev';
 it('ui link with wrapper router link', () => {
   const component = (
     <ThemeProviderRouter>
-      <Link to={'/profile'}>Ссылочка</Link>
+      <Link to={'/profile'}>Link</Link>
     </ThemeProviderRouter>
   );
 

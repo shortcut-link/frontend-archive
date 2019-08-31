@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { MainTemplate } from '../main-template';
+import { Main } from '../main';
 
 describe('should to render "Main Template"', () => {
   const children = <div>Hello</div>;
@@ -9,7 +9,7 @@ describe('should to render "Main Template"', () => {
   const footer = <footer>Footer</footer>;
 
   it('only with children', () => {
-    const tree = renderer.create(<MainTemplate children={children} />).toJSON();
+    const tree = renderer.create(<Main children={children} />).toJSON();
 
     expect(tree).toMatchSnapshot();
     expect(tree).toHaveStyleRule('display', 'grid');
@@ -20,26 +20,22 @@ describe('should to render "Main Template"', () => {
   });
 
   it('only with header', () => {
-    const root = renderer.create(
-      <MainTemplate children={children} header={header} />
-    ).root;
+    const root = renderer.create(<Main children={children} header={header} />)
+      .root;
 
     expect(root.findByProps({ children: 'Header' }).type).toEqual('header');
   });
 
   it('only with footer', () => {
-    const root = renderer.create(
-      <MainTemplate children={children} footer={footer} />
-    ).root;
+    const root = renderer.create(<Main children={children} footer={footer} />)
+      .root;
 
     expect(root.findByProps({ children: 'Footer' }).type).toEqual('footer');
   });
 
   it('with header, footer, children', () => {
     const tree = renderer
-      .create(
-        <MainTemplate children={children} header={header} footer={footer} />
-      )
+      .create(<Main children={children} header={header} footer={footer} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

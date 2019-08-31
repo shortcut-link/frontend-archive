@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { NotFoundPage } from '../not-found';
+import { NotFoundPage } from '../page';
 
 it('must render NotFoundPage', () => {
   const tree = renderer.create(<NotFoundPage />).toJSON();

@@ -2,6 +2,18 @@
 
 exports[`must render Header 1`] = `
 .c1 {
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
   display: inherit;
   max-width: 50rem;
   width: 100%;
@@ -21,15 +33,16 @@ exports[`must render Header 1`] = `
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #64B5F6;
+  background-color: rgba(0,0,0,0.12);
   border-radius: 1.4rem;
   cursor: pointer;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  background-color: #64B5F6;
 }
 
 .c7:before {
-  content: "☀️";
+  content: "";
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -47,12 +60,16 @@ exports[`must render Header 1`] = `
   left: 4px;
   width: 1.4rem;
   height: 1.4rem;
-  font-size: 0.7rem;
+  font-size: calc(1.4rem / 2);
   line-height: 0px;
   background-color: white;
   border-radius: 50%;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+}
+
+.c7:before {
+  content: '☀️';
 }
 
 .c5 {
@@ -61,11 +78,24 @@ exports[`must render Header 1`] = `
   height: 0;
 }
 
-.c5:checked + .c6::before {
-  content: '🌙';
+.c5:checked {
   -webkit-transform: translateX(1.4rem);
   -ms-transform: translateX(1.4rem);
   transform: translateX(1.4rem);
+}
+
+.c5:checked + .c6 {
+  background-color: #64B5F6;
+}
+
+.c5:checked + .c6::before {
+  -webkit-transform: translateX(1.4rem);
+  -ms-transform: translateX(1.4rem);
+  transform: translateX(1.4rem);
+}
+
+.c5:checked + .c6::before {
+  content: '🌙';
 }
 
 .c2 {
@@ -74,6 +104,19 @@ exports[`must render Header 1`] = `
   -webkit-transition: 0.15s;
   transition: 0.15s;
   color: inherit;
+  font-size: inherit;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
 }
 
 .c2:hover {
@@ -130,24 +173,26 @@ exports[`must render Header 1`] = `
   <div
     className="container c1"
   >
-    <a
-      className="c2"
-      href="/"
-      onClick={[Function]}
-      style={
-        Object {
-          "textTransform": "uppercase",
+    <h1>
+      <a
+        className="c2"
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "textTransform": "uppercase",
+          }
         }
-      }
-    >
-      Shortcut-link
-    </a>
+      >
+        Shortcut-link
+      </a>
+    </h1>
     <div
       className="c3"
     >
       <a
         className="c2"
-        href="/join/signup"
+        href="/join"
         onClick={[Function]}
         style={
           Object {
@@ -155,19 +200,22 @@ exports[`must render Header 1`] = `
           }
         }
       >
-        Войти в аккаунт
+        Login to account
       </a>
       <label
         className="c4"
+        radius="1.4rem"
       >
         <input
           className="c5"
           defaultChecked={false}
           onClick={[Function]}
+          radius="1.4rem"
           type="checkbox"
         />
         <span
-          className="slider c6 c7"
+          className="c6 slider c7"
+          radius="1.4rem"
         />
       </label>
     </div>

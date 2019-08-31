@@ -18,6 +18,18 @@ exports[`must render Header with custom header, footer 1`] = `
 }
 
 .c3 {
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
   display: inherit;
   max-width: 50rem;
   width: 100%;
@@ -43,9 +55,9 @@ exports[`must render Header with custom header, footer 1`] = `
   <header
     className="c1"
   >
-    <div>
+    <header>
       Header
-    </div>
+    </header>
   </header>
   <div
     className="c2"
@@ -61,9 +73,9 @@ exports[`must render Header with custom header, footer 1`] = `
   <footer
     className="c4"
   >
-    <div>
+    <footer>
       Footer
-    </div>
+    </footer>
   </footer>
 </div>
 `;
@@ -82,6 +94,18 @@ exports[`must render Header with default header, footer 1`] = `
 }
 
 .c3 {
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
   display: inherit;
   max-width: 50rem;
   width: 100%;
@@ -101,15 +125,16 @@ exports[`must render Header with default header, footer 1`] = `
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #64B5F6;
+  background-color: rgba(0,0,0,0.12);
   border-radius: 1.4rem;
   cursor: pointer;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  background-color: #64B5F6;
 }
 
 .c9:before {
-  content: "☀️";
+  content: "";
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -127,12 +152,16 @@ exports[`must render Header with default header, footer 1`] = `
   left: 4px;
   width: 1.4rem;
   height: 1.4rem;
-  font-size: 0.7rem;
+  font-size: calc(1.4rem / 2);
   line-height: 0px;
   background-color: white;
   border-radius: 50%;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+}
+
+.c9:before {
+  content: '☀️';
 }
 
 .c7 {
@@ -141,11 +170,24 @@ exports[`must render Header with default header, footer 1`] = `
   height: 0;
 }
 
-.c7:checked + .c8::before {
-  content: '🌙';
+.c7:checked {
   -webkit-transform: translateX(1.4rem);
   -ms-transform: translateX(1.4rem);
   transform: translateX(1.4rem);
+}
+
+.c7:checked + .c8 {
+  background-color: #64B5F6;
+}
+
+.c7:checked + .c8::before {
+  -webkit-transform: translateX(1.4rem);
+  -ms-transform: translateX(1.4rem);
+  transform: translateX(1.4rem);
+}
+
+.c7:checked + .c8::before {
+  content: '🌙';
 }
 
 .c4 {
@@ -154,6 +196,19 @@ exports[`must render Header with default header, footer 1`] = `
   -webkit-transition: 0.15s;
   transition: 0.15s;
   color: inherit;
+  font-size: inherit;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
 }
 
 .c4:hover {
@@ -229,24 +284,26 @@ exports[`must render Header with default header, footer 1`] = `
       <div
         className="container c3"
       >
-        <a
-          className="c4"
-          href="/"
-          onClick={[Function]}
-          style={
-            Object {
-              "textTransform": "uppercase",
+        <h1>
+          <a
+            className="c4"
+            href="/"
+            onClick={[Function]}
+            style={
+              Object {
+                "textTransform": "uppercase",
+              }
             }
-          }
-        >
-          Shortcut-link
-        </a>
+          >
+            Shortcut-link
+          </a>
+        </h1>
         <div
           className="c5"
         >
           <a
             className="c4"
-            href="/join/signup"
+            href="/join"
             onClick={[Function]}
             style={
               Object {
@@ -254,19 +311,22 @@ exports[`must render Header with default header, footer 1`] = `
               }
             }
           >
-            Войти в аккаунт
+            Login to account
           </a>
           <label
             className="c6"
+            radius="1.4rem"
           >
             <input
               className="c7"
               defaultChecked={false}
               onClick={[Function]}
+              radius="1.4rem"
               type="checkbox"
             />
             <span
-              className="slider c8 c9"
+              className="c8 slider c9"
+              radius="1.4rem"
             />
           </label>
         </div>

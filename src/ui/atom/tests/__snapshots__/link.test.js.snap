@@ -7,6 +7,19 @@ exports[`ui link with wrapper router link 1`] = `
   -webkit-transition: 0.15s;
   transition: 0.15s;
   color: inherit;
+  font-size: inherit;
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
 }
 
 .c0:hover {
@@ -18,6 +31,6 @@ exports[`ui link with wrapper router link 1`] = `
   href="/profile"
   onClick={[Function]}
 >
-  Ссылочка
+  Link
 </a>
 `;

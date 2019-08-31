@@ -2,6 +2,18 @@
 
 exports[`should render CSS container 1`] = `
 .c0 {
+  -webkit-box-pack: initial;
+  -webkit-justify-content: initial;
+  -ms-flex-pack: initial;
+  justify-content: initial;
+  -webkit-align-items: initial;
+  -webkit-box-align: initial;
+  -ms-flex-align: initial;
+  align-items: initial;
+  width: initial;
+  min-width: initial;
+  max-width: initial;
+  padding: initial;
   display: inherit;
   max-width: 50rem;
   width: 100%;
