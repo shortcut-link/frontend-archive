@@ -24,10 +24,11 @@ describe('testing api session', () => {
         expect(token).toEqual('token');
       });
 
-      expect(fetch.mock.calls.length).toEqual(1);
-      expect(fetch.mock.calls[0][0].method).toEqual('POST');
-      expect(fetch.mock.calls[0][0].url).toEqual('/api/account/session');
-      expect(fetch.mock.calls[0][0].body).toEqual(JSON.stringify(userData));
+      expect(fetch).toBeCalled();
+      const fetchMock = fetch.mock.calls[0][0];
+      expect(fetchMock.method).toEqual('POST');
+      expect(fetchMock.url).toEqual('/api/account/session');
+      expect(fetchMock.body).toEqual(JSON.stringify(userData));
     });
 
     it('error, user not found', () => {
@@ -60,9 +61,10 @@ describe('testing api session', () => {
           expect(user.email).toEqual(userData['email']);
         });
 
-        expect(fetch.mock.calls.length).toEqual(1);
-        expect(fetch.mock.calls[0][0].method).toEqual('GET');
-        expect(fetch.mock.calls[0][0].url).toEqual('/api/account/session');
+        expect(fetch).toBeCalled();
+        const fetchMock = fetch.mock.calls[0][0];
+        expect(fetchMock.method).toEqual('GET');
+        expect(fetchMock.url).toEqual('/api/account/session');
       });
 
       it('error, not valid token', () => {

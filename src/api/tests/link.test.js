@@ -21,10 +21,11 @@ describe('testing api links', () => {
       expect(url).toEqual(shortUrl);
     });
 
-    expect(fetch.mock.calls.length).toEqual(1);
-    expect(fetch.mock.calls[0][0].method).toEqual('POST');
-    expect(fetch.mock.calls[0][0].url).toEqual('/api/link');
-    expect(fetch.mock.calls[0][0].body).toEqual(JSON.stringify({ url: link }));
+    expect(fetch).toBeCalled();
+    const fetchMock = fetch.mock.calls[0][0];
+    expect(fetchMock.method).toEqual('POST');
+    expect(fetchMock.url).toEqual('/api/link');
+    expect(fetchMock.body).toEqual(JSON.stringify({ url: link }));
   });
 
   it('should return an unknown error', () => {

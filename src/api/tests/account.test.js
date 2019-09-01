@@ -24,10 +24,11 @@ describe('testing api account', () => {
         expect(token).toEqual('token');
       });
 
-      expect(fetch.mock.calls.length).toEqual(1);
-      expect(fetch.mock.calls[0][0].method).toEqual('POST');
-      expect(fetch.mock.calls[0][0].url).toEqual('/api/account');
-      expect(fetch.mock.calls[0][0].body).toEqual(JSON.stringify(userData));
+      expect(fetch).toBeCalled();
+      const fetchMock = fetch.mock.calls[0][0];
+      expect(fetchMock.method).toEqual('POST');
+      expect(fetchMock.url).toEqual('/api/account');
+      expect(fetchMock.body).toEqual(JSON.stringify(userData));
     });
 
     it('create error, busy mail', () => {
@@ -62,10 +63,11 @@ describe('testing api account', () => {
         expect(res).toEqual(undefined);
       });
 
-      expect(fetch.mock.calls.length).toEqual(1);
-      expect(fetch.mock.calls[0][0].method).toEqual('POST');
-      expect(fetch.mock.calls[0][0].url).toEqual('/api/account/link');
-      expect(fetch.mock.calls[0][0].body).toEqual(JSON.stringify(body));
+      expect(fetch).toBeCalled();
+      const fetchMock = fetch.mock.calls[0][0];
+      expect(fetchMock.method).toEqual('POST');
+      expect(fetchMock.url).toEqual('/api/account/link');
+      expect(fetchMock.body).toEqual(JSON.stringify(body));
     });
   });
 });

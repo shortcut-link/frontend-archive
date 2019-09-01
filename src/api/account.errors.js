@@ -2,7 +2,7 @@ export const switchError = error => {
   switch (error) {
     case 'email_already_exists':
       return 'That email already exists.';
-    case 'email_invalid':
+    case 'not_valid_email':
       return 'Enter email in the format example@example.com';
     case 'cant_create_session':
     default:
