@@ -12,7 +12,7 @@ describe('testing api links', () => {
   it('should shorten the link', () => {
     const shortUrl = 'http://localhost:8080/qwerty';
 
-    fetch.mockResponse(
+    fetch.once(
       JSON.stringify({ ok: true, result: { url: shortUrl } }),
       options
     );
@@ -28,7 +28,7 @@ describe('testing api links', () => {
   });
 
   it('should return an unknown error', () => {
-    fetch.mockResponse(JSON.stringify({ ok: false, error: 'unkown' }), {
+    fetch.once(JSON.stringify({ ok: false, error: 'unkown' }), {
       options
     });
 

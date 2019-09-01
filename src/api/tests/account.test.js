@@ -11,7 +11,7 @@ describe('testing api account', () => {
 
   describe('create account', () => {
     it('successful creation', () => {
-      fetch.mockResponse(
+      fetch.once(
         JSON.stringify({
           ok: true,
           result: { user: { email: userData.email }, token: 'token' }
@@ -33,7 +33,7 @@ describe('testing api account', () => {
     it('create error, busy mail', () => {
       const errorServer = 'email_already_exists';
 
-      fetch.mockResponse(
+      fetch.once(
         JSON.stringify({
           ok: false,
           error: errorServer
@@ -51,7 +51,7 @@ describe('testing api account', () => {
     it('change link tracking status', () => {
       const body = { linkTransitions: true };
 
-      fetch.mockResponse(
+      fetch.once(
         JSON.stringify({
           ok: true
         }),

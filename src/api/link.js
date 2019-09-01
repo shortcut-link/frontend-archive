@@ -1,4 +1,4 @@
-import { request } from 'features/common';
+import { request } from 'lib/request';
 import { linkError } from './link.errors';
 
 /**
