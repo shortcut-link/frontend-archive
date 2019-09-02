@@ -6,6 +6,7 @@ import { WithThemeToggler } from 'lib/theme';
 import { ToggleSelectTheme } from 'ui/molecules';
 import { Authenticated } from './authenticated';
 import { Link } from 'ui/atom';
+import { routesPath } from 'pages';
 
 export const Header = () => (
   <ContainerBox>
@@ -23,7 +24,7 @@ const Logo = () => {
   return (
     <h1>
       <Link
-        to={'/'}
+        to={routesPath.home}
         style={{
           textTransform: 'uppercase'
         }}
@@ -35,8 +36,10 @@ const Logo = () => {
 };
 
 const Account = () => {
-  const AccountEmpty = () => <Link to="/join">Login to account</Link>;
-  const AccountExists = () => <Link to="/profile">Your account</Link>;
+  const AccountEmpty = () => (
+    <Link to={routesPath.join.login}>Login to account</Link>
+  );
+  const AccountExists = () => <Link to={routesPath.profile}>Your account</Link>;
 
   return (
     <Authenticated renderExists={AccountExists} renderEmpty={AccountEmpty} />

@@ -1,8 +1,6 @@
 import { lazy } from 'react';
 import { renderRoutes } from 'react-router-config';
 
-import { RoutesConfig } from 'lib/routing';
-
 const CreateLinkMainPage = lazy(() =>
   import('./home/page').then(a => ({ default: a.CreateLinkMainPage }))
 );
@@ -17,32 +15,46 @@ const RegistrationPage = lazy(() =>
     default: a.RegistrationPage
   }))
 );
+const ProfilePage = lazy(() =>
+  import('./profile/page').then(a => ({
+    default: a.ProfilePage
+  }))
+);
 
 export const routesPath = {
   home: '/',
   join: {
-    loginPage: '/join',
-    registrationPage: '/join/registration'
-  }
+    login: '/join',
+    registration: '/join/registration'
+  },
+  profile: '/profile'
 };
 
-const createRoutes: RoutesConfig = [
+const createRoutes = [
   {
-    path: routesPath['home'],
+    path: routesPath.home,
     component: CreateLinkMainPage,
     exact: true
   },
+
   {
-    path: routesPath.join['loginPage'],
+    path: routesPath.join.login,
     component: LoginPage,
     exact: true
   },
 
   {
-    path: routesPath.join['registrationPage'],
+    path: routesPath.join.registration,
     component: RegistrationPage,
     exact: true
   },
+
+  {
+    path: routesPath.profile,
+    component: ProfilePage,
+    exact: true
+  },
+
   {
     component: NotFoundPage
   }
