@@ -230,6 +230,10 @@ exports[`must render Header with default header, footer 1`] = `
   align-items: center;
 }
 
+.c5 > :not(:first-child) {
+  margin-left: 20px;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -305,11 +309,6 @@ exports[`must render Header with default header, footer 1`] = `
             className="c4"
             href="/join"
             onClick={[Function]}
-            style={
-              Object {
-                "marginRight": "20px",
-              }
-            }
           >
             Login to account
           </a>

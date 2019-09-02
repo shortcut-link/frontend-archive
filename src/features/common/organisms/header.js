@@ -34,21 +34,12 @@ const Logo = () => {
   );
 };
 
-const Account = () => (
-  <Authenticated
-    renderExists={() => TextAccount(true)}
-    renderEmpty={() => TextAccount(false)}
-  />
-);
-
-const TextAccount = auth => {
-  const link = auth ? '/profile' : '/join';
-  const text = auth ? 'Your account' : 'Login to account';
+const Account = () => {
+  const AccountEmpty = () => <Link to="/join">Login to account</Link>;
+  const AccountExists = () => <Link to="/profile">Your account</Link>;
 
   return (
-    <Link to={link} style={{ marginRight: '20px' }}>
-      {text}
-    </Link>
+    <Authenticated renderExists={AccountExists} renderEmpty={AccountEmpty} />
   );
 };
 
@@ -64,6 +55,10 @@ const RightPanel = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & > :not(:first-child) {
+    margin-left: 20px;
+  }
 `;
 
 const ContainerBox = styled.div`

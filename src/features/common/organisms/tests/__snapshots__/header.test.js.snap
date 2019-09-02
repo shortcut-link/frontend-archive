@@ -138,6 +138,10 @@ exports[`must render Header 1`] = `
   align-items: center;
 }
 
+.c3 > :not(:first-child) {
+  margin-left: 20px;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -194,11 +198,6 @@ exports[`must render Header 1`] = `
         className="c2"
         href="/join"
         onClick={[Function]}
-        style={
-          Object {
-            "marginRight": "20px",
-          }
-        }
       >
         Login to account
       </a>
