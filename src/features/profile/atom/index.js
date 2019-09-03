@@ -1,0 +1,1 @@
+export { CardProfile } from './card';

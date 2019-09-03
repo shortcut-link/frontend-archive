@@ -12,6 +12,7 @@ const prop = value => {
 export const mixins = props => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
+  flex-wrap: ${prop(props.flexWrap)};
   width: ${prop(props.width)};
   min-width: ${prop(props.minWidth)};
   max-width: ${prop(props.maxWidth)};

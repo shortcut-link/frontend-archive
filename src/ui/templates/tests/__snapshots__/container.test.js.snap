@@ -10,6 +10,9 @@ exports[`should render CSS container 1`] = `
   -webkit-box-align: initial;
   -ms-flex-align: initial;
   align-items: initial;
+  -webkit-flex-wrap: initial;
+  -ms-flex-wrap: initial;
+  flex-wrap: initial;
   width: initial;
   min-width: initial;
   max-width: initial;
