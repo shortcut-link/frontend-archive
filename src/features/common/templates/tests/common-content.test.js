@@ -1,20 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 
 import { CommonContentTemplate } from '../index';
-import { ThemeProviderRouter } from 'lib/dev';
+import { ThemeRouterProvider } from 'lib/dev';
 
 describe('must render Header', () => {
   const children = <div>Children</div>;
 
   it('with default header, footer', () => {
-    const component = (
-      <ThemeProviderRouter>
-        <CommonContentTemplate>{children}</CommonContentTemplate>
-      </ThemeProviderRouter>
-    );
-
-    const tree = renderer.create(component).toJSON();
+    const tree = ThemeRouterProvider(
+      <CommonContentTemplate>{children}</CommonContentTemplate>
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
@@ -22,15 +17,12 @@ describe('must render Header', () => {
   it('with custom header, footer', () => {
     const header = <header>Header</header>;
     const footer = <footer>Footer</footer>;
-    const component = (
-      <ThemeProviderRouter>
-        <CommonContentTemplate header={header} footer={footer}>
-          {children}
-        </CommonContentTemplate>
-      </ThemeProviderRouter>
-    );
 
-    const tree = renderer.create(component).toJSON();
+    const tree = ThemeRouterProvider(
+      <CommonContentTemplate header={header} footer={footer}>
+        {children}
+      </CommonContentTemplate>
+    ).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

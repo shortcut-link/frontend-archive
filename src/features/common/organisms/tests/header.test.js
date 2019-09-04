@@ -1,17 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 
 import { Header } from '../header';
-import { ThemeProviderRouter } from 'lib/dev';
+import { ThemeRouterProvider } from 'lib/dev';
 
 it('must render Header', () => {
-  const component = (
-    <ThemeProviderRouter>
-      <Header />
-    </ThemeProviderRouter>
-  );
-
-  const tree = renderer.create(component).toJSON();
+  const tree = ThemeRouterProvider(<Header />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

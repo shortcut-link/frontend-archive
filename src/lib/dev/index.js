@@ -1,15 +1,17 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
+import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ToggleThemeProvider } from 'lib/theme';
-import { lightTheme, darkTheme } from 'ui/themes';
+import { lightTheme } from 'ui/themes';
 
-/* For testing components that
- * require ThemeProvider or BrowserRouter
+/**
+ * For testing components that require ThemeProvider or BrowserRouter
+ * @param {Node} component
  */
-
-export const ThemeProviderRouter = ({ children }) => (
-  <ToggleThemeProvider light={lightTheme} dark={darkTheme}>
-    <BrowserRouter>{children}</BrowserRouter>
-  </ToggleThemeProvider>
-);
+export const ThemeRouterProvider = component =>
+  renderer.create(
+    <ThemeProvider theme={lightTheme}>
+      <BrowserRouter>{component}</BrowserRouter>
+    </ThemeProvider>
+  );

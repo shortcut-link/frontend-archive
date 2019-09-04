@@ -1,17 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 
 import { Link } from '../link';
-import { ThemeProviderRouter } from 'lib/dev';
+import { ThemeRouterProvider } from 'lib/dev';
 
 it('ui link with wrapper router link', () => {
-  const component = (
-    <ThemeProviderRouter>
-      <Link to={'/profile'}>Link</Link>
-    </ThemeProviderRouter>
-  );
-
-  const tree = renderer.create(component).toJSON();
+  const tree = ThemeRouterProvider(<Link to={'/profile'}>Link</Link>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
