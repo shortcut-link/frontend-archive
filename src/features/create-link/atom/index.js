@@ -1,1 +1,1 @@
-export { ItemCreatedLinks } from './item-created-links';
+export { ItemCreatedLink } from './item-created-link';

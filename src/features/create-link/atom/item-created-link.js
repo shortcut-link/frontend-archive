@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ButtonPrimary, Icon } from 'ui';
 import { Row } from 'lib/styled-components';
 
-export const ItemCreatedLinks = ({ url }) => {
+export const ItemCreatedLink = ({ url }) => {
   const [isCopy, setIsCopy] = useState(false);
   const linkRef = useRef(null);
 
