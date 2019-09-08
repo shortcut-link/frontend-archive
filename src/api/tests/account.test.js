@@ -66,7 +66,7 @@ describe('testing api account', () => {
       expect(fetch).toBeCalled();
       const fetchMock = fetch.mock.calls[0][0];
       expect(fetchMock.method).toEqual('POST');
-      expect(fetchMock.url).toEqual('/api/account/link');
+      expect(fetchMock.url).toEqual('/api/account/linkSettings');
       expect(fetchMock.body).toEqual(JSON.stringify(body));
     });
   });

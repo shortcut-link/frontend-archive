@@ -14,6 +14,6 @@ const createAccount = body =>
  * @param {*} body
  */
 const optionsLink = body =>
-  request('POST', '/account/link', { body }).catch(accountError);
+  request('POST', '/account/linkSettings', { body }).catch(accountError);
 
 export const accountAPI = { createAccount, optionsLink };
