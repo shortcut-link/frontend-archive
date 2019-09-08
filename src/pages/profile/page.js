@@ -12,7 +12,7 @@ export const ProfilePage = () => {
       <Col justify="center" align="center">
         <Container>
           <Row flexWrap="wrap">
-            <CardProfilePage />
+            <UserProfileCard />
           </Row>
         </Container>
         <Link to={'/'}>Return back</Link>
@@ -21,7 +21,7 @@ export const ProfilePage = () => {
   );
 };
 
-const CardProfilePage = () => {
+const UserProfileCard = () => {
   const { email } = useStore($session);
   return (
     <CardProfile heading="Account">
