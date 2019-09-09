@@ -4,7 +4,7 @@ import { useStore } from 'effector-react';
 import { CenterContent, Link } from 'ui';
 import { Col } from 'lib/styled-components';
 import { $session } from 'features/common';
-import { CardProfile } from 'features/profile';
+import { CardProfile, LinksTable } from 'features/profile';
 
 export const ProfilePage = () => {
   return (
@@ -12,6 +12,7 @@ export const ProfilePage = () => {
       <Col justify="center" align="center">
         <Col flexWrap="wrap" justify="center" align="center" gap="1rem">
           <UserProfileCard />
+          <UserLinksCard />
           <Link to={'/'}>Return back</Link>
         </Col>
       </Col>
@@ -24,6 +25,14 @@ const UserProfileCard = () => {
   return (
     <CardProfile heading="Account">
       <span>Your email: {email}</span>
+    </CardProfile>
+  );
+};
+
+const UserLinksCard = () => {
+  return (
+    <CardProfile heading="Your links">
+      <LinksTable />
     </CardProfile>
   );
 };

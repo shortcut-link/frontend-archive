@@ -16,4 +16,16 @@ const createAccount = body =>
 const optionsLink = body =>
   request('POST', '/account/linkSettings', { body }).catch(accountError);
 
-export const accountAPI = { createAccount, optionsLink };
+/**
+ * Getting a list of user links, with a starting index of 0, the number of user links is returned
+ * @param {number} startIndex
+ * @param {number} stopIndex
+ * @returns {Promise<{ count?: number, links: [{ url: string, originalUrl: string, transition?: number, createdAt: Date }]>}
+ */
+const links = (startIndex, stopIndex) =>
+  request(
+    'GET',
+    `/account/links?offset=${startIndex}&limit=${stopIndex}`
+  ).catch(accountError);
+
+export const accountAPI = { createAccount, optionsLink, links };
