@@ -9,11 +9,11 @@ export const LinksTable = () => {
   const [loadedData, setLoadedData] = useState([]);
 
   useEffect(() => {
-    loadMoreRows({ startIndex: 0, stopIndex: 15 });
+    loadMoreRows({ startIndex: 0 });
   }, []);
 
-  const loadMoreRows = ({ startIndex, stopIndex }) =>
-    accountAPI.links(startIndex, stopIndex).then(({ count, links }) => {
+  const loadMoreRows = ({ startIndex }) =>
+    accountAPI.links(startIndex).then(({ count, links }) => {
       setLoadedData(arr => [...arr, ...links]);
 
       if (count) setRowCount(count);

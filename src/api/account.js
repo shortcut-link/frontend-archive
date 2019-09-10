@@ -19,13 +19,9 @@ const optionsLink = body =>
 /**
  * Getting a list of user links, with a starting index of 0, the number of user links is returned
  * @param {number} startIndex
- * @param {number} stopIndex
  * @returns {Promise<{ count?: number, links: [{ url: string, originalUrl: string, transition?: number, createdAt: Date }]>}
  */
-const links = (startIndex, stopIndex) =>
-  request(
-    'GET',
-    `/account/links?offset=${startIndex}&limit=${stopIndex}`
-  ).catch(accountError);
+const links = startIndex =>
+  request('GET', `/account/links?offset=${startIndex}`).catch(accountError);
 
 export const accountAPI = { createAccount, optionsLink, links };
