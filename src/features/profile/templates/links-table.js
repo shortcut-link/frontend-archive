@@ -3,6 +3,7 @@ import { InfiniteLoader, Table, Column } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 import { accountAPI } from 'api/account';
+import { ItemTable } from '../atom';
 
 export const LinksTable = () => {
   const [rowCount, setRowCount] = useState(0);
@@ -28,18 +29,19 @@ export const LinksTable = () => {
       {({ onRowsRendered, registerChild }) => (
         <Table
           ref={registerChild}
-          width={180 * 4}
-          height={150}
+          width={210 + 250 + 150 + 150}
+          height={300}
           headerHeight={20}
-          rowHeight={30}
+          rowHeight={35}
           rowCount={loadedData.length}
           onRowsRendered={onRowsRendered}
           rowGetter={({ index }) => loadedData[index]}
+          rowRenderer={ItemTable}
         >
-          <Column label="Url" dataKey="url" width={180} />
-          <Column label="Original Url" dataKey="originalUrl" width={180} />
-          <Column label="Transitions" dataKey="transitions" width={180} />
-          <Column label="Created at" dataKey="createdAt" width={180} />
+          <Column label="Url" dataKey="url" width={210} />
+          <Column label="Original Url" dataKey="originalUrl" width={250} />
+          <Column label="Transitions" dataKey="transitions" width={150} />
+          <Column label="Created at" dataKey="createdAt" width={150} />
         </Table>
       )}
     </InfiniteLoader>
