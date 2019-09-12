@@ -1,6 +1,8 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 
 export const ItemTable = ({
+  index,
   className,
   key,
   style,
@@ -12,8 +14,15 @@ export const ItemTable = ({
     typeof transitions === 'number' ? transitions : 'Not';
   const outputDate = dateFormatting(createdAt);
 
+  const backgroundColor = index % 2 === 0 ? true : false;
+
   return (
-    <div key={key} className={className} style={{ ...style, display: 'flex' }}>
+    <ContainerItem
+      key={key}
+      className={className}
+      style={{ ...style, display: 'flex' }}
+      backgroundColor={backgroundColor}
+    >
       <div {...columns[0].props} title={outputUrl}>
         {outputUrl}
       </div>
@@ -27,7 +36,7 @@ export const ItemTable = ({
       <div {...columns[3].props} title={outputDate}>
         {outputDate}
       </div>
-    </div>
+    </ContainerItem>
   );
 };
 
@@ -39,3 +48,11 @@ const dateFormatting = date =>
     hour: 'numeric',
     minute: 'numeric'
   });
+
+const ContainerItem = styled.div`
+  ${({ theme, backgroundColor }) => css`
+    background-color: ${backgroundColor
+      ? theme.palette.decoration.borders
+      : undefined};
+  `}
+`;
