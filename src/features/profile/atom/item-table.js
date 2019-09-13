@@ -7,7 +7,8 @@ export const ItemTable = ({
   key,
   style,
   columns,
-  rowData: { url, originalUrl, transitions, createdAt }
+  rowData: { url, originalUrl, transitions, createdAt },
+  onRowClick = () => {}
 }) => {
   const outputUrl = `localhost:8080/${url}`;
   const outputTransitions =
@@ -22,6 +23,7 @@ export const ItemTable = ({
       className={className}
       style={{ ...style, display: 'flex' }}
       backgroundColor={backgroundColor}
+      onClick={() => onRowClick(index)}
     >
       <div {...columns[0].props} title={outputUrl}>
         {outputUrl}
