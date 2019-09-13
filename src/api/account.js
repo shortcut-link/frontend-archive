@@ -21,7 +21,10 @@ const optionsLink = body =>
  * @param {number} startIndex
  * @returns {Promise<{ count?: number, links: [{ url: string, originalUrl: string, transition?: number, createdAt: Date }]>}
  */
-const links = startIndex =>
-  request('GET', `/account/links?offset=${startIndex}`).catch(accountError);
+const links = (startIndex, count = false) =>
+  request(
+    'GET',
+    `/account/links?offset=${startIndex}&count=${count ? 1 : 0}`
+  ).catch(accountError);
 
 export const accountAPI = { createAccount, optionsLink, links };
