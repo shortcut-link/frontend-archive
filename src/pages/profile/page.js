@@ -1,3 +1,4 @@
+import './model';
 import React from 'react';
 import { useStore } from 'effector-react';
 
@@ -29,10 +30,8 @@ const UserProfileCard = () => {
   );
 };
 
-const UserLinksCard = () => {
-  return (
-    <CardProfile heading="Your links">
-      <LinksTable />
-    </CardProfile>
-  );
-};
+const UserLinksCard = () => (
+  <CardProfile heading="Your links">
+    <LinksTable />
+  </CardProfile>
+);

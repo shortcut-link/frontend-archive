@@ -1,30 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from 'effector-react';
 import { InfiniteLoader, Table, Column } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-import { accountAPI } from 'api/account';
 import { ItemTable } from '../atom';
+import { $links, $countUserLinks } from 'pages/profile/model/store';
+import { getLinks } from 'pages/profile/model/events';
 
 export const LinksTable = () => {
-  const [rowCount, setRowCount] = useState(0);
-  const [loadedData, setLoadedData] = useState([]);
+  const links = useStore($links);
+  const countUserLinks = useStore($countUserLinks);
 
   useEffect(() => {
     loadMoreRows({ startIndex: 0, count: true });
   }, []);
 
-  const loadMoreRows = ({ startIndex, count = false }) =>
-    accountAPI.links(startIndex, count).then(({ count, links }) => {
-      setLoadedData(arr => [...arr, ...links]);
-
-      if (count) setRowCount(count);
-    });
+  const loadMoreRows = data => {
+    getLinks(data);
+  };
 
   return (
     <InfiniteLoader
-      isRowLoaded={({ index }) => loadedData[index]}
+      isRowLoaded={({ index }) => links[index]}
       loadMoreRows={loadMoreRows}
-      rowCount={rowCount}
+      rowCount={countUserLinks}
     >
       {({ onRowsRendered, registerChild }) => (
         <Table
@@ -33,9 +32,9 @@ export const LinksTable = () => {
           height={300}
           headerHeight={20}
           rowHeight={35}
-          rowCount={loadedData.length}
+          rowCount={links.length}
           onRowsRendered={onRowsRendered}
-          rowGetter={({ index }) => loadedData[index]}
+          rowGetter={({ index }) => links[index]}
           rowRenderer={ItemTable}
         >
           <Column label="Url" dataKey="url" width={210} />
