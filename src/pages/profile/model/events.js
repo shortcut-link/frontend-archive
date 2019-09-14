@@ -4,6 +4,7 @@ import { createFetching } from 'lib/fetching';
 
 export const getLinks = createEvent();
 export const addLinks = createEvent();
+export const removeLinks = createEvent();
 export const addCountUserLinks = createEvent();
 
 export const downloadLinksProcessing = createEffect();

@@ -5,6 +5,7 @@ import 'react-virtualized/styles.css';
 
 import { ItemTable } from '../atom';
 import { $links, $countUserLinks } from 'pages/profile/model/store';
+import { removeLinks } from 'pages/profile/model/events';
 import { getLinks } from 'pages/profile/model/events';
 
 export const LinksTable = () => {
@@ -13,6 +14,7 @@ export const LinksTable = () => {
 
   useEffect(() => {
     loadMoreRows({ startIndex: 0, count: true });
+    return removeLinks();
   }, []);
 
   const loadMoreRows = data => {

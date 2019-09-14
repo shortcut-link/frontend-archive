@@ -4,11 +4,14 @@ import {
   downloadLinksFetching,
   addLinks,
   addCountUserLinks,
-  getLinks
+  getLinks,
+  removeLinks
 } from './events';
 import { accountAPI } from 'api/account';
 
 $links.on(addLinks, (allLinks, newLinks) => [...allLinks, ...newLinks]);
+$links.reset(removeLinks);
+
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
 
 getLinks.watch(({ startIndex, count }) => {
