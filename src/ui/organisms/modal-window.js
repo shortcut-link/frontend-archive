@@ -19,7 +19,7 @@ export const ModalWindow = ({ toClose, children }) => {
     <ContainerPopup onClick={clickContainer}>
       <CardPopup ref={cardRef}>
         <Col width="20rem">
-          <ClosingModal onClick={toClose}>
+          <ClosingModal onClick={() => toClose()}>
             <Icon
               name="cross"
               width={24}
