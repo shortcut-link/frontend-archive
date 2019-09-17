@@ -5,11 +5,31 @@ import {
   addLinks,
   addCountUserLinks,
   getLinks,
-  removeLinks
+  removeLinks,
+  changeLinkParameter
 } from './events';
 import { accountAPI } from 'api/account';
+import { linkAPI } from 'api/link';
 
 $links.on(addLinks, (allLinks, newLinks) => [...allLinks, ...newLinks]);
+$links.on(changeLinkParameter, (allLinks, { id, property }) => {
+  const { url, transitions } = allLinks[id];
+  switch (property) {
+    case 'tracking':
+      const typeTransitionsNumber = typeof transitions === 'number';
+      allLinks[id].transitions = typeTransitionsNumber ? null : 0;
+
+      linkAPI.optionsLink(url, {
+        tracking: typeTransitionsNumber ? false : true
+      });
+      break;
+
+    default:
+      break;
+  }
+  return allLinks;
+});
+
 $links.reset(removeLinks);
 
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
