@@ -52,6 +52,13 @@ const dateFormatting = date =>
   });
 
 const ContainerItem = styled.div`
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme, backgroundColor }) =>
+      theme.palette.primary.initial.background};
+  }
+
   ${({ theme, backgroundColor }) => css`
     background-color: ${backgroundColor
       ? theme.palette.decoration.borders

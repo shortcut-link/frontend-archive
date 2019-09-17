@@ -14,6 +14,7 @@ export const ButtonPrimary = styled.button`
   outline: none;
   transition: 0.4s;
   user-select: none;
+  font-family: inherit;
   color: ${({ theme }) => theme.palette.primary.initial.color};
   background-color: ${({ theme }) => theme.palette.decoration.borders};
 
@@ -40,3 +41,14 @@ export const ButtonLoader = ({ text, disabled, loader, style, ...props }) => (
     {loader ? <Icon name="loader" width="1rem" height="1rem" /> : text}
   </ButtonPrimary>
 );
+
+export const ZeroButton = styled.button`
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+
+  color: ${({ theme }) => theme.palette.primary.initial.color};
+`;
