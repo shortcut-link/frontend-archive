@@ -6,7 +6,7 @@ import { sessionError } from './session.errors';
  * @param { { email: string, password: string } } body - User data
  * @returns {Promise<{ token: string, user: { email: string } }>}
  */
-const createSession = body =>
+const create = body =>
   request('POST', '/account/session', {
     body
   }).catch(sessionError);
@@ -15,9 +15,9 @@ const createSession = body =>
  * Getting data about the current user session
  * @returns { Promise<{ user: { email: string } }> }
  */
-const getSession = () => request('GET', '/account/session').catch(sessionError);
+const get = () => request('GET', '/account/session').catch(sessionError);
 
 export const sessionAPI = {
-  createSession,
-  getSession
+  create,
+  get
 };

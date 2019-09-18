@@ -19,7 +19,7 @@ $links.on(changeLinkParameter, (allLinks, { id, property }) => {
       const typeTransitionsNumber = typeof transitions === 'number';
       allLinks[id].transitions = typeTransitionsNumber ? null : 0;
 
-      linkAPI.optionsLink(url, {
+      linkAPI.changeUserLinkOptions(url, {
         tracking: typeTransitionsNumber ? false : true
       });
       break;
@@ -42,7 +42,7 @@ getLinks.watch(({ startIndex, count }) => {
 });
 
 downloadLinksProcessing.use(({ startIndex, count }) => {
-  return accountAPI.links(startIndex, count);
+  return accountAPI.getLinks(startIndex, count);
 });
 
 downloadLinksProcessing.done.watch(({ result: { links, count } }) => {

@@ -22,7 +22,7 @@ formSubmitted.watch(() => {
   createLinkProcessing(link);
 });
 
-createLinkProcessing.use(linkAPI.createLink);
+createLinkProcessing.use(linkAPI.create);
 
 createLinkProcessing.done.watch(({ result: { url } }) => {
   createdLinksChange({ url });

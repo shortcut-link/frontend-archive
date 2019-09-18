@@ -32,5 +32,7 @@ const clickSettings = (id, value) => {
 
   optionsChange(field);
 
-  accountAPI.optionsLink(field).catch(() => optionsChange({ [id]: value }));
+  accountAPI
+    .changeOptionsCreatedLink(field)
+    .catch(() => optionsChange({ [id]: value }));
 };

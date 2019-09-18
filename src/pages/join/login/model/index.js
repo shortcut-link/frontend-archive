@@ -24,7 +24,7 @@ formSubmitted.watch(() => {
   loginProcessing(form);
 });
 
-loginProcessing.use(sessionAPI.createSession);
+loginProcessing.use(sessionAPI.create);
 
 loginProcessing.done.watch(({ result: { token, user } }) => {
   tokenChange(token);

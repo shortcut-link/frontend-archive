@@ -17,7 +17,7 @@ $session
   .on(optionsChange, (user, options) => ({ ...user, ...options }))
   .reset(sessionRemove);
 
-sessionFetchProcessing.use(sessionAPI.getSession);
+sessionFetchProcessing.use(sessionAPI.get);
 
 forward({ from: sessionFetchProcessing.fail, to: tokenRemove });
 forward({ from: sessionRemove, to: tokenRemove });

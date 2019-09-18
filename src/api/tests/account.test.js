@@ -19,7 +19,7 @@ describe('testing api account', () => {
         options
       );
 
-      accountAPI.createAccount(userData).then(({ user, token }) => {
+      accountAPI.create(userData).then(({ user, token }) => {
         expect(user.email).toEqual(userData['email']);
         expect(token).toEqual('token');
       });
@@ -43,7 +43,7 @@ describe('testing api account', () => {
       );
 
       accountAPI
-        .createAccount(userData)
+        .create(userData)
         .catch(error => expect(error).toEqual(switchError(errorServer)));
     });
   });
@@ -59,9 +59,11 @@ describe('testing api account', () => {
         options
       );
 
-      accountAPI.optionsLink({ linkTransitions: true }).then(res => {
-        expect(res).toEqual(undefined);
-      });
+      accountAPI
+        .changeOptionsCreatedLink({ linkTransitions: true })
+        .then(res => {
+          expect(res).toEqual(undefined);
+        });
 
       expect(fetch).toBeCalled();
       const fetchMock = fetch.mock.calls[0][0];

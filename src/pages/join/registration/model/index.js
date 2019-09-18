@@ -38,7 +38,7 @@ formSubmitted.watch(() => {
   registrationProcessing(form);
 });
 
-registrationProcessing.use(accountAPI.createAccount);
+registrationProcessing.use(accountAPI.create);
 
 registrationProcessing.done.watch(({ result: { token, user } }) => {
   tokenChange(token);

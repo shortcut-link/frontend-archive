@@ -19,7 +19,7 @@ describe('testing api session', () => {
         options
       );
 
-      sessionAPI.createSession(userData).then(({ user, token }) => {
+      sessionAPI.create(userData).then(({ user, token }) => {
         expect(user.email).toEqual(userData['email']);
         expect(token).toEqual('token');
       });
@@ -43,7 +43,7 @@ describe('testing api session', () => {
       );
 
       sessionAPI
-        .createSession(userData)
+        .create(userData)
         .catch(error => expect(error).toEqual(switchError(errorServer)));
     });
 
@@ -57,7 +57,7 @@ describe('testing api session', () => {
           options
         );
 
-        sessionAPI.getSession().then(({ user }) => {
+        sessionAPI.get().then(({ user }) => {
           expect(user.email).toEqual(userData['email']);
         });
 
@@ -79,7 +79,7 @@ describe('testing api session', () => {
         );
 
         sessionAPI
-          .getSession(userData)
+          .get(userData)
           .catch(error => expect(error).toEqual(switchError(errorServer)));
       });
     });

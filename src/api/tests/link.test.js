@@ -17,7 +17,7 @@ describe('testing api links', () => {
       options
     );
 
-    linkAPI.createLink(link).then(({ url }) => {
+    linkAPI.create(link).then(({ url }) => {
       expect(url).toEqual(shortUrl);
     });
 
@@ -33,7 +33,7 @@ describe('testing api links', () => {
       options
     });
 
-    linkAPI.createLink(link).catch(error => {
+    linkAPI.create(link).catch(error => {
       expect(error).toEqual(switchError(error));
     });
   });
