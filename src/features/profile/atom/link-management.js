@@ -19,16 +19,10 @@ export const LinkManagement = ({ linkIndex }) => {
   ];
 
   const clickSettings = id => {
-    switch (id) {
-      case 'tracking':
-        changeLinkParameter({
-          id: linkIndex,
-          property: id
-        });
-        break;
-      default:
-        break;
-    }
+    changeLinkParameter({
+      id: linkIndex,
+      property: id
+    });
   };
 
   return (
