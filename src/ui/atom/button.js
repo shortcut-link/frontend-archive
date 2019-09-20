@@ -42,13 +42,13 @@ export const ButtonLoader = ({ text, disabled, loader, style, ...props }) => (
   </ButtonPrimary>
 );
 
-export const ZeroButton = styled.button`
+export const ZeroButton = styled(ButtonPrimary)`
   padding: 0.5rem 1rem;
   background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-family: inherit;
+  transition: 0.2s;
 
-  color: ${({ theme }) => theme.palette.primary.initial.color};
+  &:not([disabled]):hover {
+    background-color: transparent;
+    color: ${({ theme }) => theme.palette.primary.hover.background};
+  }
 `;

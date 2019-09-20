@@ -30,9 +30,10 @@ $links.reset(removeLinks);
 
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
 $countUserLinks.on(removeLink, count => count - 1);
+$countUserLinks.on(removeLink, count => count - 1);
 
 $linkManagement.on(openlinkManagement, (_, id) => id);
-$linkManagement.on(closelinkManagement, () => null);
+$linkManagement.reset(removeLinks);
 
 getLinks.watch(({ startIndex, count }) => {
   const loading = downloadLinksFetching.isLoading;

@@ -1,13 +1,19 @@
 import './model';
 import React from 'react';
 import { useStore } from 'effector-react';
+import styled from 'styled-components';
 
-import { CenterContent, Link, ModalWindow } from 'ui';
-import { Col } from 'lib/styled-components';
+import { CenterContent, Link, ModalWindow, ZeroButton, Icon } from 'ui';
+import { Col, Row } from 'lib/styled-components';
 import { $session } from 'features/common';
 import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
 import { $linkManagement } from './model/store';
-import { openlinkManagement, closelinkManagement } from './model/events';
+import {
+  openlinkManagement,
+  closelinkManagement,
+  removeLinks,
+  getLinks
+} from './model/events';
 
 export const ProfilePage = () => {
   const linkManagement = useStore($linkManagement);
@@ -40,8 +46,30 @@ const UserProfileCard = () => {
   );
 };
 
-const UserLinksCard = () => (
-  <CardProfile heading="Your links">
-    <LinksTable openlinkManagement={openlinkManagement} />
-  </CardProfile>
-);
+const UserLinksCard = () => {
+  const Heading = () => (
+    <header>
+      <Row justify="space-between" align="center">
+        <h2>Your links</h2>
+        <ButtonDownloadCloud onClick={Download}>
+          <Icon name="download-cloud" width={20} height={20} />
+        </ButtonDownloadCloud>
+      </Row>
+    </header>
+  );
+
+  const Download = () => {
+    removeLinks();
+    getLinks({ startIndex: 0, count: true });
+  };
+
+  return (
+    <CardProfile heading={<Heading />}>
+      <LinksTable openlinkManagement={openlinkManagement} />
+    </CardProfile>
+  );
+};
+
+const ButtonDownloadCloud = styled(ZeroButton)`
+  padding-right: 0;
+`;
