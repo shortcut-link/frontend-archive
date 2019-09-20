@@ -6,6 +6,8 @@ export const getLinks = createEvent();
 export const addLinks = createEvent();
 export const removeLinks = createEvent();
 export const addCountUserLinks = createEvent();
+export const removeLink = createEvent();
+export const changeLink = createEvent();
 
 export const changeLinkParameter = createEvent();
 

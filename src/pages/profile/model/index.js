@@ -8,33 +8,28 @@ import {
   removeLinks,
   changeLinkParameter,
   openlinkManagement,
-  closelinkManagement
+  closelinkManagement,
+  removeLink,
+  changeLink
 } from './events';
 import { accountAPI } from 'api/account';
 import { linkAPI } from 'api/link';
 
 $links.on(addLinks, (allLinks, newLinks) => [...allLinks, ...newLinks]);
-$links.on(changeLinkParameter, (allLinks, { id, property }) => {
-  const { url, transitions } = allLinks[id];
-  switch (property) {
-    case 'tracking':
-      const typeTransitionsNumber = typeof transitions === 'number';
-      allLinks[id].transitions = typeTransitionsNumber ? null : 0;
+$links.on(removeLink, (allLinks, { id }) => {
+  allLinks.splice(id, 1);
+  return allLinks;
+});
+$links.on(changeLink, (allLinks, { id, options }) => {
+  allLinks[id] = { ...allLinks[id], ...options };
 
-      linkAPI.changeUserLinkOptions(url, {
-        tracking: typeTransitionsNumber ? false : true
-      });
-      break;
-
-    default:
-      break;
-  }
   return allLinks;
 });
 
 $links.reset(removeLinks);
 
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
+$countUserLinks.on(removeLink, count => count - 1);
 
 $linkManagement.on(openlinkManagement, (_, id) => id);
 $linkManagement.on(closelinkManagement, () => null);
@@ -53,4 +48,37 @@ downloadLinksProcessing.use(({ startIndex, count }) => {
 downloadLinksProcessing.done.watch(({ result: { links, count } }) => {
   addLinks(links);
   count && addCountUserLinks(count);
+});
+
+changeLinkParameter.watch(({ property }) => {
+  const id = $linkManagement.getState();
+  const { url, transitions } = $links.getState()[id];
+
+  switch (property) {
+    case 'tracking':
+      const typeTransitionsNumber = typeof transitions === 'number';
+      changeLink({
+        id,
+        options: { transitions: typeTransitionsNumber ? null : 0 }
+      });
+
+      linkAPI.changeUserLinkOptions(url, {
+        tracking: typeTransitionsNumber ? false : true
+      });
+      break;
+    case 'remove':
+      const confirm = window.confirm(
+        `Are you sure you want to delete the shortened link: http://localhost:8080/${url} ?`
+      );
+
+      if (confirm) {
+        linkAPI.remove(url);
+        removeLink({ id });
+        closelinkManagement();
+      }
+      break;
+
+    default:
+      break;
+  }
 });

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { $links, $linkManagement } from 'pages/profile/model/store';
 import { changeLinkParameter } from 'pages/profile/model/events';
 import { Col } from 'lib/styled-components';
-import { ToggleWithText } from 'ui';
+import { ToggleWithText, ZeroButton } from 'ui';
 
 export const LinkManagement = () => {
   const linkManagement = useStore($linkManagement);
@@ -21,7 +21,6 @@ export const LinkManagement = () => {
 
   const clickSettings = id => {
     changeLinkParameter({
-      id: linkManagement,
       property: id
     });
   };
@@ -39,6 +38,9 @@ export const LinkManagement = () => {
             defaultChecked={defaultChecked}
           />
         ))}
+        <ZeroButton onClick={() => clickSettings('remove')}>
+          Remove link
+        </ZeroButton>
       </ContainerToggle>
     </Col>
   );
