@@ -1,4 +1,4 @@
-import { $links, $countUserLinks } from './store';
+import { $links, $countUserLinks, $linkManagement } from './store';
 import {
   downloadLinksProcessing,
   downloadLinksFetching,
@@ -6,7 +6,9 @@ import {
   addCountUserLinks,
   getLinks,
   removeLinks,
-  changeLinkParameter
+  changeLinkParameter,
+  openlinkManagement,
+  closelinkManagement
 } from './events';
 import { accountAPI } from 'api/account';
 import { linkAPI } from 'api/link';
@@ -33,6 +35,9 @@ $links.on(changeLinkParameter, (allLinks, { id, property }) => {
 $links.reset(removeLinks);
 
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
+
+$linkManagement.on(openlinkManagement, (_, id) => id);
+$linkManagement.on(closelinkManagement, () => null);
 
 getLinks.watch(({ startIndex, count }) => {
   const loading = downloadLinksFetching.isLoading;

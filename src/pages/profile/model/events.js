@@ -9,5 +9,8 @@ export const addCountUserLinks = createEvent();
 
 export const changeLinkParameter = createEvent();
 
+export const openlinkManagement = createEvent();
+export const closelinkManagement = createEvent();
+
 export const downloadLinksProcessing = createEffect();
 export const downloadLinksFetching = createFetching(downloadLinksProcessing);

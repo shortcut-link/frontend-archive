@@ -8,7 +8,7 @@ import { $links, $countUserLinks } from 'pages/profile/model/store';
 import { removeLinks } from 'pages/profile/model/events';
 import { getLinks } from 'pages/profile/model/events';
 
-export const LinksTable = ({ setLinkManagement }) => {
+export const LinksTable = ({ openlinkManagement }) => {
   const links = useStore($links);
   const countUserLinks = useStore($countUserLinks);
 
@@ -38,7 +38,7 @@ export const LinksTable = ({ setLinkManagement }) => {
           onRowsRendered={onRowsRendered}
           rowGetter={({ index }) => links[index]}
           rowRenderer={ItemTable}
-          onRowClick={setLinkManagement}
+          onRowClick={id => openlinkManagement(id)}
         >
           <Column label="Url" dataKey="url" width={210} />
           <Column label="Original Url" dataKey="originalUrl" width={250} />

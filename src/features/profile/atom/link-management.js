@@ -2,13 +2,14 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
-import { $links } from 'pages/profile/model/store';
+import { $links, $linkManagement } from 'pages/profile/model/store';
 import { changeLinkParameter } from 'pages/profile/model/events';
 import { Col } from 'lib/styled-components';
 import { ToggleWithText } from 'ui';
 
-export const LinkManagement = ({ linkIndex }) => {
-  const { url, transitions } = useStore($links)[linkIndex];
+export const LinkManagement = () => {
+  const linkManagement = useStore($linkManagement);
+  const { url, transitions } = useStore($links)[linkManagement];
 
   const elements = [
     {
@@ -20,7 +21,7 @@ export const LinkManagement = ({ linkIndex }) => {
 
   const clickSettings = id => {
     changeLinkParameter({
-      id: linkIndex,
+      id: linkManagement,
       property: id
     });
   };
