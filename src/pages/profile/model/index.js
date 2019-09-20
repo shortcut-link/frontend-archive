@@ -15,6 +15,8 @@ import {
 import { accountAPI } from 'api/account';
 import { linkAPI } from 'api/link';
 
+/* Links */
+
 $links.on(addLinks, (allLinks, newLinks) => [...allLinks, ...newLinks]);
 $links.on(removeLink, (allLinks, { id }) => {
   allLinks.splice(id, 1);
@@ -25,7 +27,6 @@ $links.on(changeLink, (allLinks, { id, options }) => {
 
   return allLinks;
 });
-
 $links.reset(removeLinks);
 
 $countUserLinks.on(addCountUserLinks, (_, count) => count);
@@ -33,7 +34,6 @@ $countUserLinks.on(removeLink, count => count - 1);
 $countUserLinks.on(removeLink, count => count - 1);
 
 $linkManagement.on(openlinkManagement, (_, id) => id);
-$linkManagement.reset(removeLinks);
 
 getLinks.watch(({ startIndex, count }) => {
   const loading = downloadLinksFetching.isLoading;
@@ -50,6 +50,17 @@ downloadLinksProcessing.done.watch(({ result: { links, count } }) => {
   addLinks(links);
   count && addCountUserLinks(count);
 });
+
+/* Count User Links */
+
+$countUserLinks.on(addCountUserLinks, (_, count) => count);
+$countUserLinks.on(removeLink, count => count - 1);
+$countUserLinks.reset(removeLinks);
+
+/* Link management */
+
+$linkManagement.on(openlinkManagement, (_, id) => id);
+$linkManagement.on(closelinkManagement, () => null);
 
 changeLinkParameter.watch(({ property }) => {
   const id = $linkManagement.getState();
