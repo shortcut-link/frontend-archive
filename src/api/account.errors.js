@@ -1,5 +1,5 @@
-export const switchError = error => {
-  switch (error) {
+export const switchError = ({ message }) => {
+  switch (message) {
     case 'email_already_exists':
       return 'That email already exists.';
     case 'not_valid_email':

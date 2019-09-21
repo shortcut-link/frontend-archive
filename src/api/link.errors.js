@@ -1,5 +1,5 @@
-export const switchError = error => {
-  switch (error) {
+export const switchError = ({ message }) => {
+  switch (message) {
     case 'not_valid_url':
     default:
       return 'Got an unexpected error. Try again later';

@@ -26,13 +26,7 @@ export const request = (method, url, options = {}) => {
       return response.text;
     }
 
-    const contentType = response.headers.get('Content-Type');
-
-    if (contentType && contentType.includes('json')) {
-      return response.json().then(responseToPromise, responseToPromise);
-    }
-
-    throw new TypeError('Unexpected content-type');
+    return responseToPromise(response);
   });
 };
 
@@ -69,13 +63,18 @@ const createBody = (options, headers) => {
 };
 
 function responseToPromise(response) {
-  return response && typeof response.ok === 'boolean'
-    ? okToPromise(response)
-    : response;
-}
+  const contentType = response.headers.get('Content-Type');
+  const status = response.status;
 
-function okToPromise(response) {
-  return response.ok
-    ? Promise.resolve(response.result)
-    : Promise.reject(response.error);
+  if (contentType && contentType.includes('json')) {
+    return response.json(data =>
+      response.ok
+        ? Promise.resolve({ ...data, status })
+        : Promise.reject({ ...data, status })
+    );
+  } else {
+    return response.ok
+      ? Promise.resolve({ status })
+      : Promise.reject({ status });
+  }
 }

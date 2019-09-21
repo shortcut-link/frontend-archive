@@ -1,5 +1,6 @@
-export const switchError = error => {
-  switch (error) {
+export const switchError = ({ message }) => {
+  console.log('TCL: switchError -> message', message);
+  switch (message) {
     case 'user_not_found':
       return 'Email not found or password is wrong';
     case 'not_valid_email':
