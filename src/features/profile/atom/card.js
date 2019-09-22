@@ -13,7 +13,7 @@ export const CardProfile = ({ heading, children }) => (
   </Card>
 );
 
-const Heading = styled.h4`
+const Heading = styled.header`
   font-size: 1.2rem;
   margin-bottom: 1rem;
 `;

@@ -24,6 +24,7 @@ export const ItemTable = ({
       style={{ ...style, display: 'flex' }}
       backgroundColor={backgroundColor}
       onClick={() => onRowClick(index)}
+      aria-label="Links"
     >
       <div {...columns[0].props} title={outputUrl}>
         {outputUrl}

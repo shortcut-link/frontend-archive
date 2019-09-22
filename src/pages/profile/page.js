@@ -20,12 +20,12 @@ export const ProfilePage = () => {
 
   return (
     <CenterContent>
-      <Col justify="center" align="center">
-        <Col flexWrap="wrap" justify="center" align="center" gap="1rem">
-          <UserProfileCard />
-          <UserLinksCard />
-          <Link to={'/'}>Return back</Link>
-        </Col>
+      <Col flexWrap="wrap" justify="center" align="center" gap="1rem">
+        <UserProfileCard />
+        <UserLinksCard />
+        <Link to={'/'} tabIndex={3}>
+          Return back
+        </Link>
       </Col>
 
       {linkManagement !== null && (
@@ -39,9 +39,12 @@ export const ProfilePage = () => {
 
 const UserProfileCard = () => {
   const { email } = useStore($session);
+
+  const Heading = () => <h2>Account</h2>;
+
   return (
-    <CardProfile heading="Account">
-      <span>Your email: {email}</span>
+    <CardProfile heading={<Heading />}>
+      <div>Your email: {email}</div>
     </CardProfile>
   );
 };
@@ -51,7 +54,11 @@ const UserLinksCard = () => {
     <header>
       <Row justify="space-between" align="center">
         <h2>Your links</h2>
-        <ButtonDownloadCloud onClick={Download}>
+        <ButtonDownloadCloud
+          onClick={Download}
+          aria-label="Re-sync all your links"
+          tabIndex={1}
+        >
           <Icon name="download-cloud" width={20} height={20} />
         </ButtonDownloadCloud>
       </Row>

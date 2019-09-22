@@ -26,6 +26,7 @@ export const LinksTable = ({ openlinkManagement }) => {
       isRowLoaded={({ index }) => links[index]}
       loadMoreRows={loadMoreRows}
       rowCount={countUserLinks}
+      tabIndex={2}
     >
       {({ onRowsRendered, registerChild }) => (
         <Table
@@ -39,6 +40,8 @@ export const LinksTable = ({ openlinkManagement }) => {
           rowGetter={({ index }) => links[index]}
           rowRenderer={ItemTable}
           onRowClick={id => openlinkManagement(id)}
+          tabIndex={3}
+          aria-label="Your links"
         >
           <Column label="Url" dataKey="url" width={210} />
           <Column label="Original Url" dataKey="originalUrl" width={250} />
