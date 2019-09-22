@@ -203,6 +203,7 @@ exports[`must render Header with default header, footer 1`] = `
   transition: 0.15s;
   color: inherit;
   font-size: inherit;
+  outline: none;
   -webkit-box-pack: initial;
   -webkit-justify-content: initial;
   -ms-flex-pack: initial;
@@ -220,7 +221,8 @@ exports[`must render Header with default header, footer 1`] = `
   padding: initial;
 }
 
-.c4:hover {
+.c4:hover,
+.c4:focus {
   color: #2196F3;
 }
 

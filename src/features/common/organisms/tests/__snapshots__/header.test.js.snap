@@ -108,6 +108,7 @@ exports[`must render Header 1`] = `
   transition: 0.15s;
   color: inherit;
   font-size: inherit;
+  outline: none;
   -webkit-box-pack: initial;
   -webkit-justify-content: initial;
   -ms-flex-pack: initial;
@@ -125,7 +126,8 @@ exports[`must render Header 1`] = `
   padding: initial;
 }
 
-.c2:hover {
+.c2:hover,
+.c2:focus {
   color: #2196F3;
 }
 

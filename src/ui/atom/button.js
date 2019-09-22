@@ -18,7 +18,8 @@ export const ButtonPrimary = styled.button`
   color: ${({ theme }) => theme.palette.primary.initial.color};
   background-color: ${({ theme }) => theme.palette.decoration.borders};
 
-  &:not([disabled]):hover {
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
     background-color: ${({ theme }) => theme.palette.primary.hover.background};
     color: ${({ theme }) => theme.palette.primary.hover.color};
   }
@@ -47,7 +48,8 @@ export const ZeroButton = styled(ButtonPrimary)`
   background-color: transparent;
   transition: 0.2s;
 
-  &:not([disabled]):hover {
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
     background-color: transparent;
     color: ${({ theme }) => theme.palette.primary.hover.background};
   }

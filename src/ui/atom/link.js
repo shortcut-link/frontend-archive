@@ -7,8 +7,10 @@ export const cssLink = css`
   transition: 0.15s;
   color: inherit;
   font-size: inherit;
+  outline: none;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.palette.primary.hover.background};
   }
 `;
