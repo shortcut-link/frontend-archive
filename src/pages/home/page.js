@@ -17,7 +17,7 @@ import { ButtonPrimary, Icon, ButtonLoader, Input, ErrorBox } from 'ui';
 import { ModalSettings, CreatedLinks } from 'features/create-link';
 
 export const CreateLinkMainPage = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [modalWindow, setModalWindow] = useState(false);
   const createdLinks = useStore($createdLinks);
 
   useEffect(() => {
@@ -28,20 +28,20 @@ export const CreateLinkMainPage = () => {
     <>
       <CommonContentTemplate>
         <Col gap="2rem" width="100%" justify="center" align="center">
-          <CreateForm setIsOpenModal={setIsOpenModal} />
+          <CreateForm setModalWindow={setModalWindow} />
           <CreatedLinks links={createdLinks} />
         </Col>
       </CommonContentTemplate>
 
       <ModalSettings
-        isOpen={isOpenModal}
-        toClose={() => setIsOpenModal(false)}
+        isOpen={modalWindow}
+        toClose={() => setModalWindow(false)}
       />
     </>
   );
 };
 
-const CreateForm = ({ setIsOpenModal }) => {
+const CreateForm = ({ setModalWindow }) => {
   const link = useStore($link);
   const linkError = useStore($linkError);
   const isFormLoading = useStore($isFormLoading);
@@ -63,13 +63,13 @@ const CreateForm = ({ setIsOpenModal }) => {
           }}
         />
 
-        <Buttons setIsOpenModal={setIsOpenModal} />
+        <Buttons setModalWindow={setModalWindow} />
       </Col>
     </form>
   );
 };
 
-const Buttons = ({ setIsOpenModal }) => {
+const Buttons = ({ setModalWindow }) => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormLoading = useStore($isFormLoading);
   const isLoginAccount = useStore($session);
@@ -91,7 +91,7 @@ const Buttons = ({ setIsOpenModal }) => {
             ? 'Settings for the created link'
             : 'To use the settings - log in'
         }
-        onClick={() => setIsOpenModal(true)}
+        onClick={() => setModalWindow(true)}
         disabled={isFormLoading || !isLoginAccount}
       >
         <Icon name="settings" width={18} height={18} fill="none" />
