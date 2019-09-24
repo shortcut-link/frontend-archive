@@ -2,8 +2,11 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
-import { $links, $linkManagement } from 'pages/profile/model/store';
-import { changeLinkParameter } from 'pages/profile/model/events';
+import {
+  $links,
+  $linkManagement,
+  changeLinkParameter
+} from 'pages/profile/model';
 import { Col } from 'lib/styled-components';
 import { ToggleWithText, ZeroButton } from 'ui';
 

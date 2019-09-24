@@ -4,9 +4,12 @@ import { InfiniteLoader, Table, Column } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 import { ItemTable } from '../atom';
-import { $links, $countUserLinks } from 'pages/profile/model/store';
-import { removeLinks } from 'pages/profile/model/events';
-import { getLinks } from 'pages/profile/model/events';
+import {
+  $links,
+  $countUserLinks,
+  removeLinks,
+  getLinks
+} from 'pages/profile/model';
 
 export const LinksTable = ({ openlinkManagement }) => {
   const links = useStore($links);

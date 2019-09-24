@@ -1,4 +1,3 @@
-import './model';
 import React from 'react';
 import { useStore } from 'effector-react';
 import styled from 'styled-components';
@@ -7,13 +6,13 @@ import { CenterContent, Link, ModalWindow, ZeroButton, Icon } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import { $session } from 'features/common';
 import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
-import { $linkManagement } from './model/store';
+import { $linkManagement } from './model';
 import {
   openlinkManagement,
   closelinkManagement,
   removeLinks,
   getLinks
-} from './model/events';
+} from './model';
 
 export const ProfilePage = () => {
   const linkManagement = useStore($linkManagement);
