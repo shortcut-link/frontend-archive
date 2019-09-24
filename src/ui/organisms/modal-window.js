@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { createRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Col } from 'lib/styled-components';
 
@@ -14,6 +14,15 @@ export const ModalWindow = ({ toClose, children }) => {
   const clickContainer = e => {
     !cardRef.current.contains(e.target) && toClose();
   };
+
+  useEffect(() => {
+    const handleEsc = ({ key }) => key === 'Escape' && toClose();
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  });
 
   return (
     <ContainerPopup onClick={clickContainer}>
