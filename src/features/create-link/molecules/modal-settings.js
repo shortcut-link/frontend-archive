@@ -5,7 +5,7 @@ import { ModalWindow, ToggleWithText } from 'ui';
 import { $session, optionsChange } from 'features/common';
 import { accountAPI } from 'api/account';
 
-export const ModalSettings = ({ isOpen, toClose }) => {
+export const ModalSettings = ({ isOpen, closing }) => {
   const session = useStore($session);
 
   const elements = [
@@ -13,7 +13,7 @@ export const ModalSettings = ({ isOpen, toClose }) => {
   ];
 
   return isOpen ? (
-    <ModalWindow toClose={toClose}>
+    <ModalWindow closing={closing}>
       {elements.map(({ id, text }) => (
         <ToggleWithText
           text={text}

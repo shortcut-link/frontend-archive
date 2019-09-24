@@ -29,7 +29,7 @@ export const ProfilePage = () => {
       </Col>
 
       {linkManagement !== null && (
-        <ModalWindow toClose={closelinkManagement}>
+        <ModalWindow closing={closelinkManagement}>
           <LinkManagement />
         </ModalWindow>
       )}

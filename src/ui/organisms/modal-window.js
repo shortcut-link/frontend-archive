@@ -6,17 +6,17 @@ import { Card, Icon } from '../atom';
 
 /**
  *  Modal windows
- * @param {{ close: Function, children: Node }}
+ * @param {{ closing: Function, children: Node }}
  */
-export const ModalWindow = ({ toClose, children }) => {
+export const ModalWindow = ({ closing, children }) => {
   const cardRef = createRef();
 
   const clickContainer = e => {
-    !cardRef.current.contains(e.target) && toClose();
+    !cardRef.current.contains(e.target) && closing();
   };
 
   useEffect(() => {
-    const handleEsc = ({ key }) => key === 'Escape' && toClose();
+    const handleEsc = ({ key }) => key === 'Escape' && closing();
     window.addEventListener('keydown', handleEsc);
 
     return () => {
@@ -28,7 +28,7 @@ export const ModalWindow = ({ toClose, children }) => {
     <ContainerPopup onClick={clickContainer}>
       <CardPopup ref={cardRef}>
         <Col width="20rem">
-          <ClosingModal onClick={() => toClose()}>
+          <ClosingModal onClick={() => closing()}>
             <Icon
               name="cross"
               width={24}

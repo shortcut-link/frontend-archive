@@ -35,7 +35,7 @@ export const CreateLinkMainPage = () => {
 
       <ModalSettings
         isOpen={modalWindow}
-        toClose={() => setModalWindow(false)}
+        closing={() => setModalWindow(false)}
       />
     </>
   );
