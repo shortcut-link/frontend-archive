@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Box, Slider, Checkbox } from '../atom/toggle';
+import { BoxContainer, Slider, Checkbox } from '../atom/toggle';
 
 export const ToggleSelectTheme = ({ toggle, isDark }) => {
   const radius = '1.4rem';
 
   return (
-    <Box radius={radius}>
+    <BoxContainer radius={radius} toggle={toggle}>
       <CheckBoxTheme
         type="checkbox"
         radius={radius}
@@ -16,7 +16,7 @@ export const ToggleSelectTheme = ({ toggle, isDark }) => {
         value={isDark}
       />
       <SliderTheme className="slider" radius={radius} />
-    </Box>
+    </BoxContainer>
   );
 };
 

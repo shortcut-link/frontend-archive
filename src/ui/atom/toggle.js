@@ -1,20 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Toggle = ({ toggle, id, value = false, radius = '1.2rem' }) => {
+export const Toggle = ({ toggle, id, value = false, radius = '1.2rem' }) => (
+  <BoxContainer radius={radius} toggle={toggle}>
+    <Checkbox
+      type="checkbox"
+      radius={radius}
+      onChange={toggle}
+      value={value}
+      defaultChecked={value}
+      id={id}
+    />
+    <Slider className="slider" radius={radius} />
+  </BoxContainer>
+);
+
+export const BoxContainer = ({ children, radius, toggle }) => {
   const EnterPress = ({ key }) => key === 'Enter' && toggle();
 
   return (
     <Box radius={radius} onKeyPress={EnterPress}>
-      <Checkbox
-        type="checkbox"
-        radius={radius}
-        onChange={toggle}
-        value={value}
-        defaultChecked={value}
-        id={id}
-      />
-      <Slider className="slider" radius={radius} />
+      {children}
     </Box>
   );
 };
