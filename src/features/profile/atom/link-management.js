@@ -15,7 +15,7 @@ export const LinkManagement = () => {
     {
       id: 'tracking',
       text: 'Track the number of clicks on the link',
-      defaultChecked: typeof transitions === 'number' ? true : false
+      value: typeof transitions === 'number' ? true : false
     }
   ];
 
@@ -29,13 +29,13 @@ export const LinkManagement = () => {
     <Col gap="1rem">
       <h5>{`http://localhost:8080/${url}`}</h5>
       <ContainerToggle gap="1rem" align="center">
-        {elements.map(({ id, text, defaultChecked }) => (
+        {elements.map(({ id, text, value }) => (
           <ToggleWithText
             text={text}
             key={id}
             id={id}
             toggle={() => clickSettings(id)}
-            defaultChecked={defaultChecked}
+            value={value}
           />
         ))}
         <ZeroButton onClick={() => clickSettings('remove')}>

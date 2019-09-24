@@ -125,7 +125,7 @@ exports[`must render Header with default header, footer 1`] = `
   height: calc(1.4rem + 8px);
 }
 
-.c9 {
+.c10 {
   position: absolute;
   top: 0;
   right: 0;
@@ -139,7 +139,7 @@ exports[`must render Header with default header, footer 1`] = `
   background-color: #64B5F6;
 }
 
-.c9:before {
+.c10:before {
   content: "";
   display: -webkit-box;
   display: -webkit-flex;
@@ -166,7 +166,7 @@ exports[`must render Header with default header, footer 1`] = `
   transition: 0.4s;
 }
 
-.c9:before {
+.c10:before {
   content: '☀️';
 }
 
@@ -192,7 +192,7 @@ exports[`must render Header with default header, footer 1`] = `
   transform: translateX(1.4rem);
 }
 
-.c7:checked + .c8::before {
+.c7:checked + .c9::before {
   content: '🌙';
 }
 
@@ -274,7 +274,7 @@ exports[`must render Header with default header, footer 1`] = `
   align-items: center;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -325,17 +325,19 @@ exports[`must render Header with default header, footer 1`] = `
           </a>
           <label
             className="c6"
+            onKeyPress={[Function]}
             radius="1.4rem"
           >
             <input
+              checked={false}
               className="c7"
-              defaultChecked={false}
-              onClick={[Function]}
+              onChange={[Function]}
               radius="1.4rem"
               type="checkbox"
+              value={false}
             />
             <span
-              className="c8 slider c9"
+              className="c8 slider c9 c10"
               radius="1.4rem"
             />
           </label>
@@ -344,7 +346,7 @@ exports[`must render Header with default header, footer 1`] = `
     </div>
   </header>
   <div
-    className="c10"
+    className="c11"
   >
     <div
       className="c3"

@@ -11,8 +11,9 @@ export const ToggleSelectTheme = ({ toggle, isDark }) => {
       <CheckBoxTheme
         type="checkbox"
         radius={radius}
-        onClick={toggle}
-        defaultChecked={isDark}
+        onChange={toggle}
+        checked={isDark}
+        value={isDark}
       />
       <SliderTheme className="slider" radius={radius} />
     </Box>
@@ -28,7 +29,7 @@ const SliderTheme = styled(Slider)`
 `;
 
 const CheckBoxTheme = styled(Checkbox)`
-  &:checked + ${Slider}::before {
+  &:checked + ${SliderTheme}::before {
     content: '🌙';
   }
 `;

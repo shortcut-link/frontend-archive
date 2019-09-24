@@ -30,7 +30,7 @@ exports[`must render Header 1`] = `
   height: calc(1.4rem + 8px);
 }
 
-.c7 {
+.c8 {
   position: absolute;
   top: 0;
   right: 0;
@@ -44,7 +44,7 @@ exports[`must render Header 1`] = `
   background-color: #64B5F6;
 }
 
-.c7:before {
+.c8:before {
   content: "";
   display: -webkit-box;
   display: -webkit-flex;
@@ -71,7 +71,7 @@ exports[`must render Header 1`] = `
   transition: 0.4s;
 }
 
-.c7:before {
+.c8:before {
   content: '☀️';
 }
 
@@ -97,7 +97,7 @@ exports[`must render Header 1`] = `
   transform: translateX(1.4rem);
 }
 
-.c5:checked + .c6::before {
+.c5:checked + .c7::before {
   content: '🌙';
 }
 
@@ -211,17 +211,19 @@ exports[`must render Header 1`] = `
       </a>
       <label
         className="c4"
+        onKeyPress={[Function]}
         radius="1.4rem"
       >
         <input
+          checked={false}
           className="c5"
-          defaultChecked={false}
-          onClick={[Function]}
+          onChange={[Function]}
           radius="1.4rem"
           type="checkbox"
+          value={false}
         />
         <span
-          className="c6 slider c7"
+          className="c6 slider c7 c8"
           radius="1.4rem"
         />
       </label>

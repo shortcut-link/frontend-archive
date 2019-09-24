@@ -55,8 +55,9 @@ const dateFormatting = date =>
 const ContainerItem = styled.div`
   cursor: pointer;
 
-  &:hover {
-    background-color: ${({ theme, backgroundColor }) =>
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) =>
       theme.palette.primary.initial.background};
   }
 

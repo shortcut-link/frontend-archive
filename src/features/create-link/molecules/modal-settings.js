@@ -20,7 +20,7 @@ export const ModalSettings = ({ isOpen, toClose }) => {
           key={id}
           id={id}
           toggle={() => clickSettings(id, session[id])}
-          defaultChecked={session[id] ? session[id] : false}
+          value={session[id] ? session[id] : false}
         />
       ))}
     </ModalWindow>
