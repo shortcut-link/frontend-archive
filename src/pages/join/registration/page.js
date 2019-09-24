@@ -8,7 +8,8 @@ import {
   Card,
   Input,
   ButtonLoader,
-  ErrorBox
+  ErrorBox,
+  Link
 } from 'ui';
 import {
   $email,
@@ -20,7 +21,7 @@ import {
   $isSubmitEnabled,
   $isFormDisabled
 } from './model/store';
-import { Col } from 'lib/styled-components';
+import { Col, Row } from 'lib/styled-components';
 import {
   emailChange,
   passwordChange,
@@ -29,8 +30,8 @@ import {
   formSubmitted,
   captchaPassed
 } from './model/events';
-import { NavigationRegistrationPage } from 'ui/molecules';
 import { Captcha } from 'lib/captcha';
+import { routesPath } from 'pages';
 
 export const RegistrationPage = () => {
   useEffect(() => {
@@ -44,12 +45,18 @@ export const RegistrationPage = () => {
           <Card>
             <LoginForm />
           </Card>
-          <NavigationRegistrationPage />
+          <Navigation />
         </Col>
       </Container>
     </CenterContent>
   );
 };
+
+const Navigation = () => (
+  <Row justify="center" padding="1rem 0.5rem">
+    <Link to={routesPath.join.login}>Return back</Link>
+  </Row>
+);
 
 const handleSubmit = event => {
   event.preventDefault();

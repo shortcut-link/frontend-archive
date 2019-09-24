@@ -8,9 +8,10 @@ import {
   Card,
   Input,
   ButtonLoader,
-  ErrorBox
+  ErrorBox,
+  Link
 } from 'ui';
-import { Col } from 'lib/styled-components';
+import { Col, Row } from 'lib/styled-components';
 import {
   emailChange,
   passwordChange,
@@ -26,8 +27,8 @@ import {
   $passwordError,
   $emailError
 } from './model/store';
-import { NavigationLoginPage } from 'ui/molecules';
 import { Captcha } from 'lib/captcha';
+import { routesPath } from 'pages';
 
 export const LoginPage = () => {
   useEffect(() => {
@@ -41,12 +42,19 @@ export const LoginPage = () => {
           <Card>
             <LoginForm />
           </Card>
-          <NavigationLoginPage />
+          <Navigation />
         </Col>
       </Container>
     </CenterContent>
   );
 };
+
+const Navigation = () => (
+  <Row justify="space-between" padding="1rem 0.5rem">
+    <Link to={routesPath.home}>Return back</Link>
+    <Link to={routesPath.join.registration}>Account registration</Link>
+  </Row>
+);
 
 const handleSubmit = event => {
   event.preventDefault();
