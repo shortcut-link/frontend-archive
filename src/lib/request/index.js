@@ -67,11 +67,13 @@ function responseToPromise(response) {
   const status = response.status;
 
   if (contentType && contentType.includes('json')) {
-    return response.json(data =>
-      response.ok
-        ? Promise.resolve({ ...data, status })
-        : Promise.reject({ ...data, status })
-    );
+    return response
+      .json()
+      .then(data =>
+        response.ok
+          ? Promise.resolve({ ...data, status })
+          : Promise.reject({ ...data, status })
+      );
   } else {
     return response.ok
       ? Promise.resolve({ status })
