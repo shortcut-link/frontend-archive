@@ -4,7 +4,7 @@ import { useStore } from 'effector-react';
 
 import { $isDark, toggleTheme } from './index.model';
 
-export const ToggleThemeProvider = ({ dark, light, children }: Props) => {
+export const ToggleThemeProvider = ({ dark, light, children }) => {
   const isDark = useStore($isDark);
 
   return (
