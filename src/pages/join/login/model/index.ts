@@ -10,7 +10,12 @@ import {
   captchaPassed
 } from './events';
 
-const trimEvent = event => event.currentTarget.value.trim();
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
+const trimEvent = (event: any) => event.currentTarget.value.trim();
 
 $email.on(emailChange.map(trimEvent), (_, email) => email);
 $password.on(passwordChange.map(trimEvent), (_, password) => password);
@@ -20,7 +25,7 @@ $captcha.on(captchaPassed, () => true);
 formSubmitted.watch(() => {
   if (!$isSubmitEnabled.getState()) return;
 
-  const form = $form.getState();
+  const form: LoginData = $form.getState();
   loginProcessing(form);
 });
 

@@ -42,7 +42,8 @@ getLinks.watch(({ startIndex, count }) => {
 });
 
 downloadLinksProcessing.use(({ startIndex, count }) => {
-  return accountAPI.getLinks(startIndex, count);
+  const countLinks = count ? 1 : 0;
+  return accountAPI.getLinks(startIndex, countLinks);
 });
 
 downloadLinksProcessing.done.watch(({ result: { links, count } }) => {

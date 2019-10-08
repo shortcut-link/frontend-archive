@@ -10,14 +10,24 @@ import {
 import { tokenRemove } from './token';
 import { sessionAPI } from 'api/session';
 
+export type options = { id: string; text: string };
+
+type UserOptions = Array<options>;
+
 $session
-  .on(sessionFetchProcessing.done, (_, { result: { user } }) => user)
-  .on(sessionFetchProcessing.fail, () => null)
+  .on(
+    sessionFetchProcessing.done,
+    (_, { result: { user } }: { result: any }) => user
+  )
   .on(sessionChange, (_, user) => user)
-  .on(optionsChange, (user, options) => ({ ...user, ...options }))
+  .on(optionsChange, (user, options) => ({
+    ...user,
+    ...options
+  }))
   .reset(sessionRemove);
 
 sessionFetchProcessing.use(sessionAPI.get);
 
-forward({ from: sessionFetchProcessing.fail, to: tokenRemove });
+sessionFetchProcessing.fail.watch(() => sessionRemove());
+
 forward({ from: sessionRemove, to: tokenRemove });
