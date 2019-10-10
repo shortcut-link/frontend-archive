@@ -1,19 +1,18 @@
 import { request } from 'lib/request';
 import { accountError } from './account.errors';
 import { Link } from './link';
+import { RegisterData } from 'pages/join/registration/model';
 
 export interface User {
   email: string;
 }
 
-interface RegisterData {
-  email: string;
-  password: string;
+export interface CreateResponse {
+  token: string;
+  user: User;
 }
 
-const create = (
-  registerData: RegisterData
-): Promise<{ token: string; user: User }> =>
+const create = (registerData: RegisterData): Promise<CreateResponse> =>
   request('POST', '/account', { body: registerData }).catch(accountError);
 
 interface OptionsCreatedLink {
@@ -23,7 +22,7 @@ interface OptionsCreatedLink {
 const changeOptionsCreatedLink = (field: OptionsCreatedLink): Promise<void> =>
   request('POST', '/account/linkSettings', { body: field }).catch(accountError);
 
-interface getLinksResponse {
+export interface getLinksResponse {
   count: number;
   links: Array<Link>;
 }

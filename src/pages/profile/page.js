@@ -6,13 +6,12 @@ import { CenterContent, Link, ModalWindow, ZeroButton, Icon } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import { $session } from 'features/common';
 import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
-import { $linkManagement } from './model';
+import { removeLinks, getLinks } from './model/links';
 import {
-  openlinkManagement,
-  closelinkManagement,
-  removeLinks,
-  getLinks
-} from './model';
+  $linkManagement,
+  openLinkManagement,
+  closeLinkManagement
+} from './model/link-management';
 
 export const ProfilePage = () => {
   const linkManagement = useStore($linkManagement);
@@ -28,7 +27,7 @@ export const ProfilePage = () => {
       </Col>
 
       {linkManagement !== null && (
-        <ModalWindow closing={closelinkManagement}>
+        <ModalWindow closing={closeLinkManagement}>
           <LinkManagement />
         </ModalWindow>
       )}
@@ -71,7 +70,7 @@ const UserLinksCard = () => {
 
   return (
     <CardProfile heading={<Heading />}>
-      <LinksTable openlinkManagement={openlinkManagement} />
+      <LinksTable openLinkManagement={openLinkManagement} />
     </CardProfile>
   );
 };

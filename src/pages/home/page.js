@@ -1,4 +1,3 @@
-import './model';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useStore } from 'effector-react';
@@ -10,9 +9,11 @@ import {
   $linkError,
   $isSubmitEnabled,
   $isFormLoading,
-  $createdLinks
-} from './model/store';
-import { linkChange, formSubmitted, createLinkFetching } from './model/events';
+  $createdLinks,
+  linkChange,
+  formSubmitted,
+  createLinkFetching
+} from './model';
 import { ButtonPrimary, Icon, ButtonLoader, Input, ErrorBox } from 'ui';
 import { ModalSettings, CreatedLinks } from 'features/create-link';
 

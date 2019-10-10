@@ -1,4 +1,3 @@
-import './model';
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 
@@ -19,17 +18,15 @@ import {
   $passwordConfirmation,
   $passwordConfirmationError,
   $isSubmitEnabled,
-  $isFormDisabled
-} from './model/store';
-import { Col, Row } from 'lib/styled-components';
-import {
+  $isFormDisabled,
   emailChange,
   passwordChange,
   passwordConfirmationChange,
   registrationFetching,
   formSubmitted,
   captchaPassed
-} from './model/events';
+} from './model';
+import { Col, Row } from 'lib/styled-components';
 import { Captcha } from 'lib/captcha';
 import { routesPath } from 'pages';
 

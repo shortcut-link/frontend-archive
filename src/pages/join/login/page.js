@@ -1,4 +1,3 @@
-import './model';
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 
@@ -13,20 +12,18 @@ import {
 } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import {
+  $email,
+  $password,
+  $passwordError,
+  $emailError,
+  $isSubmitEnabled,
+  $isFormDisabled,
   emailChange,
   passwordChange,
   formSubmitted,
   loginFetching,
   captchaPassed
-} from './model/events';
-import {
-  $isSubmitEnabled,
-  $isFormDisabled,
-  $email,
-  $password,
-  $passwordError,
-  $emailError
-} from './model/store';
+} from './model';
 import { Captcha } from 'lib/captcha';
 import { routesPath } from 'pages';
 

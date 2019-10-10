@@ -4,11 +4,15 @@ import { linkError } from './link.errors';
 export interface Link {
   url: string;
   originalUrl: string;
-  transition?: number;
+  transitions?: number;
   createdAt: Date;
 }
 
-const create = (url: string): Promise<{ url: string }> =>
+export interface CreateResponse {
+  url: string;
+}
+
+const create = (url: string): Promise<CreateResponse> =>
   request('POST', '/link', { body: { url } }).catch(linkError);
 
 const remove = (url: string): Promise<void> =>

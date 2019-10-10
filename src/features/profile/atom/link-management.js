@@ -3,10 +3,10 @@ import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
 import {
-  $links,
   $linkManagement,
   changeLinkParameter
-} from 'pages/profile/model';
+} from 'pages/profile/model/link-management';
+import { $links } from 'pages/profile/model/links';
 import { Col } from 'lib/styled-components';
 import { ToggleWithText, ZeroButton } from 'ui';
 
@@ -22,12 +22,6 @@ export const LinkManagement = () => {
     }
   ];
 
-  const clickSettings = id => {
-    changeLinkParameter({
-      property: id
-    });
-  };
-
   return (
     <Col gap="1rem">
       <h5>{`http://localhost:8080/${url}`}</h5>
@@ -37,11 +31,11 @@ export const LinkManagement = () => {
             text={text}
             key={id}
             id={id}
-            toggle={() => clickSettings(id)}
+            toggle={() => changeLinkParameter(id)}
             value={value}
           />
         ))}
-        <ZeroButton onClick={() => clickSettings('remove')}>
+        <ZeroButton onClick={() => changeLinkParameter('remove')}>
           Remove link
         </ZeroButton>
       </ContainerToggle>

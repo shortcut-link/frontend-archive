@@ -9,9 +9,9 @@ import {
   $countUserLinks,
   removeLinks,
   getLinks
-} from 'pages/profile/model';
+} from 'pages/profile/model/links';
 
-export const LinksTable = ({ openlinkManagement }) => {
+export const LinksTable = ({ openLinkManagement }) => {
   const links = useStore($links);
   const countUserLinks = useStore($countUserLinks);
 
@@ -42,7 +42,7 @@ export const LinksTable = ({ openlinkManagement }) => {
           onRowsRendered={onRowsRendered}
           rowGetter={({ index }) => links[index]}
           rowRenderer={ItemTable}
-          onRowClick={id => openlinkManagement(id)}
+          onRowClick={openLinkManagement}
           tabIndex={3}
           aria-label="Your links"
         >

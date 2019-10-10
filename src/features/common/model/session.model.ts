@@ -12,13 +12,8 @@ import { sessionAPI } from 'api/session';
 
 export type options = { id: string; text: string };
 
-type UserOptions = Array<options>;
-
 $session
-  .on(
-    sessionFetchProcessing.done,
-    (_, { result: { user } }: { result: any }) => user
-  )
+  .on(sessionFetchProcessing.done, (_, { result: { user } }) => user)
   .on(sessionChange, (_, user) => user)
   .on(optionsChange, (user, options) => ({
     ...user,
