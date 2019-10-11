@@ -5,7 +5,12 @@ import { Main } from 'ui/templates';
 import { Container } from 'ui/templates';
 import { Header } from '../organisms';
 
-export const CommonContentTemplate = ({
+interface CommonContentTemplateProps {
+  header: React.ReactNode;
+  footer: React.ReactNode;
+}
+
+export const CommonContentTemplate: React.FC<CommonContentTemplateProps> = ({
   header = <Header />,
   footer,
   children

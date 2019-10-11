@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const CenterContent = ({ children }) => {
-  return <MainContainer>{children}</MainContainer>;
-};
+interface CenterContentProps {
+  children?: React.ReactNode;
+}
+
+export const CenterContent: React.FC<CenterContentProps> = ({ children }) => (
+  <MainContainer>{children}</MainContainer>
+);
 
 const MainContainer = styled.main`
   display: flex;

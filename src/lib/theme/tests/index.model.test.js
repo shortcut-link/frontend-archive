@@ -1,4 +1,4 @@
-import { toggleTheme, $isDark } from '../index.model';
+import { toggleTheme, $isDark } from '../model';
 
 describe('store management for a dark theme', () => {
   let value;

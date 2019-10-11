@@ -1,8 +1,10 @@
 import { createStore, createEvent } from 'effector';
 
-export const toggleTheme = createEvent();
+export const toggleTheme = createEvent<void>();
 
-export const $isDark = createStore(localStorage.getItem('theme') === 'dark');
+export const $isDark = createStore<boolean>(
+  localStorage.getItem('theme') === 'dark'
+);
 
 $isDark.on(toggleTheme, isDark => !isDark);
 

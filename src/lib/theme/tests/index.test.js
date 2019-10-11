@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import styled from 'styled-components';
 
 import { ToggleThemeProvider, WithThemeToggler } from '../index';
-import { toggleTheme } from '../index.model';
+import { toggleTheme } from '../model';
 
 it('theme Provider', () => {
   const lightTheme = { one: { primary: '#fff' } };
