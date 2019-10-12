@@ -21,8 +21,11 @@ exports[`ui link with wrapper router link 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
 }
 

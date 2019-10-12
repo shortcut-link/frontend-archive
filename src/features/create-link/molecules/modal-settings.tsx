@@ -5,7 +5,12 @@ import { ModalWindow, ToggleWithText } from 'ui';
 import { $session, optionsChange } from 'features/common';
 import { accountAPI } from 'api/account';
 
-export const ModalSettings = ({ isOpen, closing }) => {
+interface ModalSettingsProps {
+  isOpen: boolean;
+  closing: () => void;
+}
+
+export const ModalSettings = ({ isOpen, closing }: ModalSettingsProps) => {
   const session = useStore($session);
 
   const elements = [
@@ -27,7 +32,7 @@ export const ModalSettings = ({ isOpen, closing }) => {
   ) : null;
 };
 
-const clickSettings = (id, value) => {
+const clickSettings = (id: string, value: boolean) => {
   const field = { [id]: !value };
 
   optionsChange(field);

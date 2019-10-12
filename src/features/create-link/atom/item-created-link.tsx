@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import { ButtonPrimary, Icon } from 'ui';
 import { Row } from 'lib/styled-components';
 
-export const ItemCreatedLink = ({ url }) => {
+interface ItemCreatedLinkProps {
+  url: string;
+}
+
+export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
   const [isCopy, setIsCopy] = useState(false);
   const linkRef = useRef(null);
 

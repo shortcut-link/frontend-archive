@@ -30,8 +30,11 @@ exports[`must render Header with custom header, footer 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
   display: inherit;
   max-width: 50rem;
@@ -109,8 +112,11 @@ exports[`must render Header with default header, footer 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
   display: inherit;
   max-width: 50rem;
@@ -216,8 +222,11 @@ exports[`must render Header with default header, footer 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
 }
 

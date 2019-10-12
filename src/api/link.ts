@@ -8,11 +8,11 @@ export interface Link {
   createdAt: Date;
 }
 
-export interface CreateResponse {
+export interface CreatedLink {
   url: string;
 }
 
-const create = (url: string): Promise<CreateResponse> =>
+const create = (url: string): Promise<CreatedLink> =>
   request('POST', '/link', { body: { url } }).catch(linkError);
 
 const remove = (url: string): Promise<void> =>

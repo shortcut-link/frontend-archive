@@ -14,8 +14,11 @@ exports[`must render Header 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
   display: inherit;
   max-width: 50rem;
@@ -121,8 +124,11 @@ exports[`must render Header 1`] = `
   -ms-flex-wrap: initial;
   flex-wrap: initial;
   width: initial;
+  height: initial;
   min-width: initial;
   max-width: initial;
+  min-height: initial;
+  max-height: initial;
   padding: initial;
 }
 

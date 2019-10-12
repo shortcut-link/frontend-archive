@@ -4,19 +4,22 @@ import { Col } from 'lib/styled-components';
 
 import { Card, Icon } from '../atom';
 
-/**
- *  Modal windows
- * @param {{ closing: Function, children: Node }}
- */
-export const ModalWindow = ({ closing, children }) => {
-  const cardRef = createRef();
+interface ModalWindowProps {
+  closing: () => void;
+}
 
-  const clickContainer = e => {
-    !cardRef.current.contains(e.target) && closing();
+export const ModalWindow: React.FC<ModalWindowProps> = ({
+  closing,
+  children
+}) => {
+  const cardRef = createRef<HTMLDivElement>();
+
+  const clickContainer = (event: React.MouseEvent<HTMLDivElement>) => {
+    !cardRef.current.contains(event.target as Node) && closing();
   };
 
   useEffect(() => {
-    const handleEsc = ({ key }) => key === 'Escape' && closing();
+    const handleEsc = (e: KeyboardEvent) => e.key === 'Escape' && closing();
     window.addEventListener('keydown', handleEsc);
 
     return () => {

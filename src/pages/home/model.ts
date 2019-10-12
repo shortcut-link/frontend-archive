@@ -9,7 +9,7 @@ import {
 
 import { createFetching } from 'lib/fetching';
 import { urlValidator } from 'lib/validators';
-import { linkAPI, CreateResponse } from 'api/link';
+import { linkAPI, CreatedLink } from 'api/link';
 import { trimEvent } from 'features/common';
 
 export const linkChange = createEvent<SyntheticEvent<HTMLInputElement>>();
@@ -17,7 +17,7 @@ export const linkRemove = createEvent<void>();
 export const formSubmitted = createEvent<void>();
 export const addCreatedLinks = createEvent<string>();
 
-export const createLinkProcessing = createEffect<string, CreateResponse>();
+export const createLinkProcessing = createEffect<string, CreatedLink>();
 export const createLinkFetching = createFetching(createLinkProcessing);
 
 export const $link = createStore<string>('');
@@ -28,7 +28,7 @@ export const $isLinkCurrent: Store<boolean> = $linkError.map(
   link => link === null
 );
 
-export const $createdLinks = createStore<Array<{ url: string }>>([]);
+export const $createdLinks = createStore<Array<CreatedLink>>([]);
 
 export const $isFormLoading = createLinkFetching.isLoading;
 

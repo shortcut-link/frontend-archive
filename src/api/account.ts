@@ -6,6 +6,7 @@ import { RegisterData } from 'pages/join/registration/model';
 export interface User {
   email: string;
   linkTransitions: boolean;
+  [key: string]: any;
 }
 
 export interface CreateResponse {

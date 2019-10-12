@@ -10,7 +10,7 @@ import {
 import { tokenRemove } from './token';
 import { sessionAPI } from 'api/session';
 
-export type options = { id: string; text: string };
+export type options = { [key: string]: boolean };
 
 $session
   .on(sessionFetchProcessing.done, (_, { result: { user } }) => user)
