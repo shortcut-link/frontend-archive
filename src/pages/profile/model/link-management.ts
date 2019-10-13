@@ -5,7 +5,7 @@ export const openLinkManagement = createEvent<number>();
 export const closeLinkManagement = createEvent<void>();
 export const changeLinkParameter = createEvent<string>();
 
-export const $linkManagement = createStore<number>(null);
+export const $linkManagement = createStore<number | null>(null);
 
 $linkManagement.on(openLinkManagement, (_, id) => id);
 $linkManagement.reset(closeLinkManagement, removeLink);

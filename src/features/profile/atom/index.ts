@@ -1,3 +1,3 @@
 export { CardProfile } from './card';
-export { ItemTable } from './item-table';
+export { ItemLinksTable } from './item-links-table';
 export { LinkManagement } from './link-management';

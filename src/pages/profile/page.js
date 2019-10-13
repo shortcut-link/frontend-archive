@@ -6,7 +6,7 @@ import { CenterContent, Link, ModalWindow, ZeroButton, Icon } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import { $session } from 'features/common';
 import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
-import { removeLinks, getLinks } from './model/links';
+import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
   $linkManagement,
   openLinkManagement,
@@ -65,7 +65,7 @@ const UserLinksCard = () => {
 
   const Download = () => {
     removeLinks();
-    getLinks({ startIndex: 0, count: true });
+    firstLoadCountAndLinks();
   };
 
   return (

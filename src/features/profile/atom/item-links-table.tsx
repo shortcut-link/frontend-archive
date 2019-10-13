@@ -1,14 +1,21 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { TableRowProps } from 'react-virtualized';
 
-export const ItemTable = ({
+import { Link } from 'api/link';
+
+interface ItemLinksTableProps extends TableRowProps {
+  rowData: Link;
+}
+
+export const ItemLinksTable: React.FC<ItemLinksTableProps> = ({
   index,
-  className,
   key,
+  className,
   style,
   columns,
   rowData: { url, originalUrl, transitions, createdAt },
-  onRowClick = () => {}
+  onRowClick
 }) => {
   const outputUrl = `localhost:8080/${url}`;
   const outputTransitions =
@@ -23,19 +30,16 @@ export const ItemTable = ({
       className={className}
       style={{ ...style, display: 'flex' }}
       backgroundColor={backgroundColor}
-      onClick={() => onRowClick(index)}
+      onClick={event => onRowClick({ index, event, rowData: { url } })}
       aria-label="Links"
     >
       <div {...columns[0].props} title={outputUrl}>
         {outputUrl}
       </div>
-
       <div {...columns[1].props}>{originalUrl}</div>
-
       <div {...columns[2].props} title={outputTransitions}>
         {outputTransitions}
       </div>
-
       <div {...columns[3].props} title={outputDate}>
         {outputDate}
       </div>
@@ -43,7 +47,7 @@ export const ItemTable = ({
   );
 };
 
-const dateFormatting = date =>
+const dateFormatting = (date: Date) =>
   new Date(date).toLocaleDateString('ru', {
     year: 'numeric',
     month: 'numeric',
@@ -52,7 +56,7 @@ const dateFormatting = date =>
     minute: 'numeric'
   });
 
-const ContainerItem = styled.div`
+const ContainerItem = styled.div<{ backgroundColor: boolean }>`
   cursor: pointer;
 
   &:hover,

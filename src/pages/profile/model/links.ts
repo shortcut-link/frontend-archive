@@ -1,15 +1,15 @@
 import { createStore, createEvent, createEffect } from 'effector';
+import { IndexRange } from 'react-virtualized';
 
 import { createFetching } from 'lib/fetching';
-import { accountAPI, getLinksResponse } from 'api/account';
+import {
+  accountAPI,
+  getLinksResponse,
+  GetCountLinksResponse
+} from 'api/account';
 import { linkAPI, Link } from 'api/link';
 
-interface BootOptions {
-  startIndex: number;
-  count: number;
-}
-
-export const getLinks = createEvent<BootOptions>();
+export const getLinks = createEvent<IndexRange>();
 export const addLinks = createEvent<Array<Link>>();
 export const removeLinks = createEvent<void>();
 export const removeLink = createEvent<number>();
@@ -21,15 +21,20 @@ export const editLink = createEvent<{
   id: number;
   options: { transitions?: number };
 }>();
+export const addCountUserLinks = createEvent<number>();
+export const firstLoadCountAndLinks = createEvent<void>();
+
 export const downloadLinksProcessing = createEffect<
-  BootOptions,
+  IndexRange,
   getLinksResponse
 >();
 export const downloadLinksFetching = createFetching(downloadLinksProcessing);
-export const addCountUserLinks = createEvent<number>();
+export const loadingCountLinks = createEffect<void, GetCountLinksResponse>();
 
 export const $links = createStore([])
-  .on(addLinks, (allLinks, newLinks) => [...allLinks, ...newLinks])
+  .on(addLinks, (allLinks, newLinks) => {
+    return [...allLinks, ...newLinks];
+  })
   .on(removeLink, (allLinks, id) => {
     allLinks.splice(id, 1);
     return allLinks;
@@ -44,23 +49,32 @@ export const $links = createStore([])
 export const $countUserLinks = createStore(0)
   .on(addCountUserLinks, (_, count) => count)
   .on(removeLink, count => count - 1)
-  .on(removeLink, count => count - 1);
+  .reset(removeLinks);
 
-getLinks.watch(({ startIndex, count }) => {
+getLinks.watch(params => {
   const loading = downloadLinksFetching.isLoading;
   if (loading.getState()) return;
 
-  downloadLinksProcessing({ startIndex, count });
+  downloadLinksProcessing(params);
 });
 
-downloadLinksProcessing.use(({ startIndex, count }) => {
-  const countLinks = count ? 1 : 0;
-  return accountAPI.getLinks(startIndex, countLinks);
+downloadLinksProcessing.use(({ startIndex, stopIndex }) => {
+  return accountAPI.getLinks(startIndex, stopIndex);
 });
 
-downloadLinksProcessing.done.watch(({ result: { links, count } }) => {
+downloadLinksProcessing.done.watch(({ result: { links } }) => {
   addLinks(links);
-  count && addCountUserLinks(count);
+});
+
+loadingCountLinks.use(accountAPI.getCountLinks);
+
+firstLoadCountAndLinks.watch(async () => {
+  const { count } = await loadingCountLinks();
+
+  if (count) {
+    addCountUserLinks(count);
+    return downloadLinksProcessing({ startIndex: 0, stopIndex: 30 });
+  }
 });
 
 changeLinkOptions.watch(({ id, property }) => {

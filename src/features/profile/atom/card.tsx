@@ -4,7 +4,14 @@ import styled from 'styled-components';
 import { Card } from 'ui';
 import { Col } from 'lib/styled-components';
 
-export const CardProfile = ({ heading, children }) => (
+interface CardProfileProps {
+  heading: React.ReactNode;
+}
+
+export const CardProfile: React.FC<CardProfileProps> = ({
+  heading,
+  children
+}) => (
   <Card>
     <Col>
       <Heading>{heading}</Heading>

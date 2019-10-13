@@ -1,33 +1,40 @@
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
+import { Event } from 'effector';
 import { InfiniteLoader, Table, Column } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-import { ItemTable } from '../atom';
+import { ItemLinksTable } from '../atom';
 import {
   $links,
   $countUserLinks,
   removeLinks,
-  getLinks
+  downloadLinksProcessing,
+  firstLoadCountAndLinks
 } from 'pages/profile/model/links';
 
-export const LinksTable = ({ openLinkManagement }) => {
+interface LinksTableProps {
+  openLinkManagement: Event<number>;
+}
+
+export const LinksTable: React.FC<LinksTableProps> = ({
+  openLinkManagement
+}) => {
   const links = useStore($links);
   const countUserLinks = useStore($countUserLinks);
 
   useEffect(() => {
-    loadMoreRows({ startIndex: 0, count: true });
-    return removeLinks();
-  }, []);
+    firstLoadCountAndLinks();
 
-  const loadMoreRows = data => {
-    getLinks(data);
-  };
+    return () => {
+      removeLinks();
+    };
+  }, []);
 
   return (
     <InfiniteLoader
       isRowLoaded={({ index }) => links[index]}
-      loadMoreRows={loadMoreRows}
+      loadMoreRows={downloadLinksProcessing}
       rowCount={countUserLinks}
       tabIndex={2}
     >
@@ -41,8 +48,8 @@ export const LinksTable = ({ openLinkManagement }) => {
           rowCount={links.length}
           onRowsRendered={onRowsRendered}
           rowGetter={({ index }) => links[index]}
-          rowRenderer={ItemTable}
-          onRowClick={openLinkManagement}
+          rowRenderer={ItemLinksTable}
+          onRowClick={({ index }) => openLinkManagement(index)}
           tabIndex={3}
           aria-label="Your links"
         >

@@ -24,21 +24,29 @@ interface OptionsCreatedLink {
 const changeOptionsCreatedLink = (field: OptionsCreatedLink): Promise<void> =>
   request('POST', '/account/linkSettings', { body: field }).catch(accountError);
 
-export interface getLinksResponse {
+export interface GetCountLinksResponse {
   count: number;
+}
+
+const getCountLinks = (): Promise<GetCountLinksResponse> =>
+  request('GET', '/account/count-links').catch(accountError);
+
+export interface getLinksResponse {
   links: Array<Link>;
 }
 
 const getLinks = (
   startIndex: number,
-  count: number
+  stopIndex: number
 ): Promise<getLinksResponse> =>
-  request('GET', `/account/links?offset=${startIndex}&count=${count}`).catch(
-    accountError
-  );
-//TODO: убрать общий экспорт
+  request(
+    'GET',
+    `/account/links?startIndex=${startIndex}&stopIndex=${stopIndex}`
+  ).catch(accountError);
+
 export const accountAPI = {
   create,
   changeOptionsCreatedLink,
-  getLinks
+  getLinks,
+  getCountLinks
 };
