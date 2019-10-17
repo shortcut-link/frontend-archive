@@ -8,7 +8,7 @@ import {
 } from 'pages/profile/model/link-management';
 import { $links } from 'pages/profile/model/links';
 import { Col } from 'lib/styled-components';
-import { ToggleWithText, ZeroButton } from 'ui';
+import { Toggle, ZeroButton } from 'ui';
 
 export const LinkManagement = () => {
   const linkManagement = useStore($linkManagement);
@@ -27,13 +27,14 @@ export const LinkManagement = () => {
       <h5>{`http://localhost:8080/${url}`}</h5>
       <ContainerToggle gap="1rem" align="center">
         {elements.map(({ id, text, value }) => (
-          <ToggleWithText
-            text={text}
+          <Toggle
             key={id}
             id={id}
             toggle={() => changeLinkParameter(id)}
-            value={value}
-          />
+            checked={value}
+          >
+            {text}
+          </Toggle>
         ))}
         <ZeroButton onClick={() => changeLinkParameter('remove')}>
           Remove link

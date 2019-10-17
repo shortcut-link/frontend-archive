@@ -1,16 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Main } from 'ui/templates';
+import { Main, IHeaderAndFooter } from 'ui/templates';
 import { Container } from 'ui/templates';
 import { Header } from '../organisms';
 
-interface CommonContentTemplateProps {
-  header: React.ReactNode;
-  footer: React.ReactNode;
-}
-
-export const CommonContentTemplate: React.FC<CommonContentTemplateProps> = ({
+export const CommonContentTemplate: React.FC<IHeaderAndFooter> = ({
   header = <Header />,
   footer,
   children

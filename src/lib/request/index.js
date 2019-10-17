@@ -1,5 +1,5 @@
 const baseURI = '/api';
-
+//Передавать сюда тип что возвращать, а не указывает в апи и тоесть удалить там
 export const request = (method, url, options = {}) => {
   const headers = new Headers({
     ...createContentType(options),

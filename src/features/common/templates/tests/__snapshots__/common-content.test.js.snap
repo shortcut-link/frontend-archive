@@ -343,7 +343,6 @@ exports[`must render Header with default header, footer 1`] = `
               onChange={[Function]}
               radius="1.4rem"
               type="checkbox"
-              value={false}
             />
             <span
               className="c8 slider c9 c10"

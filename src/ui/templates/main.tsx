@@ -1,7 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Main = ({ children, header, footer }) => (
+export interface IHeaderAndFooter {
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+}
+
+export const Main: React.FC<IHeaderAndFooter> = ({
+  children,
+  header,
+  footer
+}) => (
   <MainContainer>
     {header && <Header>{header}</Header>}
     {children}

@@ -3,15 +3,26 @@ import styled, { css } from 'styled-components';
 
 import { Col } from 'lib/styled-components';
 
-export const Input = ({ label, error, disabled, ...props }) => (
+type InputElement = React.InputHTMLAttributes<HTMLInputElement>;
+
+interface InputProps extends InputElement {
+  label: string;
+  error: string;
+}
+
+export const Input: React.FC<InputProps> = ({ label, error, ...props }) => (
   <Col>
     {label && <InputLabel>{label}</InputLabel>}
-    <InputNative error={Boolean(error)} disabled={disabled} {...props} />
+    <InputNative error={Boolean(error)} {...props} />
     {error && <InputError>{error}</InputError>}
   </Col>
 );
 
-const InputNative = styled.input`
+interface InputNativeProps extends InputElement {
+  error: boolean;
+}
+
+const InputNative = styled.input<InputNativeProps>`
   position: relative;
   width: 100%;
   padding: 0.5rem;

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { renderRoutes } from 'react-router-config';
+import { renderRoutes, RouteConfig } from 'react-router-config';
 
 const CreateLinkMainPage = lazy(() =>
   import('./home/page').then(a => ({ default: a.CreateLinkMainPage }))
@@ -30,7 +30,7 @@ export const routesPath = {
   profile: '/profile'
 };
 
-const createRoutes = [
+const createRoutes: Array<RouteConfig> = [
   {
     path: routesPath.home,
     component: CreateLinkMainPage,

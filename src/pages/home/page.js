@@ -78,12 +78,13 @@ const Buttons = ({ setModalWindow }) => {
   return (
     <Row justify="space-between">
       <ButtonForm
-        text="Continue"
         type="submit"
         loader={isFormLoading}
         disabled={!isSubmitEnabled}
         style={{ width: '85%' }}
-      />
+      >
+        Continue
+      </ButtonForm>
       <ButtonPrimary
         type="button"
         style={{ padding: '0 1rem' }}

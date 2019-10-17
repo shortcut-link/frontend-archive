@@ -1,4 +1,12 @@
-export const material = {
+type materialType = {
+  [key: string]: {
+    [key: string]: {
+      [key: string]: string;
+    };
+  };
+};
+
+export const material: materialType = {
   palette: {
     Red: {
       50: '#FFEBEE',
@@ -669,7 +677,7 @@ export const material = {
   }
 };
 
-export const createEmbed = (name, shade = 500) => ({
+export const createEmbed = (name: string, shade: number = 500) => ({
   background: material.palette[name][shade],
   color: material.paletteText[name][shade]
 });

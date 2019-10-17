@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 
-import { ModalWindow, ToggleWithText } from 'ui';
+import { ModalWindow, Toggle } from 'ui';
 import { $session, optionsChange } from 'features/common';
 import { accountAPI } from 'api/account';
 
@@ -20,13 +20,14 @@ export const ModalSettings = ({ isOpen, closing }: ModalSettingsProps) => {
   return isOpen ? (
     <ModalWindow closing={closing}>
       {elements.map(({ id, text }) => (
-        <ToggleWithText
-          text={text}
+        <Toggle
           key={id}
           id={id}
           toggle={() => clickSettings(id, session[id])}
-          value={session[id] ? session[id] : false}
-        />
+          checked={session[id] ? true : false}
+        >
+          {text}
+        </Toggle>
       ))}
     </ModalWindow>
   ) : null;

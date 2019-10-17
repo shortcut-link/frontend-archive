@@ -29,9 +29,18 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
-export const ButtonLoader = ({ text, disabled, loader, style, ...props }) => (
+interface ButtonLoaderProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  loader: boolean;
+}
+
+export const ButtonLoader: React.FC<ButtonLoaderProps> = ({
+  children,
+  loader,
+  style,
+  ...props
+}) => (
   <ButtonPrimary
-    disabled={disabled}
     style={{
       height: '3rem',
       lineHeight: '0',
@@ -39,7 +48,7 @@ export const ButtonLoader = ({ text, disabled, loader, style, ...props }) => (
     }}
     {...props}
   >
-    {loader ? <Icon name="loader" width="1rem" height="1rem" /> : text}
+    {loader ? <Icon name="loader" width="1rem" height="1rem" /> : children}
   </ButtonPrimary>
 );
 

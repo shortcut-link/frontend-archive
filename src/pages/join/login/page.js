@@ -75,8 +75,9 @@ const LoginForm = () => {
           type="submit"
           disabled={!isSubmitEnabled}
           loader={isFormDisabled}
-          text="Continue"
-        />
+        >
+          Continue
+        </ButtonLoader>
       </Col>
     </form>
   );

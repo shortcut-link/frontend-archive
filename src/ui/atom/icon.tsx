@@ -1,7 +1,17 @@
 import React from 'react';
 import { withTheme } from 'styled-components';
 
-const getIconPath = (name, props) => {
+type IconName =
+  | 'loader'
+  | 'settings'
+  | 'cross'
+  | 'copy'
+  | 'check-circle'
+  | 'download-cloud';
+
+type SVGType = React.SVGAttributes<SVGElement>;
+
+const getIconPath = (name: IconName, props: SVGType) => {
   switch (name) {
     case 'loader':
       return (
@@ -79,8 +89,8 @@ export const Icon = withTheme(
     stroke = 'currentColor',
     strokeWidth = 2,
     style = {}
-  }) => {
-    return getIconPath(name, {
+  }) =>
+    getIconPath(name, {
       xmlns: 'http://www.w3.org/2000/svg',
       role: 'img',
       width,
@@ -92,6 +102,5 @@ export const Icon = withTheme(
       stroke,
       strokeWidth,
       style
-    });
-  }
+    })
 );

@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
-const fontFace = (name, src, fontWeight = 'normal', fontStyle = 'normal') => `
+const fontFace = (
+  name: string,
+  src: string,
+  fontWeight: string | number = 'normal',
+  fontStyle: string = 'normal'
+) => `
 	@font-face{
 		font-family: "${name}";
 		src: url(${require(`../../../public/fonts/${src}.ttf`)})  format("truetype");
