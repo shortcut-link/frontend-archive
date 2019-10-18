@@ -10,26 +10,29 @@ import {
   ErrorBox,
   Link
 } from 'ui';
-import { Col, Row } from 'lib/styled-components';
 import {
   $email,
   $password,
-  $passwordError,
   $emailError,
+  $passwordError,
+  $passwordConfirmation,
+  $passwordConfirmationError,
   $isSubmitEnabled,
   $isFormDisabled,
   emailChange,
   passwordChange,
+  passwordConfirmationChange,
+  registrationFetching,
   formSubmitted,
-  loginFetching,
   captchaPassed
 } from './model';
+import { Col, Row } from 'lib/styled-components';
 import { Captcha } from 'lib/captcha';
 import { routesPath } from 'pages';
 
-export const LoginPage = () => {
+export const RegistrationPage: React.FunctionComponent = () => {
   useEffect(() => {
-    document.title = 'Login';
+    document.title = 'Registration';
   }, []);
 
   return (
@@ -47,13 +50,12 @@ export const LoginPage = () => {
 };
 
 const Navigation = () => (
-  <Row justify="space-between" padding="1rem 0.5rem">
-    <Link to={routesPath.home}>Return back</Link>
-    <Link to={routesPath.join.registration}>Account registration</Link>
+  <Row justify="center" padding="1rem 0.5rem">
+    <Link to={routesPath.join.login}>Return back</Link>
   </Row>
 );
 
-const handleSubmit = event => {
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   formSubmitted();
 };
@@ -61,15 +63,16 @@ const handleSubmit = event => {
 const LoginForm = () => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormDisabled = useStore($isFormDisabled);
-  const formError = useStore(loginFetching.error);
+  const formError = useStore(registrationFetching.error);
 
   return (
     <form onSubmit={handleSubmit}>
       <Col gap="1rem">
-        <h1 style={{ fontSize: '1.3rem' }}>Shortcut-Link</h1>
+        <h1 style={{ fontSize: '1.3rem' }}>Registration in Shortcut-Link</h1>
         {formError && <ErrorBox>{formError}</ErrorBox>}
         <Email />
         <Password />
+        <PasswordConfirmation />
         <Captcha onChange={captchaPassed} />
         <ButtonLoader
           type="submit"
@@ -92,7 +95,7 @@ const Email = () => {
     <Input
       type="email"
       name="email"
-      autoComplete="email"
+      autoComplete="on"
       label="Email"
       error={email && emailError}
       value={email}
@@ -111,11 +114,29 @@ const Password = () => {
     <Input
       type="password"
       name="password"
-      autoComplete="password"
+      autoComplete="on"
       label="Password"
       error={password && passwordError}
       value={password}
       onChange={passwordChange}
+      disabled={isFormDisabled}
+    />
+  );
+};
+const PasswordConfirmation = () => {
+  const passwordConfirmation = useStore($passwordConfirmation);
+  const passwordConfirmationError = useStore($passwordConfirmationError);
+  const isFormDisabled = useStore($isFormDisabled);
+
+  return (
+    <Input
+      type="password"
+      name="password"
+      autoComplete="on"
+      label="Password confirmation"
+      error={passwordConfirmation && passwordConfirmationError}
+      value={passwordConfirmation}
+      onChange={passwordConfirmationChange}
       disabled={isFormDisabled}
     />
   );

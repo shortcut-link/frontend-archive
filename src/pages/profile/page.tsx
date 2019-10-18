@@ -13,7 +13,7 @@ import {
   closeLinkManagement
 } from './model/link-management';
 
-export const ProfilePage = () => {
+export const ProfilePage: React.FunctionComponent = () => {
   const linkManagement = useStore($linkManagement);
 
   return (
@@ -27,7 +27,7 @@ export const ProfilePage = () => {
       </Col>
 
       {linkManagement !== null && (
-        <ModalWindow closing={closeLinkManagement}>
+        <ModalWindow closing={() => closeLinkManagement()}>
           <LinkManagement />
         </ModalWindow>
       )}
@@ -48,12 +48,17 @@ const UserProfileCard = () => {
 };
 
 const UserLinksCard = () => {
+  const ReSyncLinks = () => {
+    removeLinks();
+    firstLoadCountAndLinks();
+  };
+
   const Heading = () => (
     <header>
       <Row justify="space-between" align="center">
         <h2>Your links</h2>
         <ButtonDownloadCloud
-          onClick={Download}
+          onClick={ReSyncLinks}
           aria-label="Re-sync all your links"
           tabIndex={1}
         >
@@ -62,11 +67,6 @@ const UserLinksCard = () => {
       </Row>
     </header>
   );
-
-  const Download = () => {
-    removeLinks();
-    firstLoadCountAndLinks();
-  };
 
   return (
     <CardProfile heading={<Heading />}>

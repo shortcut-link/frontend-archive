@@ -17,8 +17,12 @@ import {
 import { ButtonPrimary, Icon, ButtonLoader, Input, ErrorBox } from 'ui';
 import { ModalSettings, CreatedLinks } from 'features/create-link';
 
-export const CreateLinkMainPage = () => {
-  const [modalWindow, setModalWindow] = useState(false);
+type setWindowManagingCreatedLinkType = (windowState: boolean) => void;
+
+export const CreateLinkMainPage: React.FunctionComponent = () => {
+  const [windowManagingCreatedLink, setWindowManagingCreatedLink] = useState<
+    boolean
+  >(false);
   const createdLinks = useStore($createdLinks);
 
   useEffect(() => {
@@ -29,20 +33,26 @@ export const CreateLinkMainPage = () => {
     <>
       <CommonContentTemplate>
         <Col gap="2rem" width="100%" justify="center" align="center">
-          <CreateForm setModalWindow={setModalWindow} />
+          <CreateForm
+            setWindowManagingCreatedLink={setWindowManagingCreatedLink}
+          />
           <CreatedLinks links={createdLinks} />
         </Col>
       </CommonContentTemplate>
 
       <ModalSettings
-        isOpen={modalWindow}
-        closing={() => setModalWindow(false)}
+        isOpen={windowManagingCreatedLink}
+        closing={() => setWindowManagingCreatedLink(false)}
       />
     </>
   );
 };
 
-const CreateForm = ({ setModalWindow }) => {
+const CreateForm = ({
+  setWindowManagingCreatedLink
+}: {
+  setWindowManagingCreatedLink: setWindowManagingCreatedLinkType;
+}) => {
   const link = useStore($link);
   const linkError = useStore($linkError);
   const isFormLoading = useStore($isFormLoading);
@@ -64,13 +74,17 @@ const CreateForm = ({ setModalWindow }) => {
           }}
         />
 
-        <Buttons setModalWindow={setModalWindow} />
+        <Buttons setWindowManagingCreatedLink={setWindowManagingCreatedLink} />
       </Col>
     </form>
   );
 };
 
-const Buttons = ({ setModalWindow }) => {
+const Buttons = ({
+  setWindowManagingCreatedLink
+}: {
+  setWindowManagingCreatedLink: setWindowManagingCreatedLinkType;
+}) => {
   const isSubmitEnabled = useStore($isSubmitEnabled);
   const isFormLoading = useStore($isFormLoading);
   const isLoginAccount = useStore($session);
@@ -93,7 +107,7 @@ const Buttons = ({ setModalWindow }) => {
             ? 'Settings for the created link'
             : 'To use the settings - log in'
         }
-        onClick={() => setModalWindow(true)}
+        onClick={() => setWindowManagingCreatedLink(true)}
         disabled={isFormLoading || !isLoginAccount}
       >
         <Icon name="settings" width={18} height={18} fill="none" />
@@ -102,7 +116,7 @@ const Buttons = ({ setModalWindow }) => {
   );
 };
 
-const handleSubmit = event => {
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
   formSubmitted();
 };

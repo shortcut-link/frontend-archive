@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components';
 
 import { Col } from 'lib/styled-components';
 
-type InputElement = React.InputHTMLAttributes<HTMLInputElement>;
+type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 
-interface InputProps extends InputElement {
-  label: string;
-  error: string;
+interface InputProps extends InputAttributes {
+  label?: string;
+  error?: string;
 }
 
 export const Input: React.FC<InputProps> = ({ label, error, ...props }) => (
@@ -18,7 +18,7 @@ export const Input: React.FC<InputProps> = ({ label, error, ...props }) => (
   </Col>
 );
 
-interface InputNativeProps extends InputElement {
+interface InputNativeProps extends InputAttributes {
   error: boolean;
 }
 
@@ -32,14 +32,6 @@ const InputNative = styled.input<InputNativeProps>`
   border-radius: 4px;
   border-color: ${({ theme }) => theme.palette.decoration.borders};
 
-  ${({ theme }) => theme.embed.card}
-
-  ${({ error }) =>
-    error &&
-    css`
-      border-color: red;
-    `}
-
   &:disabled {
     background-color: ${({ theme }) => theme.palette.decoration.borders};
   }
@@ -47,6 +39,14 @@ const InputNative = styled.input<InputNativeProps>`
   &:focus {
     border-color: ${({ theme }) => theme.palette.primary.initial.background};
   }
+
+  ${({ error }) =>
+    error &&
+    css`
+      border-color: red;
+    `}
+
+  ${({ theme }) => theme.embed.card}
 `;
 
 const InputLabel = styled.label`
