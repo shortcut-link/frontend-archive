@@ -49,7 +49,7 @@ const Account = () => {
 const ToggleThemeButton = () => (
   <WithThemeToggler
     render={({ isDark, toggle }) => (
-      <ToggleSelectTheme toggle={() => toggle()} isDark={isDark} />
+      <ToggleSelectTheme switching={() => toggle()} isDark={isDark} />
     )}
   />
 );

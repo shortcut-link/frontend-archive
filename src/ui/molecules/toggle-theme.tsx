@@ -1,25 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { EnterClickContainer, Slider, Checkbox } from '../atom/toggle';
+import {
+  EnterClickContainer,
+  Slider,
+  Checkbox,
+  SwitchingType
+} from '../atom/toggle';
 
 interface ToggleSelectThemeProps {
-  toggle: () => void;
+  switching: SwitchingType;
   isDark: boolean;
 }
 
 export const ToggleSelectTheme: React.FC<ToggleSelectThemeProps> = ({
-  toggle,
+  switching,
   isDark
 }) => {
   const radius = '1.4rem';
 
   return (
-    <EnterClickContainer radius={radius} toggle={toggle}>
+    <EnterClickContainer radius={radius} switching={switching}>
       <CheckBoxTheme
         type="checkbox"
         radius={radius}
-        onChange={toggle}
+        onChange={() => switching()}
         checked={isDark}
       />
       <SliderTheme className="slider" radius={radius} />

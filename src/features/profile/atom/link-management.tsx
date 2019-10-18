@@ -30,7 +30,7 @@ export const LinkManagement = () => {
           <Toggle
             key={id}
             id={id}
-            toggle={() => changeLinkParameter(id)}
+            switching={() => changeLinkParameter(id)}
             checked={value}
           >
             {text}

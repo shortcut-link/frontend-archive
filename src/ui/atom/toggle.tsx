@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 import { Row } from 'lib/styled-components';
 
+export type SwitchingType = (payload: void) => void;
+
 interface ToggleProps {
   id: string;
-  toggle: () => void;
+  switching: SwitchingType;
   checked: boolean;
   radius?: string;
 }
@@ -13,16 +15,16 @@ interface ToggleProps {
 export const Toggle: React.FC<ToggleProps> = ({
   children,
   id,
-  toggle,
+  switching,
   checked,
   radius = '1.2rem'
 }) => (
   <Row gap="0.8rem" align="center" justify="space-between">
     <Label htmlFor={id}>{children}</Label>
-    <EnterClickContainer toggle={toggle} radius={radius}>
+    <EnterClickContainer switching={switching} radius={radius}>
       <Checkbox
         type="checkbox"
-        onChange={() => toggle()}
+        onChange={() => switching()}
         defaultChecked={checked}
         id={id}
         radius={radius}
@@ -33,16 +35,17 @@ export const Toggle: React.FC<ToggleProps> = ({
 );
 
 interface BoxContainerProps {
-  toggle: () => void;
+  switching: SwitchingType;
   radius?: string;
 }
 
 export const EnterClickContainer: React.FC<BoxContainerProps> = ({
   children,
   radius,
-  toggle
+  switching
 }) => {
-  const EnterPress = (e: React.KeyboardEvent) => e.key === 'Enter' && toggle();
+  const EnterPress = (e: React.KeyboardEvent) =>
+    e.key === 'Enter' && switching();
 
   return (
     <Box radius={radius} onKeyPress={EnterPress}>

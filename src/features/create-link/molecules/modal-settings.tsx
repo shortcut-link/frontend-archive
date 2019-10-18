@@ -23,7 +23,7 @@ export const ModalSettings = ({ isOpen, closing }: ModalSettingsProps) => {
         <Toggle
           key={id}
           id={id}
-          toggle={() => clickSettings(id, session[id])}
+          switching={() => clickSettings(id, session[id])}
           checked={session[id] ? true : false}
         >
           {text}
