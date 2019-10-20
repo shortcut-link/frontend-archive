@@ -1,12 +1,30 @@
-const baseURI = '/api';
-//Передавать сюда тип что возвращать, а не указывает в апи и тоесть удалить там
-export const request = (method, url, options = {}) => {
+const baseUri = '/api';
+
+export type ErrorResponse = {
+  message: string;
+  status: number;
+};
+
+type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+type Options = {
+  headers?: { [key: string]: string };
+  parse?: 'text' | 'json' | 'noparse';
+  baseUri?: string;
+  body?: string | FormData | Object;
+};
+
+export const request = <R>(
+  method: Method,
+  url: string,
+  options: Options = {}
+): Promise<R> => {
   const headers = new Headers({
     ...createContentType(options),
     ...options.headers
   });
 
-  const uri = `${options.baseURI || baseURI}${url}`;
+  const uri = `${options.baseUri || baseUri}${url}`;
 
   const { body, ...restOptions } = options;
 
@@ -17,26 +35,16 @@ export const request = (method, url, options = {}) => {
     body: createBody(options, headers)
   });
 
-  return fetch(config).then(response => {
-    if (options.parse === 'text') {
-      return response.text;
-    }
-
-    if (options.parse === 'noparse') {
-      return response.text;
-    }
-
-    return responseToPromise(response);
-  });
+  return fetch(config).then(responseToPromise);
 };
 
-const createContentType = options => {
+const createContentType = (options: Options) => {
   const header = contentTypeFromOptions(options);
 
   return header ? { 'Content-Type': header } : {};
 };
 
-const contentTypeFromOptions = options => {
+const contentTypeFromOptions = (options: Options) => {
   if (options && options.headers && options.headers['Content-Type']) {
     return options.headers['Content-Type'];
   }
@@ -48,7 +56,7 @@ const contentTypeFromOptions = options => {
   return typeof options.body === 'object' ? 'application/json' : '';
 };
 
-const createBody = (options, headers) => {
+const createBody = (options: Options, headers: Headers) => {
   const contentType = headers.get('content-type');
 
   if (options.body && contentType && contentType.includes('json')) {
@@ -62,14 +70,14 @@ const createBody = (options, headers) => {
   return undefined;
 };
 
-function responseToPromise(response) {
+function responseToPromise(response: Response) {
   const contentType = response.headers.get('Content-Type');
   const status = response.status;
 
   if (contentType && contentType.includes('json')) {
     return response
       .json()
-      .then(data =>
+      .then((data: any) =>
         response.ok
           ? Promise.resolve({ ...data, status })
           : Promise.reject({ ...data, status })

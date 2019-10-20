@@ -7,9 +7,8 @@ import { lightTheme } from 'ui/themes';
 
 /**
  * For testing components that require ThemeProvider or BrowserRouter
- * @param {Node} component
  */
-export const ThemeRouterProvider = component =>
+export const ThemeRouterProvider = (component: React.ReactNode) =>
   renderer.create(
     <ThemeProvider theme={lightTheme}>
       <BrowserRouter>{component}</BrowserRouter>

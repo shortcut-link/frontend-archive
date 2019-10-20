@@ -20,20 +20,18 @@ export const Header = () => (
   </ContainerBox>
 );
 
-const Logo = () => {
-  return (
-    <h1>
-      <Link
-        to={routesPath.home}
-        style={{
-          textTransform: 'uppercase'
-        }}
-      >
-        Shortcut-link
-      </Link>
-    </h1>
-  );
-};
+const Logo = () => (
+  <h1>
+    <Link
+      to={routesPath.home}
+      style={{
+        textTransform: 'uppercase'
+      }}
+    >
+      Shortcut-link
+    </Link>
+  </h1>
+);
 
 const Account = () => {
   const AccountEmpty = () => (

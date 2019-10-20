@@ -4,7 +4,7 @@ import { IndexRange } from 'react-virtualized';
 import { createFetching } from 'lib/fetching';
 import {
   accountAPI,
-  getLinksResponse,
+  GetLinksResponse,
   GetCountLinksResponse
 } from 'api/account';
 import { linkAPI, Link } from 'api/link';
@@ -26,7 +26,7 @@ export const firstLoadCountAndLinks = createEvent<void>();
 
 export const downloadLinksProcessing = createEffect<
   IndexRange,
-  getLinksResponse
+  GetLinksResponse
 >();
 export const downloadLinksFetching = createFetching(downloadLinksProcessing);
 export const loadingCountLinks = createEffect<void, GetCountLinksResponse>();

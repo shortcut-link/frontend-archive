@@ -8,8 +8,8 @@ export interface CreateResponse {
   user: User;
 }
 
-const create = (loginData: LoginData): Promise<CreateResponse> =>
-  request('POST', '/account/session', {
+const create = (loginData: LoginData) =>
+  request<CreateResponse>('POST', '/account/session', {
     body: loginData
   }).catch(sessionError);
 
@@ -17,7 +17,7 @@ export interface GetResponse {
   user: User;
 }
 
-const get = (): Promise<GetResponse> => request('GET', '/account/session');
+const get = () => request<GetResponse>('GET', '/account/session');
 
 export const sessionAPI = {
   create,
