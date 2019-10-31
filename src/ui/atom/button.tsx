@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import { Icon } from './icon';
 
 export const ButtonPrimary = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 1rem;
   font-size: 0.9rem;
-  line-height: 0.9rem;
-  padding: 1rem 2rem;
   border: none;
   border-radius: 4px;
   font-weight: bold;
@@ -42,8 +44,7 @@ export const ButtonLoader: React.FC<ButtonLoaderProps> = ({
 }) => (
   <ButtonPrimary
     style={{
-      height: '3rem',
-      lineHeight: '0',
+      minHeight: '3rem',
       ...style
     }}
     {...props}

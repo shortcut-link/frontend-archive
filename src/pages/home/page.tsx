@@ -101,7 +101,6 @@ const Buttons = ({
       </ButtonForm>
       <ButtonPrimary
         type="button"
-        style={{ padding: '0 1rem' }}
         title={
           isLoginAccount
             ? 'Settings for the created link'
