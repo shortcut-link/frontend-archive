@@ -13,7 +13,7 @@ export const CardProfile: React.FC<CardProfileProps> = ({
   children
 }) => (
   <Card>
-    <Col>
+    <Col gap="1rem">
       <Heading>{heading}</Heading>
       {children}
     </Col>
@@ -22,5 +22,4 @@ export const CardProfile: React.FC<CardProfileProps> = ({
 
 const Heading = styled.header`
   font-size: 1.2rem;
-  margin-bottom: 1rem;
 `;

@@ -2,9 +2,16 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
-import { CenterContent, Link, ModalWindow, ZeroButton, Icon } from 'ui';
+import {
+  CenterContent,
+  Link,
+  ModalWindow,
+  ZeroButton,
+  Icon,
+  ButtonPrimary
+} from 'ui';
 import { Col, Row } from 'lib/styled-components';
-import { $session } from 'features/common';
+import { $session, sessionRemove } from 'features/common';
 import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
 import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
@@ -12,6 +19,7 @@ import {
   openLinkManagement,
   closeLinkManagement
 } from './model/link-management';
+import { history } from 'lib/routing';
 
 export const ProfilePage: React.FunctionComponent = () => {
   const linkManagement = useStore($linkManagement);
@@ -40,9 +48,19 @@ const UserProfileCard = () => {
 
   const Heading = () => <h2>Account</h2>;
 
+  const signOut = () => {
+    const confirm = window.confirm('Are you sure you want to sign out?');
+
+    if (confirm) {
+      sessionRemove();
+      history.push('/');
+    }
+  };
+
   return (
     <CardProfile heading={<Heading />}>
       <div>Your email: {email}</div>
+      <ButtonPrimary onClick={() => signOut()}>Sign out</ButtonPrimary>
     </CardProfile>
   );
 };
