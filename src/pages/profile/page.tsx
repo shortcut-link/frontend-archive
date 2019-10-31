@@ -72,18 +72,16 @@ const UserLinksCard = () => {
   };
 
   const Heading = () => (
-    <header>
-      <Row justify="space-between" align="center">
-        <h2>Your links</h2>
-        <ButtonDownloadCloud
-          onClick={ReSyncLinks}
-          aria-label="Re-sync all your links"
-          tabIndex={1}
-        >
-          <Icon name="download-cloud" width={20} height={20} />
-        </ButtonDownloadCloud>
-      </Row>
-    </header>
+    <Row justify="space-between" align="center">
+      <h2>Your links</h2>
+      <ButtonDownloadCloud
+        onClick={ReSyncLinks}
+        aria-label="Re-sync all your links"
+        tabIndex={1}
+      >
+        <Icon name="download-cloud" width={20} height={20} />
+      </ButtonDownloadCloud>
+    </Row>
   );
 
   return (
