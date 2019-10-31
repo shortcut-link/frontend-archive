@@ -1,9 +1,8 @@
-import '../../model/session.model';
 import React from 'react';
 import { create, act } from 'react-test-renderer';
 
 import { Authenticated } from '../authenticated';
-import { sessionChange } from '../../model/session.events';
+import { sessionChange } from '../../model/session';
 
 describe('must render Header', () => {
   const renderExists = () => <div>renderExists</div>;

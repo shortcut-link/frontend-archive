@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
 
-import { $session } from '../model/session.store';
+import { $session } from '../model/session';
 import { User } from 'api/account';
 
 interface AuthenticatedProps {

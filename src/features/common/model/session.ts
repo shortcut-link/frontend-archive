@@ -1,16 +1,17 @@
-import { forward } from 'effector';
+import { createEffect, createEvent, createStore, forward } from 'effector';
 
-import { $session } from './session.store';
-import {
-  sessionFetchProcessing,
-  sessionRemove,
-  sessionChange,
-  optionsChange
-} from './session.events';
+import { GetResponse, sessionAPI } from 'api/session';
+import { User } from 'api/account';
 import { tokenRemove } from './token';
-import { sessionAPI } from 'api/session';
 
 export type options = { [key: string]: boolean };
+
+export const sessionChange = createEvent<User>();
+export const sessionRemove = createEvent<void>();
+export const sessionFetchProcessing = createEffect<void, GetResponse>();
+export const optionsChange = createEvent<options>();
+
+export const $session = createStore<User | null>(null);
 
 $session
   .on(sessionFetchProcessing.done, (_, { result: { user } }) => user)
