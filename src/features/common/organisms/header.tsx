@@ -67,11 +67,11 @@ const ContainerBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 5rem;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 
   & > div.container {
     justify-content: space-between;
     align-items: center;
   }
-
-  ${({ theme }) => theme.embed.canvas}
 `;

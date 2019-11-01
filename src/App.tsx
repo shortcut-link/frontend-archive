@@ -1,13 +1,12 @@
 import React, { Suspense } from 'react';
 
 import { Routes } from './pages';
-import { ToggleThemeProvider } from 'lib/theme';
-import { darkTheme, lightTheme } from 'ui/themes';
+import { ThemeProvider } from 'lib/theme';
 import { GlobalStyle, CenterContent } from 'ui/templates';
 import { AccountLoader } from 'features/common';
 
 export const App = () => (
-  <ToggleThemeProvider dark={darkTheme} light={lightTheme}>
+  <ThemeProvider>
     <Suspense fallback={<CenterContent />}>
       <GlobalStyle />
 
@@ -15,5 +14,5 @@ export const App = () => (
         <Routes />
       </AccountLoader>
     </Suspense>
-  </ToggleThemeProvider>
+  </ThemeProvider>
 );

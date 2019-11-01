@@ -20,6 +20,6 @@ export const CommonContentTemplate: React.FC<IHeaderAndFooter> = ({
 const CommonContent = styled.div`
   display: flex;
   justify-content: center;
-
-  ${({ theme }) => theme.embed.canvas}
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 `;

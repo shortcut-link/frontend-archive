@@ -1,21 +1,10 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { useStore } from 'effector-react';
 import { Event } from 'effector';
 
 import { $isDark, toggleTheme } from './model';
 
-interface ToggleThemeProviderProps {
-  dark: Object;
-  light: Object;
-  children: React.ReactElement;
-}
-
-export const ToggleThemeProvider: React.FC<ToggleThemeProviderProps> = ({
-  dark,
-  light,
-  children
-}) => {
+export const ThemeProvider: React.FC<{}> = ({ children }) => {
   const isDark = useStore($isDark);
 
   useEffect(() => {
@@ -26,9 +15,7 @@ export const ToggleThemeProvider: React.FC<ToggleThemeProviderProps> = ({
     }
   }, [isDark]);
 
-  return (
-    <ThemeProvider theme={isDark ? dark : light}>{children}</ThemeProvider>
-  );
+  return <>{children}</>;
 };
 
 interface WithThemeTogglerProps {

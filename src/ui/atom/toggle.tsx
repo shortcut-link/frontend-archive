@@ -72,7 +72,7 @@ export const Slider = styled.span<PropsStyled>`
   bottom: 0
   left: 0;
   
-  background-color: ${({ theme }) => theme.palette.decoration.borders};
+  background-color: var(--border);
   border-radius: ${({ radius }) => radius};
   cursor: pointer;
   transition: 0.4s;
@@ -108,8 +108,7 @@ export const Checkbox = styled.input<PropsStyled>`
   }
 
   &:checked + ${Slider} {
-    background-color: ${({ theme }) =>
-      theme.palette.primary.initial.background};
+    background-color: var(--primary);
   }
 
   &:checked + ${Slider}::before {

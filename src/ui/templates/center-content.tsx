@@ -16,6 +16,6 @@ const MainContainer = styled.main`
   flex-grow: 1;
   overflow-y: auto;
   width: 100%;
-
-  ${({ theme }) => theme.embed.canvas}
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 `;

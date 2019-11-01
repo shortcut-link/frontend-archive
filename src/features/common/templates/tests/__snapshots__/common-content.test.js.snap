@@ -51,8 +51,8 @@ exports[`must render Header with custom header, footer 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background-color: #ECEFF1;
-  color: Black;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 }
 
 <div
@@ -137,12 +137,12 @@ exports[`must render Header with default header, footer 1`] = `
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.12);
+  background-color: var(--border);
   border-radius: 1.4rem;
   cursor: pointer;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  background-color: #64B5F6;
+  background-color: var(--primary);
 }
 
 .c10:before {
@@ -189,7 +189,7 @@ exports[`must render Header with default header, footer 1`] = `
 }
 
 .c7:checked + .c8 {
-  background-color: #64B5F6;
+  background-color: var(--primary);
 }
 
 .c7:checked + .c8::before {
@@ -232,7 +232,7 @@ exports[`must render Header with default header, footer 1`] = `
 
 .c4:hover,
 .c4:focus {
-  color: #2196F3;
+  color: var(--primary-hover);
 }
 
 .c5 {
@@ -268,8 +268,8 @@ exports[`must render Header with default header, footer 1`] = `
   -ms-flex-align: center;
   align-items: center;
   height: 5rem;
-  background-color: #ECEFF1;
-  color: Black;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 }
 
 .c2 > div.container {
@@ -292,8 +292,8 @@ exports[`must render Header with default header, footer 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background-color: #ECEFF1;
-  color: Black;
+  color: var(--canvas-text);
+  background-color: var(--canvas);
 }
 
 <div

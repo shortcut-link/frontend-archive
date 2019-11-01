@@ -46,7 +46,7 @@ export const LinkManagement = () => {
 
 const ContainerToggle = styled(Col)`
   & > :not(:last-child) {
-    border-bottom: 1px solid ${({ theme }) => theme.palette.decoration.borders};
+    border-bottom: 1px solid var(--border);
     padding-bottom: 1rem;
   }
 `;

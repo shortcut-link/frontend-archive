@@ -17,13 +17,13 @@ export const ButtonPrimary = styled.button`
   transition: 0.4s;
   user-select: none;
   font-family: inherit;
-  color: ${({ theme }) => theme.palette.primary.initial.color};
-  background-color: ${({ theme }) => theme.palette.decoration.borders};
+  color: var(--primary-text);
+  background-color: var(--border);
 
   &:not([disabled]):hover,
   &:not([disabled]):focus {
-    background-color: ${({ theme }) => theme.palette.primary.hover.background};
-    color: ${({ theme }) => theme.palette.primary.hover.color};
+    background-color: var(--primary-hover);
+    color: var(--primary-hover-text);
   }
 
   &:disabled {
@@ -61,6 +61,6 @@ export const ZeroButton = styled(ButtonPrimary)`
   &:not([disabled]):hover,
   &:not([disabled]):focus {
     background-color: transparent;
-    color: ${({ theme }) => theme.palette.primary.hover.background};
+    color: var(--primary-hover);
   }
 `;

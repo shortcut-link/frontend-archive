@@ -31,7 +31,7 @@ exports[`ui link with wrapper router link 1`] = `
 
 .c0:hover,
 .c0:focus {
-  color: #2196F3;
+  color: var(--primary-hover);
 }
 
 <a

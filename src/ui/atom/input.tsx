@@ -28,16 +28,17 @@ const InputNative = styled.input<InputNativeProps>`
   padding: 0.5rem;
   outline: none;
   transition: 0.2s;
-  border: 2px solid;
+  border: 2px solid var(--border);
   border-radius: 4px;
-  border-color: ${({ theme }) => theme.palette.decoration.borders};
+  color: var(--card-text);
+  background-color: var(--card);
 
   &:disabled {
-    background-color: ${({ theme }) => theme.palette.decoration.borders};
+    background-color: var(--border);
   }
 
   &:focus {
-    border-color: ${({ theme }) => theme.palette.primary.initial.background};
+    border-color: var(--primary);
   }
 
   ${({ error }) =>
@@ -45,8 +46,6 @@ const InputNative = styled.input<InputNativeProps>`
     css`
       border-color: red;
     `}
-
-  ${({ theme }) => theme.embed.card}
 `;
 
 const InputLabel = styled.label`

@@ -55,7 +55,7 @@ const ClosingModal = styled.div`
   cursor: pointer;
 
   &:hover > svg {
-    stroke: ${({ theme }) => theme.palette.primary.hover.background};
+    stroke: var(--primary);
   }
 `;
 

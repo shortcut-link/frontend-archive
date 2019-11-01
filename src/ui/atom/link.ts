@@ -11,7 +11,7 @@ export const cssLink = css`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.palette.primary.hover.background};
+    color: var(--primary-hover);
   }
 `;
 

@@ -61,13 +61,10 @@ const ContainerItem = styled.div<{ backgroundColor: boolean }>`
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) =>
-      theme.palette.primary.initial.background};
+    background-color: var(--primary);
   }
 
-  ${({ theme, backgroundColor }) => css`
-    background-color: ${backgroundColor
-      ? theme.palette.decoration.borders
-      : undefined};
+  ${({ backgroundColor }) => css`
+    background-color: ${backgroundColor ? 'var(--border)' : undefined};
   `}
 `;

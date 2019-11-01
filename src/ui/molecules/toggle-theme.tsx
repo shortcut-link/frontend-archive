@@ -33,7 +33,7 @@ export const ToggleSelectTheme: React.FC<ToggleSelectThemeProps> = ({
 };
 
 const SliderTheme = styled(Slider)`
-  background-color: ${({ theme }) => theme.palette.primary.initial.background};
+  background-color: var(--primary);
 
   &:before {
     content: '☀️';
