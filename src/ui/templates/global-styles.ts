@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { staticDark, staticLight } from 'ui/themes';
 
 const fontFace = (
   name: string,
@@ -19,6 +20,14 @@ export const GlobalStyle = createGlobalStyle`
 	${fontFace('Open Sans', 'OpenSans-Light', 300)};
 	${fontFace('Open Sans', 'OpenSans-Regular', 400)};
 	${fontFace('Open Sans', 'OpenSans-Bold', 700)};
+
+	:root {
+		${staticLight}
+	}
+
+	[data-theme="dark"] {
+		${staticDark}
+	}
 
 	body {
 		margin: 0;

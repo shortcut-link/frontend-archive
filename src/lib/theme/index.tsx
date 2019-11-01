@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useStore } from 'effector-react';
 import { Event } from 'effector';
@@ -17,6 +17,14 @@ export const ToggleThemeProvider: React.FC<ToggleThemeProviderProps> = ({
   children
 }) => {
   const isDark = useStore($isDark);
+
+  useEffect(() => {
+    const html = document.querySelector('html');
+
+    if (html) {
+      html.dataset.theme = isDark ? 'dark' : 'light';
+    }
+  }, [isDark]);
 
   return (
     <ThemeProvider theme={isDark ? dark : light}>{children}</ThemeProvider>
