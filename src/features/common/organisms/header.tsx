@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Container } from 'ui/templates';
-import { WithThemeToggler } from 'lib/theme';
-import { ToggleSelectTheme } from 'ui/molecules';
 import { Authenticated } from './authenticated';
 import { Link } from 'ui/atom';
 import { routesPath } from 'pages';
+import { useTheme } from 'lib/theme';
 
-export const Header = () => (
+export const Header: React.FC = () => (
   <ContainerBox>
     <Container className={'container'}>
       <Logo />
@@ -44,13 +43,27 @@ const Account = () => {
   );
 };
 
-const ToggleThemeButton = () => (
-  <WithThemeToggler
-    render={({ isDark, toggle }) => (
-      <ToggleSelectTheme switching={() => toggle()} isDark={isDark} />
-    )}
-  />
-);
+const ToggleThemeButton = () => {
+  const { theme, toggle } = useTheme();
+
+  const themeEmoji = {
+    dark: '🌚',
+    light: '🌝',
+    auto: '🌗'
+  };
+
+  return (
+    <IconToggleTheme onClick={() => toggle()}>
+      {themeEmoji[theme]}
+    </IconToggleTheme>
+  );
+};
+
+const IconToggleTheme = styled.span`
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+`;
 
 const RightPanel = styled.div`
   display: flex;

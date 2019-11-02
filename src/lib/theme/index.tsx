@@ -1,8 +1,23 @@
 import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
-import { Event } from 'effector';
+import { combine } from 'effector';
 
-import { $isDark, toggleTheme } from './model';
+import { $selectedTheme, themeToggled } from './user-prefers';
+import { $prefersDark } from './system-prefers';
+
+const $theme = combine(
+  $selectedTheme,
+  $prefersDark,
+  (selectedTheme, prefersDark) => {
+    if (selectedTheme === 'auto') {
+      return prefersDark ? 'dark' : 'light';
+    }
+
+    return selectedTheme;
+  }
+);
+
+export const $isDark = $theme.map(theme => theme === 'dark');
 
 export const ThemeProvider: React.FC<{}> = ({ children }) => {
   const isDark = useStore($isDark);
@@ -18,20 +33,7 @@ export const ThemeProvider: React.FC<{}> = ({ children }) => {
   return <>{children}</>;
 };
 
-interface WithThemeTogglerProps {
-  render: ({
-    isDark,
-    toggle
-  }: {
-    isDark: boolean;
-    toggle: Event<void>;
-  }) => JSX.Element;
-}
-
-export const WithThemeToggler = ({
-  render
-}: WithThemeTogglerProps): JSX.Element => {
-  const isDark = useStore($isDark);
-
-  return render({ isDark, toggle: toggleTheme });
+export const useTheme = () => {
+  const theme = useStore($selectedTheme);
+  return { theme, toggle: themeToggled };
 };
