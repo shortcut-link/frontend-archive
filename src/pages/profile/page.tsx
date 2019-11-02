@@ -79,7 +79,7 @@ const UserLinksCard = () => {
         aria-label="Re-sync all your links"
         tabIndex={1}
       >
-        <Icon name="download-cloud" width={20} height={20} />
+        <Icon name="download-cloud" width="1.2rem" height="1.2rem" />
       </ButtonDownloadCloud>
     </Row>
   );

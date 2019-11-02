@@ -34,8 +34,8 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
           <ClosingModal onClick={() => closing()}>
             <Icon
               name="cross"
-              width={24}
-              height={24}
+              width="1.5rem"
+              height="1.5rem"
               style={{ transition: '0.2s' }}
             />
           </ClosingModal>
@@ -81,7 +81,7 @@ const animContainer = keyframes`
 
 const CardPopup = styled(Card)`
   position: relative;
-  padding-top: 2.5rem;
+  padding-top: 3rem;
   animation: ${animPopup} 0.2s;
 `;
 

@@ -26,7 +26,7 @@ export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
       <Row justify="center" align="center" gap="0.8rem">
         <h5>{url}</h5>
 
-        <Icon name={isCopy ? 'check-circle' : 'copy'} width={16} height={16} />
+        <Icon name={isCopy ? 'check-circle' : 'copy'} />
 
         <InputLink ref={linkRef} value={url} readOnly />
       </Row>

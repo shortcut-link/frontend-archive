@@ -1,5 +1,4 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
 
 type IconName =
   | 'loader'
@@ -77,30 +76,32 @@ const getIconPath = (name: IconName, props: SVGType) => {
   }
 };
 
-export const Icon = withTheme(
-  ({
-    name = '',
-    width = '2.4em',
-    height = '2.4em',
-    fill = 'none',
-    viewBox = '0 0 24 24',
-    strokeLinecap = 'round',
-    strokeLinejoin = 'round',
-    stroke = 'currentColor',
-    strokeWidth = 2,
-    style = {}
-  }) =>
-    getIconPath(name, {
-      xmlns: 'http://www.w3.org/2000/svg',
-      role: 'img',
-      width,
-      height,
-      fill,
-      viewBox,
-      strokeLinecap,
-      strokeLinejoin,
-      stroke,
-      strokeWidth,
-      style
-    })
-);
+interface IconProps extends SVGType {
+  name: IconName;
+}
+
+export const Icon = ({
+  name,
+  width = '1rem',
+  height = '1rem',
+  fill = 'none',
+  viewBox = '0 0 24 24',
+  strokeLinecap = 'round',
+  strokeLinejoin = 'round',
+  stroke = 'currentColor',
+  strokeWidth = 2,
+  style = {}
+}: IconProps) =>
+  getIconPath(name, {
+    xmlns: 'http://www.w3.org/2000/svg',
+    role: 'img',
+    width,
+    height,
+    fill,
+    viewBox,
+    strokeLinecap,
+    strokeLinejoin,
+    stroke,
+    strokeWidth,
+    style
+  });

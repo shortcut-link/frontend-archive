@@ -49,7 +49,7 @@ export const ButtonLoader: React.FC<ButtonLoaderProps> = ({
     }}
     {...props}
   >
-    {loader ? <Icon name="loader" width="1rem" height="1rem" /> : children}
+    {loader ? <Icon name="loader" /> : children}
   </ButtonPrimary>
 );
 

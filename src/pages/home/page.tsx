@@ -109,7 +109,7 @@ const Buttons = ({
         onClick={() => setWindowManagingCreatedLink(true)}
         disabled={isFormLoading || !isLoginAccount}
       >
-        <Icon name="settings" width={18} height={18} fill="none" />
+        <Icon name="settings" width="1.1rem" height="1.1rem" fill="none" />
       </ButtonPrimary>
     </Row>
   );
