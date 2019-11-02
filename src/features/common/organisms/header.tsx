@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Container } from 'ui/templates';
 import { Authenticated } from './authenticated';
-import { Link } from 'ui/atom';
+import { Container, Link, ZeroButton } from 'ui';
 import { routesPath } from 'pages';
 import { useTheme } from 'lib/theme';
 
@@ -53,16 +52,23 @@ const ToggleThemeButton = () => {
   };
 
   return (
-    <IconToggleTheme onClick={() => toggle()}>
+    <ButtonIconToggleTheme onClick={() => toggle()} role="button">
       {themeEmoji[theme]}
-    </IconToggleTheme>
+    </ButtonIconToggleTheme>
   );
 };
 
-const IconToggleTheme = styled.span`
-  padding: 0.5rem;
+const ButtonIconToggleTheme = styled(ZeroButton)`
   font-size: 1.2rem;
-  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.15);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 `;
 
 const RightPanel = styled.div`
