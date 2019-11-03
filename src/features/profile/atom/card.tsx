@@ -12,12 +12,10 @@ export const CardProfile: React.FC<CardProfileProps> = ({
   heading,
   children
 }) => (
-  <Card>
-    <Col gap="1rem">
-      <Heading>{heading}</Heading>
-      {children}
-    </Col>
-  </Card>
+  <Col tagName={Card} gap="1rem">
+    <Heading>{heading}</Heading>
+    {children}
+  </Col>
 );
 
 const Heading = styled.header`

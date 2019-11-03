@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useStore } from 'effector-react';
 
 import { CommonContentTemplate, $session } from 'features/common';
-import { Col, Row } from 'lib/styled-components';
+import { Row, Col } from 'lib/styled-components';
 import {
   $link,
   $linkError,
@@ -59,24 +59,22 @@ const CreateForm = ({
   const formError = useStore(createLinkFetching.error);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Col gap="1rem" width="30rem">
-        {formError && <ErrorBox>{formError}</ErrorBox>}
-        <Input
-          type="text"
-          name="link"
-          error={link && linkError}
-          value={link}
-          onChange={linkChange}
-          disabled={isFormLoading}
-          style={{
-            height: '2.5rem'
-          }}
-        />
+    <Col tagName="form" onSubmit={handleSubmit} gap="1rem" width="30rem">
+      {formError && <ErrorBox>{formError}</ErrorBox>}
+      <Input
+        type="text"
+        name="link"
+        error={link && linkError}
+        value={link}
+        onChange={linkChange}
+        disabled={isFormLoading}
+        style={{
+          height: '2.5rem'
+        }}
+      />
 
-        <Buttons setWindowManagingCreatedLink={setWindowManagingCreatedLink} />
-      </Col>
-    </form>
+      <Buttons setWindowManagingCreatedLink={setWindowManagingCreatedLink} />
+    </Col>
   );
 };
 

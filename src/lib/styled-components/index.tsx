@@ -5,7 +5,7 @@ interface WithTagProps {
   tagName?: string;
   children: React.ReactNode;
 }
-
+// type
 export const WithTag = ({ tagName: Tag = 'div', children, ...props }: any) => (
   <Tag {...props}>{children}</Tag>
 );
@@ -44,9 +44,10 @@ interface RowOrColProps extends MixinsProps {
   gap?: string;
 }
 
-export const Row = styled.div<RowOrColProps>`
+export const Row = styled(WithTag)`
   display: flex;
   flex-direction: row;
+  text-align: left;
 
   ${mixins}
 
@@ -59,9 +60,10 @@ export const Row = styled.div<RowOrColProps>`
     `}
 `;
 
-export const Col = styled.div<RowOrColProps>`
+export const Col = styled(WithTag)`
   display: flex;
   flex-direction: column;
+  text-align: left;
 
   ${mixins}
 

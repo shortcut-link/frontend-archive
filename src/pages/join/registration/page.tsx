@@ -66,23 +66,21 @@ const LoginForm = () => {
   const formError = useStore(registrationFetching.error);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Col gap="1rem">
-        <h1 style={{ fontSize: '1.3rem' }}>Registration in Shortcut-Link</h1>
-        {formError && <ErrorBox>{formError}</ErrorBox>}
-        <Email />
-        <Password />
-        <PasswordConfirmation />
-        <Captcha onChange={captchaPassed} />
-        <ButtonLoader
-          type="submit"
-          disabled={!isSubmitEnabled}
-          loader={isFormDisabled}
-        >
-          Continue
-        </ButtonLoader>
-      </Col>
-    </form>
+    <Col onSubmit={handleSubmit} tagName="form" gap="1rem">
+      <h1 style={{ fontSize: '1.3rem' }}>Registration in Shortcut-Link</h1>
+      {formError && <ErrorBox>{formError}</ErrorBox>}
+      <Email />
+      <Password />
+      <PasswordConfirmation />
+      <Captcha onChange={captchaPassed} />
+      <ButtonLoader
+        type="submit"
+        disabled={!isSubmitEnabled}
+        loader={isFormDisabled}
+      >
+        Continue
+      </ButtonLoader>
+    </Col>
   );
 };
 

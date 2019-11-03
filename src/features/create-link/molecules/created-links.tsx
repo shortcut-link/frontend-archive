@@ -1,8 +1,8 @@
 import React from 'react';
-import { Col } from 'lib/styled-components';
 
 import { ItemCreatedLink } from '../atom';
 import { CreatedLink } from 'api/link';
+import { Col } from 'lib/styled-components';
 
 interface CreatedLinksProps {
   links: Array<CreatedLink>;

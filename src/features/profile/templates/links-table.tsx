@@ -40,7 +40,7 @@ export const LinksTable: React.FC<LinksTableProps> = ({
         tabIndex={2}
       >
         {({ onRowsRendered, registerChild }) => (
-          <AutoSizer>
+          <AutoSizer style={{ width: '100%' }}>
             {({ width, height }) => (
               <Table
                 ref={registerChild}

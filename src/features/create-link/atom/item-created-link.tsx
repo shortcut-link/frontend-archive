@@ -22,15 +22,20 @@ export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
   };
 
   return (
-    <ButtonPrimary key={url} onClick={onClick}>
-      <Row justify="center" align="center" gap="0.8rem">
-        <h5>{url}</h5>
+    <Row
+      tagName={ButtonPrimary}
+      key={url}
+      onClick={onClick}
+      justify="center"
+      align="center"
+      gap="0.8rem"
+    >
+      <h5>{url}</h5>
 
-        <Icon name={isCopy ? 'check-circle' : 'copy'} />
+      <Icon name={isCopy ? 'check-circle' : 'copy'} />
 
-        <InputLink ref={linkRef} value={url} readOnly />
-      </Row>
-    </ButtonPrimary>
+      <InputLink ref={linkRef} value={url} readOnly />
+    </Row>
   );
 };
 

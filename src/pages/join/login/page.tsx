@@ -10,7 +10,7 @@ import {
   ErrorBox,
   Link
 } from 'ui';
-import { Col, Row } from 'lib/styled-components';
+import { Row, Col } from 'lib/styled-components';
 import {
   $email,
   $password,
@@ -64,22 +64,20 @@ const LoginForm = () => {
   const formError = useStore(loginFetching.error);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Col gap="1rem">
-        <h1 style={{ fontSize: '1.3rem' }}>Shortcut-Link</h1>
-        {formError && <ErrorBox>{formError}</ErrorBox>}
-        <Email />
-        <Password />
-        <Captcha onChange={captchaPassed} />
-        <ButtonLoader
-          type="submit"
-          disabled={!isSubmitEnabled}
-          loader={isFormDisabled}
-        >
-          Continue
-        </ButtonLoader>
-      </Col>
-    </form>
+    <Col onSubmit={handleSubmit} tagName="form" gap="1rem">
+      <h1 style={{ fontSize: '1.3rem' }}>Shortcut-Link</h1>
+      {formError && <ErrorBox>{formError}</ErrorBox>}
+      <Email />
+      <Password />
+      <Captcha onChange={captchaPassed} />
+      <ButtonLoader
+        type="submit"
+        disabled={!isSubmitEnabled}
+        loader={isFormDisabled}
+      >
+        Continue
+      </ButtonLoader>
+    </Col>
   );
 };
 
