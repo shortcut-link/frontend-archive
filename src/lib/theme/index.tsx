@@ -17,7 +17,7 @@ const $theme = combine(
   }
 );
 
-export const $isDark = $theme.map(theme => theme === 'dark');
+export const $isDark = $theme.map<boolean>(theme => theme === 'dark');
 
 export const ThemeProvider: React.FC<{}> = ({ children }) => {
   const isDark = useStore($isDark);
