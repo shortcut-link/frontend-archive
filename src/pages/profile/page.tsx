@@ -26,7 +26,7 @@ export const ProfilePage: React.FunctionComponent = () => {
 
   return (
     <CenterContent>
-      <Col flexWrap="wrap" justify="center" align="center" gap="1rem">
+      <Col flexwrap="wrap" justify="center" align="center" gap="1rem">
         <UserProfileCard />
         <UserLinksCard />
         <Link to={'/'} tabIndex={3}>

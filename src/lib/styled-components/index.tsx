@@ -17,7 +17,7 @@ const prop = (value: string) => {
 interface MixinsProps {
   justify?: string;
   align?: string;
-  flexWrap?: string;
+  flexwrap?: string;
   width?: string;
   height?: string;
   minWidth?: string;
@@ -30,7 +30,7 @@ interface MixinsProps {
 export const mixins = (props: MixinsProps) => css`
   justify-content: ${prop(props.justify)};
   align-items: ${prop(props.align)};
-  flex-wrap: ${prop(props.flexWrap)};
+  flex-wrap: ${prop(props.flexwrap)};
   width: ${prop(props.width)};
   height: ${prop(props.height)};
   min-width: ${prop(props.minWidth)};
