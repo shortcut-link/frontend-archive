@@ -23,7 +23,7 @@ export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
 
   return (
     <Row
-      tagName={ButtonPrimary}
+      tag={ButtonPrimary}
       key={url}
       onClick={onClick}
       justify="center"

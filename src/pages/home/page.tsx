@@ -59,7 +59,7 @@ const CreateForm = ({
   const formError = useStore(createLinkFetching.error);
 
   return (
-    <Col tagName="form" onSubmit={handleSubmit} gap="1rem" width="30rem">
+    <Col tag="form" onSubmit={handleSubmit} gap="1rem" width="30rem">
       {formError && <ErrorBox>{formError}</ErrorBox>}
       <Input
         type="text"

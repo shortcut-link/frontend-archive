@@ -12,7 +12,7 @@ export const CardProfile: React.FC<CardProfileProps> = ({
   heading,
   children
 }) => (
-  <Col tagName={Card} gap="1rem">
+  <Col tag={Card} gap="1rem">
     <Heading>{heading}</Heading>
     {children}
   </Col>

@@ -1,14 +1,21 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+type AnyTag =
+  | string
+  | React.FunctionComponent<any>
+  | (new (props: any) => React.Component);
+
 interface WithTagProps {
-  tagName?: string;
-  children: React.ReactNode;
+  tag?: AnyTag;
+  className?: string;
 }
-// type
-export const WithTag = ({ tagName: Tag = 'div', children, ...props }: any) => (
-  <Tag {...props}>{children}</Tag>
-);
+
+export const WithTag: React.FC<WithTagProps> = ({
+  tag: Tag = 'div',
+  children,
+  ...props
+}) => <Tag {...props}>{children}</Tag>;
 
 const prop = (value: string) => {
   return value ? value : 'initial';
@@ -40,11 +47,12 @@ export const mixins = (props: MixinsProps) => css`
   padding: ${prop(props.padding)};
 `;
 
-interface RowOrColProps extends MixinsProps {
+interface RowOrColProps extends MixinsProps, WithTagProps {
   gap?: string;
+  [key: string]: any;
 }
 
-export const Row = styled(WithTag)`
+export const Row = styled(WithTag)<RowOrColProps>`
   display: flex;
   flex-direction: row;
   text-align: left;
@@ -60,7 +68,7 @@ export const Row = styled(WithTag)`
     `}
 `;
 
-export const Col = styled(WithTag)`
+export const Col = styled(WithTag)<RowOrColProps>`
   display: flex;
   flex-direction: column;
   text-align: left;

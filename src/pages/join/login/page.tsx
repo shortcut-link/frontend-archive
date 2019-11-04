@@ -64,7 +64,7 @@ const LoginForm = () => {
   const formError = useStore(loginFetching.error);
 
   return (
-    <Col onSubmit={handleSubmit} tagName="form" gap="1rem">
+    <Col onSubmit={handleSubmit} tag="form" gap="1rem">
       <h1 style={{ fontSize: '1.3rem' }}>Shortcut-Link</h1>
       {formError && <ErrorBox>{formError}</ErrorBox>}
       <Email />

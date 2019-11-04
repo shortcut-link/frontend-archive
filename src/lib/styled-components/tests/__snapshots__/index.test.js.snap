@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`must wrap in an item with custom tag and transfer of props 1`] = `
-<header
+<div
   className="one"
+  tagName="header"
 >
   <div>
     Hello
   </div>
-</header>
+</div>
 `;
 
 exports[`must wrap in an item with default tag 1`] = `
