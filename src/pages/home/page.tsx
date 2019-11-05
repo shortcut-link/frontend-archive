@@ -32,12 +32,16 @@ export const CreateLinkMainPage: React.FunctionComponent = () => {
   return (
     <>
       <CommonContentTemplate>
-        <Col gap="2rem" width="100%" justify="center" align="center">
-          <CreateForm
-            setWindowManagingCreatedLink={setWindowManagingCreatedLink}
-          />
-          <CreatedLinks links={createdLinks} />
-        </Col>
+        <ColContainer gap="2rem" width="100%" justify="center" align="center">
+          <FlexItem>
+            <CreateForm
+              setWindowManagingCreatedLink={setWindowManagingCreatedLink}
+            />
+          </FlexItem>
+          <FlexItem>
+            <CreatedLinks links={createdLinks} />
+          </FlexItem>
+        </ColContainer>
       </CommonContentTemplate>
 
       <ModalSettings
@@ -47,6 +51,21 @@ export const CreateLinkMainPage: React.FunctionComponent = () => {
     </>
   );
 };
+
+const FlexItem = styled.div`
+  display: flex;
+`;
+
+const ColContainer = styled(Col)`
+  & > ${FlexItem}:nth-child(1) {
+    height: 50%;
+    align-items: flex-end;
+  }
+  & > ${FlexItem}:nth-child(2) {
+    overflow-y: auto;
+    height: 300px;
+  }
+`;
 
 const CreateForm = ({
   setWindowManagingCreatedLink
