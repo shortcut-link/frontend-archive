@@ -11,7 +11,6 @@ export interface User {
 
 export interface CreateResponse {
   token: string;
-  user: User;
 }
 
 const create = (registerData: RegisterData) =>

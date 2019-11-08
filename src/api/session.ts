@@ -5,7 +5,6 @@ import { User } from './account';
 
 export interface CreateResponse {
   token: string;
-  user: User;
 }
 
 const create = (loginData: LoginData) =>

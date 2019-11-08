@@ -9,7 +9,7 @@ import {
 
 import { createFetching } from 'lib/fetching';
 import { accountAPI, CreateResponse } from 'api/account';
-import { tokenChange, sessionChange, trimEvent } from 'features/common';
+import { tokenChange, trimEvent } from 'features/common';
 import { history } from 'lib/routing';
 import {
   emailValidator,
@@ -106,8 +106,7 @@ formSubmitted.watch(() => {
 
 registrationProcessing.use(accountAPI.create);
 
-registrationProcessing.done.watch(({ result: { token, user } }) => {
+registrationProcessing.done.watch(({ result: { token } }) => {
   tokenChange(token);
-  sessionChange(user);
   history.push('/');
 });

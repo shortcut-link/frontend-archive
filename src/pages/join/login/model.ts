@@ -11,7 +11,7 @@ import {
 import { createFetching } from 'lib/fetching';
 import { emailValidator, passwordValidator } from 'lib/validators';
 import { history } from 'lib/routing';
-import { tokenChange, sessionChange, trimEvent } from 'features/common';
+import { tokenChange, trimEvent } from 'features/common';
 import { sessionAPI, CreateResponse } from 'api/session';
 
 export interface LoginData {
@@ -80,8 +80,7 @@ formSubmitted.watch(() => {
 
 loginProcessing.use(sessionAPI.create);
 
-loginProcessing.done.watch(({ result: { token, user } }) => {
+loginProcessing.done.watch(({ result: { token } }) => {
   tokenChange(token);
-  sessionChange(user);
   history.push('/');
 });
