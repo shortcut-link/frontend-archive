@@ -8,11 +8,12 @@ import {
   ModalWindow,
   ZeroButton,
   Icon,
-  ButtonPrimary
+  ButtonPrimary,
+  Card
 } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import { $session, sessionRemove } from 'features/common';
-import { CardProfile, LinksTable, LinkManagement } from 'features/profile';
+import { LinksTable, LinkManagement } from 'features/profile';
 import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
   $linkManagement,
@@ -74,10 +75,10 @@ const UserProfileCard = () => {
   };
 
   return (
-    <CardProfile heading={<Heading />}>
+    <Card heading={<Heading />}>
       <div>Your email: {email}</div>
       <ButtonPrimary onClick={() => signOut()}>Sign out</ButtonPrimary>
-    </CardProfile>
+    </Card>
   );
 };
 
@@ -101,9 +102,9 @@ const UserLinksCard = () => {
   );
 
   return (
-    <CardProfile heading={<Heading />}>
+    <Card heading={<Heading />}>
       <LinksTable openLinkManagement={openLinkManagement} />
-    </CardProfile>
+    </Card>
   );
 };
 

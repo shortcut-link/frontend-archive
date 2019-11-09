@@ -2,7 +2,7 @@ import React, { createRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Col } from 'lib/styled-components';
 
-import { Card, Icon } from '../atom';
+import { CardContainer, Icon } from '../atom';
 
 interface ModalWindowProps {
   closing: () => void;
@@ -79,7 +79,7 @@ const animContainer = keyframes`
   }
 `;
 
-const CardPopup = styled(Card)`
+const CardPopup = styled(CardContainer)`
   position: relative;
   padding-top: 3rem;
   animation: ${animPopup} 0.2s;
