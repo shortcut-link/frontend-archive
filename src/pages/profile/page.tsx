@@ -48,14 +48,8 @@ const Navigation = () => {
 
   return (
     <Row justify="space-between" width="100%">
-      <Link to={routesPath.home} tabIndex={3}>
-        Return back
-      </Link>
-      {admin ? (
-        <Link to={routesPath.admin} tabIndex={4}>
-          Admin panel
-        </Link>
-      ) : null}
+      <Link to={routesPath.home}>Return back</Link>
+      {admin ? <Link to={routesPath.admin}>Admin panel</Link> : null}
     </Row>
   );
 };
@@ -94,7 +88,6 @@ const UserLinksCard = () => {
       <ButtonDownloadCloud
         onClick={ReSyncLinks}
         aria-label="Re-sync all your links"
-        tabIndex={1}
       >
         <Icon name="download-cloud" width="1.2rem" height="1.2rem" />
       </ButtonDownloadCloud>

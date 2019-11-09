@@ -37,7 +37,6 @@ export const LinksTable: React.FC<LinksTableProps> = ({
         isRowLoaded={({ index }) => links[index]}
         loadMoreRows={downloadLinksProcessing}
         rowCount={countUserLinks}
-        tabIndex={2}
       >
         {({ onRowsRendered, registerChild }) => (
           <AutoSizer style={{ width: '100%' }}>
@@ -48,7 +47,6 @@ export const LinksTable: React.FC<LinksTableProps> = ({
                 height={height}
                 onRowsRendered={onRowsRendered}
                 rowRenderer={ItemLinksTable}
-                tabIndex={3}
                 headerHeight={20}
                 rowHeight={35}
                 rowCount={links.length}
