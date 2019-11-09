@@ -71,7 +71,9 @@ const UserProfileCard = () => {
   return (
     <Card heading={<Heading />}>
       <div>Your email: {email}</div>
-      <ButtonPrimary onClick={() => signOut()}>Sign out</ButtonPrimary>
+      <ButtonPrimary onClick={() => signOut()} type="submit">
+        Sign out
+      </ButtonPrimary>
     </Card>
   );
 };
