@@ -3,8 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { mixins } from 'lib/styled-components';
 
 export const cssLink = css`
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 1rem;
   text-decoration: none;
   transition: 0.15s;
   color: inherit;

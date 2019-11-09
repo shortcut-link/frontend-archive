@@ -38,7 +38,7 @@ export const RegistrationPage: React.FunctionComponent = () => {
   return (
     <CenterContent>
       <Container justify="center" align="center">
-        <Col width="370px">
+        <Col width="370px" gap="1rem">
           <Card>
             <LoginForm />
           </Card>
@@ -50,7 +50,7 @@ export const RegistrationPage: React.FunctionComponent = () => {
 };
 
 const Navigation = () => (
-  <Row justify="center" padding="1rem 0.5rem">
+  <Row justify="center">
     <Link to={routesPath.join.login}>Return back</Link>
   </Row>
 );
