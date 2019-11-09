@@ -20,6 +20,7 @@ import {
   closeLinkManagement
 } from './model/link-management';
 import { history } from 'lib/routing';
+import { routesPath } from 'pages';
 
 export const ProfilePage: React.FunctionComponent = () => {
   const linkManagement = useStore($linkManagement);
@@ -29,9 +30,7 @@ export const ProfilePage: React.FunctionComponent = () => {
       <Col flexwrap="wrap" justify="center" align="center" gap="1rem">
         <UserProfileCard />
         <UserLinksCard />
-        <Link to={'/'} tabIndex={3}>
-          Return back
-        </Link>
+        <Navigation />
       </Col>
 
       {linkManagement !== null && (
@@ -40,6 +39,23 @@ export const ProfilePage: React.FunctionComponent = () => {
         </ModalWindow>
       )}
     </CenterContent>
+  );
+};
+
+const Navigation = () => {
+  const { admin } = useStore($session);
+
+  return (
+    <Row justify="space-between" width="100%">
+      <Link to={routesPath.home} tabIndex={3}>
+        Return back
+      </Link>
+      {admin ? (
+        <Link to={routesPath.admin} tabIndex={4}>
+          Admin panel
+        </Link>
+      ) : null}
+    </Row>
   );
 };
 

@@ -4,9 +4,10 @@ import { Link } from './link';
 import { RegisterData } from 'pages/join/registration/model';
 
 export interface User {
+  [key: string]: any;
   email: string;
   linkTransitions: boolean;
-  [key: string]: any;
+  admin?: boolean;
 }
 
 export interface CreateResponse {

@@ -20,6 +20,11 @@ const ProfilePage = lazy(() =>
     default: a.ProfilePage
   }))
 );
+const AdminPanelPage = lazy(() =>
+  import('./admin/page').then(a => ({
+    default: a.AdminPanelPage
+  }))
+);
 
 export const routesPath = {
   home: '/',
@@ -27,7 +32,8 @@ export const routesPath = {
     login: '/join',
     registration: '/join/registration'
   },
-  profile: '/profile'
+  profile: '/profile',
+  admin: '/admin'
 };
 
 const createRoutes: Array<RouteConfig> = [
@@ -52,6 +58,12 @@ const createRoutes: Array<RouteConfig> = [
   {
     path: routesPath.profile,
     component: ProfilePage,
+    exact: true
+  },
+
+  {
+    path: routesPath.admin,
+    component: AdminPanelPage,
     exact: true
   },
 
