@@ -25,8 +25,12 @@ export interface LinkOptions {
 const changeUserLinkOptions = (url: string, options: LinkOptions) =>
   request<void>('POST', '/link/options', { body: { url, options } });
 
+const find = (url: string) =>
+  request<void>('POST', `/link/find?url=${url}`).catch(linkError);
+
 export const linkAPI = {
   create,
   remove,
-  changeUserLinkOptions
+  changeUserLinkOptions,
+  find
 };

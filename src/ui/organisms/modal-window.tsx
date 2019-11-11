@@ -5,7 +5,7 @@ import { Col } from 'lib/styled-components';
 import { CardContainer, Icon } from '../atom';
 
 interface ModalWindowProps {
-  closing: () => void;
+  closing: (payload: void) => void;
 }
 
 export const ModalWindow: React.FC<ModalWindowProps> = ({

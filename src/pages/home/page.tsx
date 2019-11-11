@@ -81,6 +81,7 @@ const CreateForm = ({
     <Col tag="form" onSubmit={handleSubmit} gap="1rem" width="30rem">
       {formError && <ErrorBox>{formError}</ErrorBox>}
       <Input
+        /* Type "text" because if "url" then you can’t insert a link without a protocol */
         type="text"
         name="link"
         error={link && linkError}
