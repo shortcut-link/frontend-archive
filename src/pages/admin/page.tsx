@@ -8,7 +8,8 @@ import {
   ModalWindow,
   Input,
   ButtonLoader,
-  ErrorBox
+  ErrorBox,
+  Link
 } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import {
@@ -25,6 +26,7 @@ import {
   formSubmitted,
   urlFindFetching
 } from './model/link-management';
+import { routesPath } from 'pages';
 
 export const AdminPanelPage = () => {
   const windowContents = useStore($windowContents);
@@ -35,6 +37,7 @@ export const AdminPanelPage = () => {
         <Row gap="1rem">
           <LinkManagementCard />
         </Row>
+        <Navigation />
       </Col>
 
       {windowContents && (
@@ -43,6 +46,13 @@ export const AdminPanelPage = () => {
     </CenterContent>
   );
 };
+
+const Navigation = () => (
+  <Row justify="space-between">
+    <Link to={routesPath.profile}>Return back</Link>
+    <Link to={routesPath.home}>Home</Link>
+  </Row>
+);
 
 const LinkManagementCard = () => (
   <Card heading={'Link management'}>
