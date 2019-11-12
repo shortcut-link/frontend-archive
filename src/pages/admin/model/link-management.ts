@@ -34,7 +34,9 @@ export const $isSubmitEnabled = combine(
 
 formSubmitted.watch(() => {
   const url = $url.getState();
-  urlFindProcessing(url);
+  const getUrlId = url.match(/(.{7})$/)[0];
+
+  urlFindProcessing(getUrlId);
 });
 
 urlFindProcessing.use(linkAPI.find);
