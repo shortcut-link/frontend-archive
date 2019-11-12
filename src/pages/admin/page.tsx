@@ -80,6 +80,7 @@ const UrlSearchContent = () => {
         value={url}
         onChange={urlChange}
         disabled={isFormDisabled}
+        autoFocus
       />
       <ButtonLoader
         type="submit"
