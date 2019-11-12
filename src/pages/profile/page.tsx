@@ -16,7 +16,7 @@ import { $session, sessionRemove } from 'features/common';
 import { LinksTable, LinkManagement } from 'features/profile';
 import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
-  $linkManagement,
+  $idManagementLinks,
   openLinkManagement,
   closeLinkManagement
 } from './model/link-management';
@@ -24,7 +24,7 @@ import { history } from 'lib/routing';
 import { routesPath } from 'pages';
 
 export const ProfilePage: React.FunctionComponent = () => {
-  const linkManagement = useStore($linkManagement);
+  const idManagementLinks = useStore($idManagementLinks);
 
   return (
     <CenterContent>
@@ -34,7 +34,7 @@ export const ProfilePage: React.FunctionComponent = () => {
         <Navigation />
       </Col>
 
-      {linkManagement !== null && (
+      {idManagementLinks !== null && (
         <ModalWindow closing={() => closeLinkManagement()}>
           <LinkManagement />
         </ModalWindow>

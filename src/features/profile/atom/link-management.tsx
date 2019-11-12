@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
 import {
-  $linkManagement,
+  $idManagementLinks,
   changeLinkParameter
 } from 'pages/profile/model/link-management';
 import { $links } from 'pages/profile/model/links';
@@ -11,8 +11,8 @@ import { Col } from 'lib/styled-components';
 import { Toggle, ZeroButton } from 'ui';
 
 export const LinkManagement = () => {
-  const linkManagement = useStore($linkManagement);
-  const { url, transitions } = useStore($links)[linkManagement];
+  const idManagementLinks = useStore($idManagementLinks);
+  const { url, transitions } = useStore($links)[idManagementLinks];
 
   const elements = [
     {

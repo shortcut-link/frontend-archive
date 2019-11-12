@@ -1,17 +1,18 @@
 import { createStore, createEvent } from 'effector';
 
 import { changeLinkOptions, removeLink } from './links';
+
 export const openLinkManagement = createEvent<number>();
 export const closeLinkManagement = createEvent<void>();
 export const changeLinkParameter = createEvent<string>();
 
-export const $linkManagement = createStore<number | null>(null);
+export const $idManagementLinks = createStore<number | null>(null);
 
-$linkManagement.on(openLinkManagement, (_, id) => id);
-$linkManagement.reset(closeLinkManagement, removeLink);
+$idManagementLinks.on(openLinkManagement, (_, id) => id);
+$idManagementLinks.reset(closeLinkManagement, removeLink);
 
 changeLinkParameter.watch(property => {
-  const idLink = $linkManagement.getState();
+  const idLink = $idManagementLinks.getState();
 
   changeLinkOptions({ id: idLink, property });
 });
