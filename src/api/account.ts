@@ -10,14 +10,8 @@ export interface User {
   admin?: boolean;
 }
 
-export interface CreateResponse {
-  token: string;
-}
-
 const create = (registerData: RegisterData) =>
-  request<CreateResponse>('POST', '/account', { body: registerData }).catch(
-    accountError
-  );
+  request<void>('PUT', '/account', { body: registerData }).catch(accountError);
 
 interface OptionsCreatedLink {
   linkTransitions?: boolean;

@@ -8,7 +8,8 @@ import {
 } from 'effector';
 
 import { createFetching } from 'lib/fetching';
-import { accountAPI, CreateResponse } from 'api/account';
+import { accountAPI } from 'api/account';
+import { sessionAPI, CreateResponse } from 'api/session';
 import { tokenChange, trimEvent } from 'features/common';
 import { history } from 'lib/routing';
 import {
@@ -104,7 +105,9 @@ formSubmitted.watch(() => {
   registrationProcessing(form);
 });
 
-registrationProcessing.use(accountAPI.create);
+registrationProcessing.use(form =>
+  accountAPI.create(form).then(() => sessionAPI.create(form))
+);
 
 registrationProcessing.done.watch(({ result: { token } }) => {
   tokenChange(token);

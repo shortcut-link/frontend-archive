@@ -8,7 +8,7 @@ export interface CreateResponse {
 }
 
 const create = (loginData: LoginData) =>
-  request<CreateResponse>('POST', '/account/session', {
+  request<CreateResponse>('PUT', '/account/session', {
     body: loginData
   }).catch(sessionError);
 
