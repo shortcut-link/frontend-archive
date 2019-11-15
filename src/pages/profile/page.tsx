@@ -12,16 +12,18 @@ import {
   Card
 } from 'ui';
 import { Col, Row } from 'lib/styled-components';
-import { $session, sessionRemove } from 'features/common';
-import { LinksTable, LinkManagement } from 'features/profile';
+import { $session, sessionRemove, LinkManagement } from 'features/common';
+import { LinksTable } from 'features/profile';
 import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
   $idManagementLinks,
   openLinkManagement,
-  closeLinkManagement
+  closeLinkManagement,
+  changeLinkParameter
 } from './model/link-management';
 import { history } from 'lib/routing';
 import { routesPath } from 'pages';
+import { $links } from 'pages/profile/model/links';
 
 export const ProfilePage: React.FunctionComponent = () => {
   const idManagementLinks = useStore($idManagementLinks);
@@ -35,11 +37,22 @@ export const ProfilePage: React.FunctionComponent = () => {
       </Col>
 
       {idManagementLinks !== null && (
-        <ModalWindow closing={() => closeLinkManagement()}>
-          <LinkManagement />
-        </ModalWindow>
+        <ModalWindowWithLinkManagement id={idManagementLinks} />
       )}
     </CenterContent>
+  );
+};
+
+const ModalWindowWithLinkManagement = ({ id }: { id: number }) => {
+  const { url, transitions } = useStore($links)[id];
+
+  return (
+    <ModalWindow closing={() => closeLinkManagement()}>
+      <LinkManagement
+        link={{ url, transitions }}
+        changeLinkParameter={changeLinkParameter}
+      />
+    </ModalWindow>
   );
 };
 
