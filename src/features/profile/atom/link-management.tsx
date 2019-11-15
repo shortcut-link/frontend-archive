@@ -1,6 +1,5 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import styled from 'styled-components';
 
 import {
   $idManagementLinks,
@@ -8,7 +7,7 @@ import {
 } from 'pages/profile/model/link-management';
 import { $links } from 'pages/profile/model/links';
 import { Col } from 'lib/styled-components';
-import { Toggle, ZeroButton } from 'ui';
+import { Toggle, ZeroButton, ContainerToggle } from 'ui';
 
 export const LinkManagement = () => {
   const idManagementLinks = useStore($idManagementLinks);
@@ -43,10 +42,3 @@ export const LinkManagement = () => {
     </Col>
   );
 };
-
-const ContainerToggle = styled(Col)`
-  & > :not(:last-child) {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-  }
-`;

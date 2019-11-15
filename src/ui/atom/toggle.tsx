@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Row } from 'lib/styled-components';
+import { Row, Col } from 'lib/styled-components';
 
 export type SwitchingType = (payload: void) => void;
 
@@ -118,4 +118,11 @@ export const Checkbox = styled.input<PropsStyled>`
 
 const Label = styled.label`
   cursor: pointer;
+`;
+
+export const ContainerToggle = styled(Col)`
+  & > :not(:last-child) {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
 `;
