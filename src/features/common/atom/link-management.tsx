@@ -9,7 +9,9 @@ type LinkParameter = 'tracking' | 'remove';
 interface LinkManagementProps {
   link: {
     url: string;
-    transitions: number | null;
+    originalUrl?: string;
+    transitions?: number;
+    createdAt?: Date;
     user?: string;
   };
   changeLinkParameter: (type: LinkParameter) => void;
@@ -22,7 +24,7 @@ interface Parameter {
 }
 
 export const LinkManagement: React.FC<LinkManagementProps> = ({
-  link: { url, transitions, user },
+  link: { url, transitions, createdAt, originalUrl, user },
   changeLinkParameter
 }) => {
   const parameters: Array<Parameter> = [
@@ -35,10 +37,12 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
 
   return (
     <Col gap="1rem">
-      <h5>
-        {`http://localhost:8080/${url}`}{' '}
-        {user && <Author>Author: {user}</Author>}
-      </h5>
+      <h5>{`http://localhost:8080/${url}`}</h5>
+      <Descrition>
+        {user && <div>Author: {user}</div>}
+        {originalUrl && <div>Original URL: {originalUrl}</div>}
+        {createdAt && <div>Date of creation: {createdAt}</div>}
+      </Descrition>
 
       <ContainerToggle gap="1rem" align="center">
         {parameters.map(({ id, text, value }) => (
@@ -59,8 +63,8 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
   );
 };
 
-const Author = styled.span`
-  display: block;
-  padding: 0.5rem;
+const Descrition = styled.address`
+  margin-bottom: 1rem;
+  padding-left: 1rem;
   font-size: 0.7rem;
 `;
