@@ -11,7 +11,7 @@ interface ItemCreatedLinkProps {
 export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
   const [isCopy, setIsCopy] = useState(false);
   const linkRef = useRef(null);
-  const urlWithDomain = `https://localhost:8080/${url}`;
+  const urlWithDomain = `http://localhost:8080/${url}`;
 
   const onClick = () => {
     linkRef.current.select();
