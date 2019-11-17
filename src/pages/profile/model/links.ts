@@ -81,7 +81,7 @@ changeLinkOptions.watch(({ id, property }) => {
   const { url, transitions } = $links.getState()[id];
 
   switch (property) {
-    case 'tracking':
+    case 'transitions':
       const typeTransitionsNumber = typeof transitions === 'number';
 
       editLink({
@@ -91,9 +91,11 @@ changeLinkOptions.watch(({ id, property }) => {
         }
       });
 
-      linkAPI.changeUserLinkOptions(url, {
-        tracking: typeTransitionsNumber ? false : true
-      });
+      linkAPI.changeParameter(
+        url,
+        'transitions',
+        typeTransitionsNumber ? false : true
+      );
       break;
 
     case 'remove':

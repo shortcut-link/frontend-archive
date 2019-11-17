@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 import { Col } from 'lib/styled-components';
 import { ContainerToggle, Toggle, ZeroButton } from 'ui';
-
-type LinkParameter = 'tracking' | 'remove';
+import { LinkParameter } from 'api/link';
 
 interface LinkManagementProps {
   link: {
@@ -14,7 +13,7 @@ interface LinkManagementProps {
     createdAt?: Date;
     user?: string;
   };
-  changeLinkParameter: (type: LinkParameter) => void;
+  changeLinkParameter: (type: LinkParameter | 'remove') => void;
 }
 
 interface Parameter {
@@ -29,7 +28,7 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
 }) => {
   const parameters: Array<Parameter> = [
     {
-      id: 'tracking',
+      id: 'transitions',
       text: 'Track the number of clicks on the link',
       value: typeof transitions === 'number' ? true : false
     }

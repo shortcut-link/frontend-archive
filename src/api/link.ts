@@ -18,19 +18,27 @@ const create = (url: string) =>
 const remove = (url: string) =>
   request<void>('DELETE', `/link?url=${url}`).catch(linkError);
 
-export interface LinkOptions {
-  tracking?: boolean;
+export type LinkParameter = 'transitions';
+
+const changeParameter = (
+  url: string,
+  parameter: LinkParameter,
+  value: string | boolean
+) =>
+  request<void>('POST', `/link/parameter?url=${url}&parameter=${parameter}`, {
+    body: { value }
+  });
+
+export interface FoundLink extends Link {
+  user: string;
 }
 
-const changeUserLinkOptions = (url: string, options: LinkOptions) =>
-  request<void>('POST', '/link/options', { body: { url, options } });
-
 const find = (url: string) =>
-  request<void>('GET', `/link/find?url=${url}`).catch(linkError);
+  request<FoundLink>('GET', `/link/find?url=${url}`).catch(linkError);
 
 export const linkAPI = {
   create,
   remove,
-  changeUserLinkOptions,
+  changeParameter,
   find
 };
