@@ -14,11 +14,11 @@ import {
 } from 'pages/profile/model/links';
 
 interface LinksTableProps {
-  openLinkManagement: (payload: number) => void;
+  openLinkManagementWindow: (payload: number) => void;
 }
 
 export const LinksTable: React.FC<LinksTableProps> = ({
-  openLinkManagement
+  openLinkManagementWindow
 }) => {
   const links = useStore($links);
   const countUserLinks = useStore($countUserLinks);
@@ -52,7 +52,7 @@ export const LinksTable: React.FC<LinksTableProps> = ({
                 rowCount={links.length}
                 aria-label="Your links"
                 rowGetter={({ index }) => links[index]}
-                onRowClick={({ index }) => openLinkManagement(index)}
+                onRowClick={({ index }) => openLinkManagementWindow(index)}
               >
                 <Column label="Url" dataKey="url" width={width * 0.6} />
                 <Column

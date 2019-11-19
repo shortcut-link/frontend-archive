@@ -16,17 +16,17 @@ import { $session, sessionRemove, LinkManagement } from 'features/common';
 import { LinksTable } from 'features/profile';
 import { removeLinks, firstLoadCountAndLinks } from './model/links';
 import {
-  $idManagementLinks,
-  openLinkManagement,
-  closeLinkManagement,
+  $idManagementLink,
+  openLinkManagementWindow,
+  closeLinkManagementWindow,
   changeLinkParameter
-} from './model/link-management';
+} from './model/modal-window';
 import { history } from 'lib/routing';
 import { routesPath } from 'pages';
 import { $links } from 'pages/profile/model/links';
 
 export const ProfilePage: React.FunctionComponent = () => {
-  const idManagementLinks = useStore($idManagementLinks);
+  const idManagementLink = useStore($idManagementLink);
 
   return (
     <CenterContent>
@@ -36,8 +36,8 @@ export const ProfilePage: React.FunctionComponent = () => {
         <Navigation />
       </Col>
 
-      {idManagementLinks !== null && (
-        <ModalWindowWithLinkManagement id={idManagementLinks} />
+      {idManagementLink !== null && (
+        <ModalWindowWithLinkManagement id={idManagementLink} />
       )}
     </CenterContent>
   );
@@ -47,7 +47,7 @@ const ModalWindowWithLinkManagement = ({ id }: { id: number }) => {
   const { url, transitions } = useStore($links)[id];
 
   return (
-    <ModalWindow closing={() => closeLinkManagement()}>
+    <ModalWindow closing={closeLinkManagementWindow}>
       <LinkManagement
         link={{ url, transitions }}
         changeLinkParameter={changeLinkParameter}
@@ -111,7 +111,7 @@ const UserLinksCard = () => {
 
   return (
     <Card heading={<Heading />}>
-      <LinksTable openLinkManagement={openLinkManagement} />
+      <LinksTable openLinkManagementWindow={openLinkManagementWindow} />
     </Card>
   );
 };
