@@ -14,7 +14,7 @@ import {
 } from 'lib/link-management';
 
 export const getLinks = createEvent<IndexRange>();
-export const addLinks = createEvent<Array<Link>>();
+export const addLinks = createEvent<Link[]>();
 export const removeLinks = createEvent<void>();
 export const removeLink = createEvent<number>();
 export const editLink = createEvent<{
@@ -31,7 +31,7 @@ export const downloadLinksProcessing = createEffect<
 export const downloadLinksFetching = createFetching(downloadLinksProcessing);
 export const loadingCountLinks = createEffect<void, GetCountLinksResponse>();
 
-export const $links = createStore([])
+export const $links = createStore<Link[]>([])
   .on(addLinks, (allLinks, newLinks) => {
     return [...allLinks, ...newLinks];
   })

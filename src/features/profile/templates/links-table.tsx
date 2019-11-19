@@ -34,7 +34,7 @@ export const LinksTable: React.FC<LinksTableProps> = ({
   return (
     <Container>
       <InfiniteLoader
-        isRowLoaded={({ index }) => links[index]}
+        isRowLoaded={({ index }) => !!links[index]}
         loadMoreRows={downloadLinksProcessing}
         rowCount={countUserLinks}
       >
