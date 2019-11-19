@@ -19,7 +19,8 @@ export const changeLinkOptions = createEvent<{
 }>();
 export const editLink = createEvent<{
   id: number;
-  options: { transitions?: number };
+  parameter: string;
+  value: number | string;
 }>();
 export const addCountUserLinks = createEvent<number>();
 export const firstLoadCountAndLinks = createEvent<void>();
@@ -39,8 +40,8 @@ export const $links = createStore([])
     allLinks.splice(id, 1);
     return allLinks;
   })
-  .on(editLink, (allLinks, { id, options }) => {
-    allLinks[id] = { ...allLinks[id], ...options };
+  .on(editLink, (allLinks, { id, parameter, value }) => {
+    allLinks[id] = { ...allLinks[id], [parameter]: value };
 
     return allLinks;
   })
@@ -86,9 +87,8 @@ changeLinkOptions.watch(({ id, property }) => {
 
       editLink({
         id,
-        options: {
-          transitions: typeTransitionsNumber ? null : 0
-        }
+        parameter: property,
+        value: typeTransitionsNumber ? null : 0
       });
 
       linkAPI.changeParameter(
