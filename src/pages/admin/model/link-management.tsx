@@ -6,6 +6,10 @@ import { urlShortenedValidator } from 'lib/validators';
 import { trimEvent, LinkManagement } from 'features/common';
 import { linkAPI, FoundLink, LinkParameter } from 'api/link';
 import { changeWindowContent, closeWindow } from './modal-window';
+import {
+  changeLinkParameterHandler,
+  ParametersType
+} from 'lib/link-management';
 
 export const urlChange = createEvent<SyntheticEvent<HTMLInputElement>>();
 export const formSubmitted = createEvent<void>();
@@ -13,7 +17,6 @@ export const editLink = createEvent<{
   parameter: LinkParameter;
   value: any;
 }>();
-export const removeLink = createEvent<void>();
 
 export const urlFindProcessing = createEffect<
   string,
@@ -37,7 +40,7 @@ $link
     ...link,
     [parameter]: value
   }))
-  .reset(removeLink);
+  .reset(closeWindow);
 
 export const $isFormDisabled = urlFindFetching.isLoading;
 
@@ -58,36 +61,27 @@ urlFindProcessing.use(linkAPI.find);
 
 urlFindProcessing.done.watch(({ result }) => {
   changeWindowContent(
-    <LinkManagement link={result} changeLinkParameter={changeLinkParameter} />
+    <LinkManagement
+      link={result}
+      changeLinkParameter={changeLinkParameterCallback}
+    />
   );
 });
 
-type Parameter = LinkParameter | 'remove';
+function changeLinkParameterCallback(parameter: ParametersType) {
+  const link = $link.getState();
 
-function changeLinkParameter(parameter: Parameter) {
-  const { url, transitions } = $link.getState();
-
-  if (parameter === 'remove') {
-    const confirm = window.confirm(
-      `Are you sure you want to delete the shortened link: http://localhost:8080/${url} ?`
-    );
-
-    if (confirm) {
+  changeLinkParameterHandler({
+    parameter,
+    link,
+    linkAPI,
+    changeLink: value => {
+      if (parameter !== 'remove') {
+        editLink({ parameter, value });
+      }
+    },
+    removeLink: () => {
       closeWindow();
-      linkAPI.remove(url);
     }
-  }
-
-  if (parameter === 'transitions') {
-    const typeTransitionsNumber = typeof transitions === 'number';
-
-    const value = typeTransitionsNumber ? null : 0;
-    editLink({ parameter, value });
-
-    linkAPI.changeParameter(
-      url,
-      parameter,
-      typeTransitionsNumber ? false : true
-    );
-  }
+  });
 }

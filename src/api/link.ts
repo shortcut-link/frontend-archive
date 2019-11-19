@@ -19,11 +19,12 @@ const remove = (url: string) =>
   request<void>('DELETE', `/link?url=${url}`).catch(linkError);
 
 export type LinkParameter = 'transitions';
+export type LinkParameterValue = string | boolean | number;
 
 const changeParameter = (
   url: string,
   parameter: LinkParameter,
-  value: string | boolean
+  value: LinkParameterValue
 ) =>
   request<void>('POST', `/link/parameter?url=${url}&parameter=${parameter}`, {
     body: { value }

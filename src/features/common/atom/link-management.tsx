@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Col } from 'lib/styled-components';
 import { ContainerToggle, Toggle, ZeroButton } from 'ui';
 import { LinkParameter } from 'api/link';
+import { ParametersType } from 'lib/link-management';
 
 interface LinkManagementProps {
   link: {
@@ -13,7 +14,7 @@ interface LinkManagementProps {
     createdAt?: Date;
     user?: string;
   };
-  changeLinkParameter: (type: LinkParameter | 'remove') => void;
+  changeLinkParameter: (type: ParametersType) => void;
 }
 
 interface Parameter {
