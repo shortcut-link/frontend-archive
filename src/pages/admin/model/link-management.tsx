@@ -25,14 +25,14 @@ export const urlFindProcessing = createEffect<
 >();
 export const urlFindFetching = createFetching(urlFindProcessing);
 
-export const $url = createStore<string>('');
-export const $urlError = $url.map<null | string>(url =>
+export const $urlField = createStore<string>('');
+export const $urlError = $urlField.map<null | string>(url =>
   urlShortenedValidator(url)
 );
 
 export const $link = createStore<FoundLink>(null);
 
-$url.on(urlChange.map(trimEvent), (_, url) => url);
+$urlField.on(urlChange.map(trimEvent), (_, url) => url).reset(closeWindow);
 
 $link
   .on(urlFindProcessing.done, (_, { result }) => result)
@@ -51,8 +51,8 @@ export const $isSubmitEnabled = combine(
 );
 
 formSubmitted.watch(() => {
-  const url = $url.getState();
-  const getUrlId = url.match(/(.{7})$/)[0];
+  const urlField = $urlField.getState();
+  const getUrlId = urlField.match(/(.{7})$/)[0];
 
   urlFindProcessing(getUrlId);
 });

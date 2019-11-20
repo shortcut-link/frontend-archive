@@ -11,11 +11,11 @@ import {
   Link
 } from 'ui';
 import {
-  $email,
-  $password,
+  $emailField,
+  $passwordField,
   $emailError,
   $passwordError,
-  $passwordConfirmation,
+  $passwordConfirmationField,
   $passwordConfirmationError,
   $isSubmitEnabled,
   $isFormDisabled,
@@ -85,7 +85,7 @@ const LoginForm = () => {
 };
 
 const Email = () => {
-  const email = useStore($email);
+  const emailField = useStore($emailField);
   const emailError = useStore($emailError);
   const isFormDisabled = useStore($isFormDisabled);
 
@@ -95,8 +95,8 @@ const Email = () => {
       name="email"
       autoComplete="on"
       label="Email"
-      error={email && emailError}
-      value={email}
+      error={emailField && emailError}
+      value={emailField}
       onChange={emailChange}
       disabled={isFormDisabled}
     />
@@ -104,7 +104,7 @@ const Email = () => {
 };
 
 const Password = () => {
-  const password = useStore($password);
+  const passwordField = useStore($passwordField);
   const passwordError = useStore($passwordError);
   const isFormDisabled = useStore($isFormDisabled);
 
@@ -114,15 +114,15 @@ const Password = () => {
       name="password"
       autoComplete="on"
       label="Password"
-      error={password && passwordError}
-      value={password}
+      error={passwordField && passwordError}
+      value={passwordField}
       onChange={passwordChange}
       disabled={isFormDisabled}
     />
   );
 };
 const PasswordConfirmation = () => {
-  const passwordConfirmation = useStore($passwordConfirmation);
+  const passwordConfirmationField = useStore($passwordConfirmationField);
   const passwordConfirmationError = useStore($passwordConfirmationError);
   const isFormDisabled = useStore($isFormDisabled);
 
@@ -132,8 +132,8 @@ const PasswordConfirmation = () => {
       name="password"
       autoComplete="on"
       label="Password confirmation"
-      error={passwordConfirmation && passwordConfirmationError}
-      value={passwordConfirmation}
+      error={passwordConfirmationField && passwordConfirmationError}
+      value={passwordConfirmationField}
       onChange={passwordConfirmationChange}
       disabled={isFormDisabled}
     />

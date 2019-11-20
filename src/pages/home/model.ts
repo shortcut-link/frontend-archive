@@ -20,8 +20,8 @@ export const addCreatedLinks = createEvent<string>();
 export const createLinkProcessing = createEffect<string, CreatedLink>();
 export const createLinkFetching = createFetching(createLinkProcessing);
 
-export const $link = createStore<string>('');
-export const $linkError: Store<null | string> = $link.map(link =>
+export const $linkField = createStore<string>('');
+export const $linkError: Store<null | string> = $linkField.map(link =>
   urlValidator(link)
 );
 export const $isLinkCurrent: Store<boolean> = $linkError.map(
@@ -38,15 +38,14 @@ export const $isSubmitEnabled = combine(
   (isFormValid, isFormLoading) => isFormValid && !isFormLoading
 );
 
-$link.on(linkChange.map(trimEvent), (_, link) => link);
-$link.reset(linkRemove);
+$linkField.on(linkChange.map(trimEvent), (_, link) => link).reset(linkRemove);
 
 $createdLinks.on(addCreatedLinks, (links, url) => [{ url }, ...links]);
 
 formSubmitted.watch(() => {
   if (!$isSubmitEnabled.getState()) return;
 
-  const link = $link.getState();
+  const link = $linkField.getState();
   createLinkProcessing(link);
 });
 

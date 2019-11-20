@@ -18,10 +18,10 @@ import {
   closeWindow
 } from './model/modal-window';
 import {
-  $url,
+  $urlField,
+  $urlError,
   $isFormDisabled,
   $isSubmitEnabled,
-  $urlError,
   urlChange,
   formSubmitted,
   urlFindFetching
@@ -63,7 +63,7 @@ const LinkManagementCard = () => (
 );
 
 const UrlSearchContent = () => {
-  const url = useStore($url);
+  const urlField = useStore($urlField);
   const urlError = useStore($urlError);
   const formError = useStore(urlFindFetching.error);
   const isFormDisabled = useStore($isFormDisabled);
@@ -76,8 +76,8 @@ const UrlSearchContent = () => {
         type="text"
         name="url"
         label="Enter link URL"
-        error={url && urlError}
-        value={url}
+        error={urlField && urlError}
+        value={urlField}
         onChange={urlChange}
         disabled={isFormDisabled}
         autoFocus

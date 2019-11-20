@@ -5,7 +5,7 @@ import { useStore } from 'effector-react';
 import { CommonContentTemplate, $session } from 'features/common';
 import { Row, Col } from 'lib/styled-components';
 import {
-  $link,
+  $linkField,
   $linkError,
   $isSubmitEnabled,
   $isFormLoading,
@@ -72,7 +72,7 @@ const CreateForm = ({
 }: {
   setWindowManagingCreatedLink: setWindowManagingCreatedLinkType;
 }) => {
-  const link = useStore($link);
+  const linkField = useStore($linkField);
   const linkError = useStore($linkError);
   const isFormLoading = useStore($isFormLoading);
   const formError = useStore(createLinkFetching.error);
@@ -84,8 +84,8 @@ const CreateForm = ({
         /* Type "text" because if "url" then you can’t insert a link without a protocol */
         type="text"
         name="link"
-        error={link && linkError}
-        value={link}
+        error={linkField && linkError}
+        value={linkField}
         onChange={linkChange}
         disabled={isFormLoading}
         style={{

@@ -29,15 +29,15 @@ export const loginProcessing = createEffect<LoginData, CreateResponse>();
 export const loginFetching = createFetching(loginProcessing);
 
 /* Email */
-export const $email = createStore<string>('');
-export const $emailError = $email.map(email => emailValidator(email));
+export const $emailField = createStore<string>('');
+export const $emailError = $emailField.map(email => emailValidator(email));
 const $isEmailCurrent = $emailError.map(email => email === null);
 
 /* Password */
-export const $password = createStore<string>('');
-export const $passwordError: Store<string | null> = $password.map(password =>
-  passwordValidator(password)
-);
+export const $passwordField = createStore<string>('');
+export const $passwordError: Store<
+  string | null
+> = $passwordField.map(password => passwordValidator(password));
 const $isPasswordCurrent: Store<boolean> = $passwordError.map(
   password => password === null
 );
@@ -47,8 +47,8 @@ export const $captcha = createStore<boolean>(false);
 
 /* Form */
 export const $form = createStoreObject({
-  email: $email,
-  password: $password
+  email: $emailField,
+  password: $passwordField
 });
 
 const $isFormValid = combine(
@@ -66,8 +66,8 @@ export const $isSubmitEnabled = combine(
   (isFormValid, isFormDisabled) => isFormValid && !isFormDisabled
 );
 
-$email.on(emailChange.map(trimEvent), (_, email) => email);
-$password.on(passwordChange.map(trimEvent), (_, password) => password);
+$emailField.on(emailChange.map(trimEvent), (_, email) => email);
+$passwordField.on(passwordChange.map(trimEvent), (_, password) => password);
 
 $captcha.on(captchaPassed, () => true);
 

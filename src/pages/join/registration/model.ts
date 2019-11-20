@@ -39,22 +39,22 @@ export const registrationProcessing = createEffect<
 export const registrationFetching = createFetching(registrationProcessing);
 
 /* Email */
-export const $email = createStore('');
-export const $emailError = $email.map(email => emailValidator(email));
+export const $emailField = createStore('');
+export const $emailError = $emailField.map(email => emailValidator(email));
 const $isEmailCurrent = $emailError.map(email => email === null);
 
 /* Password */
-export const $password = createStore('');
-export const $passwordError = $password.map(password =>
+export const $passwordField = createStore('');
+export const $passwordError = $passwordField.map(password =>
   passwordValidator(password)
 );
 const $isPasswordCurrent = $passwordError.map(password => password === null);
 
 /* PasswordConfirmation */
-export const $passwordConfirmation = createStore('');
+export const $passwordConfirmationField = createStore('');
 export const $passwordConfirmationError = combine(
-  $password,
-  $passwordConfirmation,
+  $passwordField,
+  $passwordConfirmationField,
   (first, second) => second && passwordConfirmationValidator(first, second)
 );
 const $isPasswordConfirmationdCurrent = $passwordConfirmationError.map(
@@ -66,8 +66,8 @@ export const $captcha = createStore(false);
 
 /* Form */
 export const $form = createStoreObject({
-  email: $email,
-  password: $password
+  email: $emailField,
+  password: $passwordField
 });
 
 const $isFormValid = combine(
@@ -87,11 +87,11 @@ export const $isSubmitEnabled = combine(
   (isFormValid, isFormDisabled) => isFormValid && !isFormDisabled
 );
 
-$email.on(emailChange.map(trimEvent), (_, email) => email);
+$emailField.on(emailChange.map(trimEvent), (_, email) => email);
 
-$password.on(passwordChange.map(trimEvent), (_, password) => password);
+$passwordField.on(passwordChange.map(trimEvent), (_, password) => password);
 
-$passwordConfirmation.on(
+$passwordConfirmationField.on(
   passwordConfirmationChange.map(trimEvent),
   (_, passwordConfirmation) => passwordConfirmation
 );
