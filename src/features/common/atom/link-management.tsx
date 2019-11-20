@@ -18,7 +18,7 @@ interface LinkManagementProps {
 }
 
 interface Parameter {
-  id: LinkParameter;
+  parameter: LinkParameter;
   text: string;
   value: boolean;
 }
@@ -29,7 +29,7 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
 }) => {
   const parameters: Array<Parameter> = [
     {
-      id: 'transitions',
+      parameter: 'transitions',
       text: 'Track the number of clicks on the link',
       value: typeof transitions === 'number' ? true : false
     }
@@ -45,11 +45,11 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
       </Descrition>
 
       <ContainerToggle gap="1rem" align="center">
-        {parameters.map(({ id, text, value }) => (
+        {parameters.map(({ parameter, text, value }) => (
           <Toggle
-            key={id}
-            id={id}
-            switching={() => changeLinkParameter(id)}
+            key={parameter}
+            id={parameter}
+            switching={() => changeLinkParameter(parameter)}
             checked={value}
           >
             {text}
