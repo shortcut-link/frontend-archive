@@ -1,10 +1,5 @@
-import {
-  LinkParameter,
-  LinkParameterValue,
-  Link,
-  FoundLink,
-  linkAPI
-} from 'api/link';
+import { LinkParameter, LinkParameterValue, Link } from 'api/link';
+import { FoundLink } from 'api/admin/link';
 
 export type ParametersType = LinkParameter | 'remove';
 
@@ -16,7 +11,14 @@ interface changeLinkParameterProps {
   link: Link | FoundLink;
   changeLink: ChangeLink;
   removeLink: RemoveLink;
-  linkAPI: typeof linkAPI;
+  linkAPI: {
+    changeParameter: (
+      url: string,
+      parameter: LinkParameter,
+      value: LinkParameterValue
+    ) => void;
+    remove: (url: string) => void;
+  };
 }
 
 // TODO: remove any

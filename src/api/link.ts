@@ -30,16 +30,8 @@ const changeParameter = (
     body: { value }
   });
 
-export interface FoundLink extends Link {
-  user: string;
-}
-
-const find = (url: string) =>
-  request<FoundLink>('GET', `/link/find?url=${url}`).catch(linkError);
-
 export const linkAPI = {
   create,
   remove,
-  changeParameter,
-  find
+  changeParameter
 };

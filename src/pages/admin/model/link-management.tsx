@@ -4,7 +4,8 @@ import { createEvent, createStore, createEffect, combine } from 'effector';
 import { createFetching } from 'lib/fetching';
 import { urlShortenedValidator } from 'lib/validators';
 import { trimEvent, LinkManagement } from 'features/common';
-import { linkAPI, FoundLink, LinkParameter } from 'api/link';
+import { LinkParameter } from 'api/link';
+import { adminLinkAPI, FoundLink } from 'api/admin/link';
 import { changeWindowContent, closeWindow } from './modal-window';
 import {
   changeLinkParameterHandler,
@@ -57,7 +58,7 @@ formSubmitted.watch(() => {
   urlFindProcessing(getUrlId);
 });
 
-urlFindProcessing.use(linkAPI.find);
+urlFindProcessing.use(adminLinkAPI.find);
 
 urlFindProcessing.done.watch(({ result }) => {
   changeWindowContent(
@@ -74,7 +75,7 @@ function changeLinkParameterCallback(parameter: ParametersType) {
   changeLinkParameterHandler({
     parameter,
     link,
-    linkAPI,
+    linkAPI: adminLinkAPI,
     changeLink: value => {
       if (parameter !== 'remove') {
         editLink({ parameter, value });
