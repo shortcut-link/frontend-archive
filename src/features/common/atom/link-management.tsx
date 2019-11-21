@@ -5,6 +5,10 @@ import { Col } from 'lib/styled-components';
 import { ContainerToggle, Toggle, ZeroButton } from 'ui';
 import { LinkParameter } from 'api/link';
 import { ParametersType } from 'lib/link-management';
+import {
+  formattingShortedURLWithTrotocol,
+  dateFormatting
+} from 'lib/formatting';
 
 interface LinkManagementProps {
   link: {
@@ -37,11 +41,11 @@ export const LinkManagement: React.FC<LinkManagementProps> = ({
 
   return (
     <Col gap="1rem">
-      <h5>{`http://localhost:8080/${url}`}</h5>
+      <h5>{formattingShortedURLWithTrotocol(url)}</h5>
       <Descrition>
         {user && <div>Author: {user}</div>}
         {originalUrl && <div>Original URL: {originalUrl}</div>}
-        {createdAt && <div>Date of creation: {createdAt}</div>}
+        {createdAt && <div>Date of creation: {dateFormatting(createdAt)}</div>}
       </Descrition>
 
       <ContainerToggle gap="1rem" align="center">

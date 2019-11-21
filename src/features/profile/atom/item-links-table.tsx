@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { TableRowProps } from 'react-virtualized';
 
 import { Link } from 'api/link';
+import { formattingShortedURL, dateFormatting } from 'lib/formatting';
 
 interface ItemLinksTableProps extends TableRowProps {
   rowData: Link;
@@ -17,7 +18,7 @@ export const ItemLinksTable: React.FC<ItemLinksTableProps> = ({
   rowData: { url, originalUrl, transitions, createdAt },
   onRowClick
 }) => {
-  const outputUrl = `localhost:8080/${url}`;
+  const outputUrl = formattingShortedURL(url);
   const outputTransitions =
     typeof transitions === 'number' ? transitions : 'Not';
   const outputDate = dateFormatting(createdAt);
@@ -46,15 +47,6 @@ export const ItemLinksTable: React.FC<ItemLinksTableProps> = ({
     </ContainerItem>
   );
 };
-
-const dateFormatting = (date: Date) =>
-  new Date(date).toLocaleDateString('ru', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
-  });
 
 const ContainerItem = styled.div<{ backgroundColor: boolean }>`
   cursor: pointer;

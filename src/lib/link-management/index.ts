@@ -1,5 +1,6 @@
 import { LinkParameter, LinkParameterValue, Link } from 'api/link';
 import { FoundLink } from 'api/admin/link';
+import { formattingShortedURL } from '../formatting';
 
 export type ParametersType = LinkParameter | 'remove';
 
@@ -41,7 +42,9 @@ export const changeLinkParameterHandler = ({
 
   if (parameter === 'remove') {
     const confirm = window.confirm(
-      `Are you sure you want to delete the shortened link: http://localhost:8080/${url} ?`
+      `Are you sure you want to delete the shortened link: ${formattingShortedURL(
+        url
+      )} ?`
     );
 
     if (confirm) {

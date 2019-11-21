@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { ButtonPrimary, Icon } from 'ui';
 import { Row } from 'lib/styled-components';
+import { formattingShortedURLWithTrotocol } from 'lib/formatting';
 
 interface ItemCreatedLinkProps {
   url: string;
@@ -11,7 +12,7 @@ interface ItemCreatedLinkProps {
 export const ItemCreatedLink: React.FC<ItemCreatedLinkProps> = ({ url }) => {
   const [isCopy, setIsCopy] = useState(false);
   const linkRef = useRef(null);
-  const urlWithDomain = `http://localhost:8080/${url}`;
+  const urlWithDomain = formattingShortedURLWithTrotocol(url);
 
   const onClick = () => {
     linkRef.current.select();
