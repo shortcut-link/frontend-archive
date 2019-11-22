@@ -1,1 +1,0 @@
-export { LinksTable } from './templates';

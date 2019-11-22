@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import styled from 'styled-components';
 
@@ -13,8 +13,13 @@ import {
 } from 'ui';
 import { Col, Row } from 'lib/styled-components';
 import { $session, sessionRemove, LinkManagement } from 'features/common';
-import { LinksTable } from 'features/profile';
-import { removeLinks, firstLoadCountAndLinks } from './model/links';
+import {
+  $links,
+  $countUserLinks,
+  downloadLinksProcessing,
+  removeLinks,
+  firstLoadCountAndLinks
+} from './model/links';
 import {
   $idManagementLink,
   openLinkManagementWindow,
@@ -23,7 +28,7 @@ import {
 } from './model/modal-window';
 import { history } from 'lib/routing';
 import { routesPath } from 'pages';
-import { $links } from 'pages/profile/model/links';
+import { LinksTable } from 'features/links';
 
 export const ProfilePage: React.FunctionComponent = () => {
   const idManagementLink = useStore($idManagementLink);
@@ -92,6 +97,17 @@ const UserProfileCard = () => {
 };
 
 const UserLinksCard = () => {
+  const links = useStore($links);
+  const countUserLinks = useStore($countUserLinks);
+
+  useEffect(() => {
+    firstLoadCountAndLinks();
+
+    return () => {
+      removeLinks();
+    };
+  }, []);
+
   const ReSyncLinks = () => {
     removeLinks();
     firstLoadCountAndLinks();
@@ -109,9 +125,22 @@ const UserLinksCard = () => {
     </Row>
   );
 
+  const columnsList = [
+    { label: 'Url', dataKey: 'url', width: 0.6 },
+    { label: 'Original Url', dataKey: 'originalUrl', width: 0.7 },
+    { label: 'Transitions', dataKey: 'transitions', width: 0.4 },
+    { label: 'Created at', dataKey: 'createdAt', width: 0.4 }
+  ];
+
   return (
     <Card heading={<Heading />}>
-      <LinksTable openLinkManagementWindow={openLinkManagementWindow} />
+      <LinksTable
+        links={links}
+        countLinks={countUserLinks}
+        columns={columnsList}
+        downloadLinks={downloadLinksProcessing}
+        openLinkManagementWindow={openLinkManagementWindow}
+      />
     </Card>
   );
 };
