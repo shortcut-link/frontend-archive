@@ -5,13 +5,17 @@ import {
   Column,
   AutoSizer,
   IndexRange,
-  ColumnProps
+  ColumnProps,
+  defaultTableRowRenderer,
+  TableRowProps,
+  Index
 } from 'react-virtualized';
 import styled from 'styled-components';
 import 'react-virtualized/styles.css';
 
 import { Link } from 'api/link';
 import { formattingShortedURL, dateFormatting } from 'lib/formatting';
+import { Icon } from 'ui';
 
 interface LinksTableProps {
   links: Link[];
@@ -39,12 +43,48 @@ export const LinksTable: React.FC<LinksTableProps> = ({
     }
   );
 
+  const loadMoreRows = (payload: IndexRange) => {
+    downloadLinks(payload);
+
+    return new Promise(resolve => resolve());
+  };
+
+  const rowClassName = ({ index }: Index) => {
+    if (index < 0) return;
+
+    return index % 2 === 0 ? 'even' : 'notEven';
+  };
+
+  const rowRenderer = (defaultProps: TableRowProps) => {
+    const indexRow = defaultProps.index;
+
+    // Check that this is the last element and if not all links are loaded then show the loader
+    if (indexRow === formattingLinks.length && indexRow !== countLinks) {
+      return (
+        <div
+          key={defaultProps.key}
+          style={{
+            ...defaultProps.style,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <Icon name="loader" />
+        </div>
+      );
+    }
+
+    return defaultTableRowRenderer(defaultProps);
+  };
+
   return (
     <Container>
       <InfiniteLoader
         isRowLoaded={({ index }) => !!formattingLinks[index]}
-        loadMoreRows={downloadLinks}
+        loadMoreRows={loadMoreRows}
         rowCount={countLinks}
+        minimumBatchSize={30}
       >
         {({ onRowsRendered, registerChild }) => (
           <AutoSizer style={{ width: '100%' }}>
@@ -55,6 +95,7 @@ export const LinksTable: React.FC<LinksTableProps> = ({
                 height={height}
                 onRowsRendered={onRowsRendered}
                 rowClassName={rowClassName}
+                rowRenderer={rowRenderer}
                 headerHeight={20}
                 rowHeight={35}
                 rowCount={formattingLinks.length}
@@ -77,12 +118,6 @@ export const LinksTable: React.FC<LinksTableProps> = ({
       </InfiniteLoader>
     </Container>
   );
-};
-
-const rowClassName = ({ index }: { index: number }) => {
-  if (index < 0) return;
-
-  return index % 2 === 0 ? 'even' : 'notEven';
 };
 
 const Container = styled.div`
