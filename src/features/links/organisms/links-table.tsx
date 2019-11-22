@@ -17,7 +17,7 @@ interface LinksTableProps {
   links: Link[];
   countLinks: number;
   columns: ColumnProps[];
-  downloadLinks: (params: IndexRange) => Promise<{ links: Link[] }>;
+  downloadLinks: (payload: IndexRange) => void;
   openLinkManagementWindow: (payload: number) => void;
 }
 

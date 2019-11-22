@@ -13,7 +13,7 @@ import {
   changeLinkParameterHandler
 } from 'lib/link-management';
 
-export const getLinks = createEvent<IndexRange>();
+export const downloadLinks = createEvent<IndexRange>();
 export const addLinks = createEvent<Link[]>();
 export const removeLinks = createEvent<void>();
 export const removeLink = createEvent<number>();
@@ -63,7 +63,7 @@ export const $countUserLinks = createStore(0)
   .on(removeLink, count => count - 1)
   .reset(removeLinks);
 
-getLinks.watch(params => {
+downloadLinks.watch(params => {
   const loading = downloadLinksFetching.isLoading;
   if (loading.getState()) return;
 

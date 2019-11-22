@@ -16,7 +16,7 @@ import { $session, sessionRemove, LinkManagement } from 'features/common';
 import {
   $links,
   $countUserLinks,
-  downloadLinksProcessing,
+  downloadLinks,
   removeLinks,
   firstLoadCountAndLinks
 } from './model/links';
@@ -138,7 +138,7 @@ const UserLinksCard = () => {
         links={links}
         countLinks={countUserLinks}
         columns={columnsList}
-        downloadLinks={downloadLinksProcessing}
+        downloadLinks={downloadLinks}
         openLinkManagementWindow={openLinkManagementWindow}
       />
     </Card>
