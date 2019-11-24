@@ -1,3 +1,5 @@
+import { $token } from 'features/common';
+
 const baseUri = '/api';
 
 export type ErrorResponse = {
@@ -19,12 +21,14 @@ export const request = <R>(
   url: string,
   options: Options = {}
 ): Promise<R> => {
+  const token = $token.getState();
+  const uri = `${options.baseUri || baseUri}${url}`;
+
   const headers = new Headers({
     ...createContentType(options),
+    ...createAuthorization(token),
     ...options.headers
   });
-
-  const uri = `${options.baseUri || baseUri}${url}`;
 
   const { body, ...restOptions } = options;
 
@@ -37,6 +41,9 @@ export const request = <R>(
 
   return fetch(config).then(responseToPromise);
 };
+
+const createAuthorization = (token: string) =>
+  token ? { authorization: `Bearer ${token}` } : {};
 
 const createContentType = (options: Options) => {
   const header = contentTypeFromOptions(options);
