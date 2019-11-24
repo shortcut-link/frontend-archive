@@ -13,14 +13,15 @@ export interface User {
 const create = (registerData: RegisterData) =>
   request<void>('PUT', '/account', { body: registerData }).catch(accountError);
 
-interface OptionsCreatedLink {
-  linkTransitions?: boolean;
-}
+export type ParameterCreatedLink = 'linkTransitions';
 
-const changeOptionsCreatedLink = (field: OptionsCreatedLink) =>
-  request<void>('POST', '/account/linkSettings', { body: field }).catch(
-    accountError
-  );
+const changeOptionsCreatedLink = (
+  parameter: ParameterCreatedLink,
+  value: boolean
+) =>
+  request<void>('POST', '/account/linkSettings', {
+    body: { parameter, value }
+  }).catch(accountError);
 
 export interface GetCountLinksResponse {
   count: number;
